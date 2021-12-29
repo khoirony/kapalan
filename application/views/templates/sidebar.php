@@ -68,13 +68,25 @@
                     break;
                 endforeach;
                 ?>
+
+                <?php
+                if ($title == 'Ongoing Project') {
+                    echo '<li class="nav-item active">';
+                } else {
+                    echo '<li class="nav-item">';
+                }
+                ?>
+
+                <a class="nav-link" href="<?= base_url() . $url; ?>/ongoing">
+                    <i class=" fas fa-fw fa-spinner"></i>
+                    <span>Ongoing Project</span>
+                </a>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url() . $url; ?>/ongoing">
-                        <i class=" fas fa-fw fa-spinner"></i>
-                        <span>Ongoing Project</span></a>
                     <a class="nav-link pt-0" href="<?= base_url('auth/logout'); ?>">
                         <i class=" fas fa-fw fa-sign-out-alt"></i>
-                        <span>Logout</span></a>
+                        <span>Logout</span>
+                    </a>
                 </li>
 
                 <!-- Divider -->

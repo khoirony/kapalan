@@ -20,7 +20,7 @@ class Shipyard extends CI_Controller
             redirect('shipyard/tambah');
         }
 
-        $data['title'] = 'Shipyard';
+        $data['title'] = 'Dashboard';
         $data['user'] = $user;
 
         $this->load->view('templates/header', $data);
@@ -40,7 +40,7 @@ class Shipyard extends CI_Controller
             redirect('shipyard/tambah');
         }
 
-        $data['title'] = 'Perusahaan Saya';
+        $data['title'] = 'Profil Perusahaan';
         $data['user'] = $user;
         $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
 
@@ -102,7 +102,7 @@ class Shipyard extends CI_Controller
             redirect('shipyard/tambah');
         }
 
-        $data['title'] = 'Galangan Saya';
+        $data['title'] = 'Dock Space';
         $data['user'] = $user;
         $data['galangan'] = $this->db->get_where('galangan', ['id' => $user['id']])->row_array();
 
@@ -152,5 +152,65 @@ class Shipyard extends CI_Controller
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
             redirect('shipyard/dockspace');
         }
+    }
+
+    public function jadwal()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('shipyard/tambah');
+        }
+
+        $data['title'] = 'Atur Jadwal';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('shipyard/jadwal', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function repair()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('shipyard/tambah');
+        }
+
+        $data['title'] = 'Repair List';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('shipyard/repair', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function ongoing()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('shipyard/tambah');
+        }
+
+        $data['title'] = 'Ongoing Project';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('shipyard/ongoing', $data);
+        $this->load->view('templates/footer');
     }
 }

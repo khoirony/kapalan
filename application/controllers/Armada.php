@@ -17,7 +17,7 @@ class Armada extends CI_Controller
         $cek = $this->db->query($cekPerusahaan)->row_array();
         if ($cek['perusahaan'] == 0) {
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
+            redirect('owner/tambah');
         }
 
         $data['title'] = 'Data Kapal';
@@ -80,5 +80,45 @@ class Armada extends CI_Controller
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
             redirect('armada/kapal');
         }
+    }
+
+    public function maintenance()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('owner/tambah');
+        }
+
+        $data['title'] = 'Riwayat Maintenance';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('armada/maintenance', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function survey()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('owner/tambah');
+        }
+
+        $data['title'] = 'Jadwal Survey';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('armada/survey', $data);
+        $this->load->view('templates/footer');
     }
 }

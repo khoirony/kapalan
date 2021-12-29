@@ -92,4 +92,84 @@ class Owner extends CI_Controller
             redirect('owner/perusahaan');
         }
     }
+
+    public function galangan()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('owner/tambah');
+        }
+
+        $data['title'] = 'List Galangan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('owner/galangan', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function docking()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('owner/tambah');
+        }
+
+        $data['title'] = 'Docking Space';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('owner/docking', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function repair()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('owner/tambah');
+        }
+
+        $data['title'] = 'Repair List';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('owner/repair', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function ongoing()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
+        $cek = $this->db->query($cekPerusahaan)->row_array();
+        if ($cek['perusahaan'] == 0) {
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
+            redirect('owner/tambah');
+        }
+
+        $data['title'] = 'Ongoing Project';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('owner/ongoing', $data);
+        $this->load->view('templates/footer');
+    }
 }
