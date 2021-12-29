@@ -13,7 +13,7 @@ class Auth extends CI_Controller
 	{
 		// $this->session->sess_destroy();
 		if ($this->session->userdata('email')) {
-			redirect('user');
+			redirect('owner');
 		}
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
@@ -41,10 +41,27 @@ class Auth extends CI_Controller
 					'role_id' => $user['role_id']
 				];
 				$this->session->set_userdata($data);
-
 				if ($user['role_id'] == 1) {
+
+					$cekShipyard = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
+					$hitung = $this->db->query($cekShipyard)->num_rows();
+					if ($hitung < 1) {
+						$data = [
+							'pengguna' => $user['id'],
+						];
+						$this->db->insert('pemilik_galangan', $data);
+					}
+
 					redirect('shipyard');
 				} else {
+					$cekOwner = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
+					$hitung = $this->db->query($cekOwner)->num_rows();
+					if ($hitung < 1) {
+						$data = [
+							'pengguna' => $user['id'],
+						];
+						$this->db->insert('pemilik_kapal', $data);
+					}
 					redirect('owner');
 				}
 			} else {

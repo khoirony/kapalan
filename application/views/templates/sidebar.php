@@ -6,7 +6,16 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"><?= $title; ?> </div>
+                <div class="sidebar-brand-text mx-3">
+                    <?php
+                    $role_id = $this->session->userdata('role_id');
+                    if ($role_id == 1) {
+                        echo 'Shipyard';
+                    } else {
+                        echo 'Ship Owner';
+                    }
+                    ?>
+                </div>
             </a>
 
             <!-- Divider -->
@@ -32,11 +41,10 @@
                 <?php
                 $menuId = $m['id'];
                 $querySubMenu = "SELECT *
-                                    FROM user_sub_menu JOIN user_menu
-                                    ON user_sub_menu.menu_id = user_menu.id
-                                    WHERE user_sub_menu.menu_id = $menuId
-                                    AND user_sub_menu.is_active = 1
-                    ";
+                            FROM user_sub_menu JOIN user_menu
+                            ON user_sub_menu.menu_id = user_menu.id
+                            WHERE user_sub_menu.menu_id = $menuId
+                            AND user_sub_menu.is_active = 1";
                 $subMenu = $this->db->query($querySubMenu)->result_array();
                 ?>
 
@@ -55,8 +63,16 @@
                     <hr class="sidebar-divider mt-3">
                 <?php endforeach; ?>
 
+                <?php foreach ($menu as $m) :
+                    $url = $m['menu'];
+                    break;
+                endforeach;
+                ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('auth/logout'); ?>">
+                    <a class="nav-link" href="<?= base_url() . $url; ?>/ongoing">
+                        <i class=" fas fa-fw fa-spinner"></i>
+                        <span>Ongoing Project</span></a>
+                    <a class="nav-link pt-0" href="<?= base_url('auth/logout'); ?>">
                         <i class=" fas fa-fw fa-sign-out-alt"></i>
                         <span>Logout</span></a>
                 </li>
