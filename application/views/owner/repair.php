@@ -10,9 +10,18 @@
         </div>
         <div class="col-3 align-self-start">
             <div class="form-group ml-3">
-                <select class="form-select rounded-pill fs-6 fw-light" id="role" name="role" aria-label="Default select example">
-                    <option value="1">Kapal 1</option>
-                    <option value="2">Kapal 2</option>
+                <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
+                    <?php
+                    $query = "SELECT * FROM data_kapal where perusahaan = " . $user['id'];
+                    $Tampil = $this->db->query($query)->result_array();
+                    foreach ($Tampil as $t) : ?>
+                        <form method="POST" action="<?= base_url('armada/maintenance'); ?>">
+                            <option value="<?= $t['nama']; ?>"><?= $t['nama']; ?></option>
+                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                Submit
+                            </button>
+                        </form>
+                    <?php endforeach; ?>
                 </select>
             </div>
         </div>
@@ -36,7 +45,7 @@
     </div>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/buatpekerjaan'); ?>">Tambah Pekerja</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/tambahkerja'); ?>">Tambah Pekerja</a>
         <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/buatrepair'); ?>">Buat Repair List</a>
     </div>
     <br><br>

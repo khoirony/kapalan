@@ -9,9 +9,18 @@
             <div class="form-inline">
                 Data kapal :
                 <div class="form-group ml-3">
-                    <select class="form-select rounded-pill fs-6 fw-light" id="role" name="role" aria-label="Default select example">
-                        <option value="1">Kapal 1</option>
-                        <option value="2">Kapal 2</option>
+                    <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
+                        <?php
+                        $query = "SELECT * FROM data_kapal where perusahaan = " . $user['id'];
+                        $Tampil = $this->db->query($query)->result_array();
+                        foreach ($Tampil as $t) : ?>
+                            <form method="POST" action="<?= base_url('armada/maintenance'); ?>">
+                                <option value="<?= $t['nama']; ?>"><?= $t['nama']; ?></option>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Submit
+                                </button>
+                            </form>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
@@ -31,21 +40,34 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-            </tr>
+            <?php
+            $query = "SELECT * FROM jadwal_survey where data_kapal = " . $kapal['id'];
+            $Tampil = $this->db->query($query)->result_array();
+            $cek = $this->db->query($query)->row_array();
+            $no = 1;
+            if ($cek == 0) {
+                echo '
+                    <tr>
+                        <td colspan="6"><center>Data Kosong</center></td>
+                    </tr>
+                ';
+            } else {
+                foreach ($Tampil as $t) {
+            ?>
+                    <tr>
+                        <td><?= $t['tanggal']; ?></td>
+                        <td><?= $t['komponen']; ?></td>
+                        <td><?= $t['deskripsi']; ?></td>
+                        <td>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipyard/editdock/' . $g['id']); ?>">Edit</a>
+                            <btn class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
+                        </td>
+                    </tr>
+            <?php
+                    $no++;
+                }
+            }
+            ?>
         </tbody>
     </table>
 
