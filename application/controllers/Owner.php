@@ -144,7 +144,9 @@ class Owner extends CI_Controller
         }
 
         $data['title'] = 'Repair List';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+        $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $perusahaan['id']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

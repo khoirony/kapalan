@@ -50,7 +50,7 @@ class Armada extends CI_Controller
 
         if ($this->form_validation->run() == false) {
 
-            $data['title'] = 'Tambah Kapal';
+            $data['title'] = 'Data Kapal';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
 
@@ -76,6 +76,66 @@ class Armada extends CI_Controller
             ];
 
             $this->db->insert('data_kapal', $data);
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
+            redirect('armada/kapal');
+        }
+    }
+
+    public function hapuskapal($id)
+    {
+        $where = array('id' => $id);
+        $this->db->where($where);
+        $this->db->delete('data_kapal');
+        redirect('armada/kapal');
+    }
+
+    public function updatekapal($id)
+    {
+        $where = array('id' => $id);
+        $this->form_validation->set_rules('nama', 'Nama Kapal', 'required');
+        $this->form_validation->set_rules('imo', 'IMO', 'required|trim');
+        $this->form_validation->set_rules('tahun_pembuatan', 'Tahun Pembuatan', 'required|trim');
+        $this->form_validation->set_rules('tipe', 'Tipe Kapal', 'required|trim');
+        $this->form_validation->set_rules('material', 'Material Kapal', 'required');
+        $this->form_validation->set_rules('lpp', 'LPP', 'required|trim');
+        $this->form_validation->set_rules('luas', 'Luas', 'required|trim');
+        $this->form_validation->set_rules('draft', 'Draft', 'required|trim');
+        $this->form_validation->set_rules('tinggi', 'Tinggi', 'required|trim');
+        $this->form_validation->set_rules('dwt', 'DWT', 'required|trim');
+
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Kapal';
+            $data['id'] = $where;
+            $data['user'] = $user;
+            $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $where['id']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('armada/updatekapal', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'imo' => htmlspecialchars($this->input->post('imo', true)),
+                'perusahaan' => $user['id'],
+                'tahun_pembuatan' => htmlspecialchars($this->input->post('tahun_pembuatan', true)),
+                'tipe' => htmlspecialchars($this->input->post('tipe', true)),
+                'material' => htmlspecialchars($this->input->post('material', true)),
+                'loa' => htmlspecialchars($this->input->post('loa', true)),
+                'lpp' => htmlspecialchars($this->input->post('lpp', true)),
+                'luas' => htmlspecialchars($this->input->post('luas', true)),
+                'draft' => htmlspecialchars($this->input->post('draft', true)),
+                'tinggi' => htmlspecialchars($this->input->post('tinggi', true)),
+                'dwt' => htmlspecialchars($this->input->post('dwt', true)),
+            ];
+
+            $this->db->where($where);
+            $this->db->update('data_kapal', $data);
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
             redirect('armada/kapal');

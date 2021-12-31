@@ -9,6 +9,7 @@
             <tr>
                 <th scope="col" width="5%">No</th>
                 <th scope="col">Nama Galangan</th>
+                <th scope="col" width="15%">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,9 @@
                     <tr>
                         <td><?= $no; ?></td>
                         <td><?= $t['nama']; ?></td>
+                        <td>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/jadwal/' . $t['id']); ?>">Lihat jadwal</a>
+                        </td>
                     </tr>
             <?php
                     $no++;

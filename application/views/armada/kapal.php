@@ -45,8 +45,8 @@
                         <td><?= $g['luas']; ?></td>
                         <td><?= $g['tinggi']; ?></td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipyard/editdock/' . $g['id']); ?>">Edit</a>
-                            <btn class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
+                            <?= anchor('armada/updatekapal/' . $g['id'], '<div class="btn btn-primary rounded-pill pl-3 pr-3">Edit</div>'); ?>
+                            <?= anchor('armada/hapuskapal/' . $g['id'], '<div class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</div>'); ?>
                         </td>
                     </tr>
             <?php

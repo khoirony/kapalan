@@ -55,37 +55,37 @@
                 <th scope="col" width="5%">No</th>
                 <th scope="col" width="35%">Bidang</th>
                 <th scope="col">Jenis</th>
-                <th scope="col" class="text-center" width="20%">Pilihan</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td class="text-center">
-                    <btn class="btn btn-primary rounded-pill pl-3 pr-3">Edit</btn>
-                    <btn class="btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td class="text-center">
-                    <btn class="btn btn-primary rounded-pill pl-3 pr-3">Edit</btn>
-                    <btn class="btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td class="text-center">
-                    <btn class="btn btn-primary rounded-pill pl-3 pr-3">Edit</btn>
-                    <btn class="btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
-                </td>
-            </tr>
+            <?php
+            $query = "SELECT * FROM pekerjaan where kapal = " . $kapal['id'];
+            $Tampil = $this->db->query($query)->result_array();
+            $cek = $this->db->query($query)->row_array();
+            $no = 1;
+            if ($cek == 0) {
+                echo '
+                    <tr>
+                        <td colspan="6"><center>Data Kosong</center></td>
+                    </tr>
+                ';
+            } else {
+                foreach ($Tampil as $t) {
+            ?>
+                    <tr>
+                        <td><?= $no; ?></td>
+                        <td><?= $t['bidang']; ?></td>
+                        <td><?= $t['jenis']; ?></td>
+                        <td>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipyard/editdock/' . $g['id']); ?>">Edit</a>
+                            <btn class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
+                        </td>
+                    </tr>
+            <?php
+                    $no++;
+                }
+            }
+            ?>
         </tbody>
     </table>
 
