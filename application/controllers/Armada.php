@@ -120,6 +120,7 @@ class Armada extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
+                'id' => htmlspecialchars($this->input->post('id', true)),
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'imo' => htmlspecialchars($this->input->post('imo', true)),
                 'perusahaan' => $user['id'],
@@ -134,8 +135,9 @@ class Armada extends CI_Controller
                 'dwt' => htmlspecialchars($this->input->post('dwt', true)),
             ];
 
-            $this->db->where($where);
-            $this->db->update('data_kapal', $data);
+            $this->db->set($data);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('data_kapal');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
             redirect('armada/kapal');
@@ -199,6 +201,7 @@ class Armada extends CI_Controller
         $data['user'] = $user;
         $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
         $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $perusahaan['id']])->row_array();
+        $data['id'] = $this->input->post('kapal');
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

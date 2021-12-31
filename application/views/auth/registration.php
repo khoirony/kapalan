@@ -7,29 +7,33 @@
                 <div class="col-lg">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Register Your Company</h1>
                         </div>
                         <br>
                         <form class="user" method="POST" action="<?= base_url('auth/registration'); ?>">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="name" name="name" placeholder="Nama Lengkap" value="<?= set_value('name'); ?>">
-                                <?= form_error('name', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Perusahaan" value="<?= set_value('nama'); ?>">
+                                <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email Address" value="<?= set_value('email'); ?>">
+                                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email Perusahaan" value="<?= set_value('email'); ?>">
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="NoTelp" name="NoTelp" placeholder="No Telp" value="<?= set_value('NoTelp'); ?>">
-                                <?= form_error('NoTelp', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" id="notelp" name="notelp" placeholder="No Telp Perusahaan" value="<?= set_value('notelp'); ?>">
+                                <?= form_error('notelp', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="jabatan" name="jabatan" placeholder="Jabatan" value="<?= set_value('jabatan'); ?>">
-                                <?= form_error('jabatan', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" id="nofax" name="nofax" placeholder="No Fax Perusahaan" value="<?= set_value('nofax'); ?>">
+                                <?= form_error('nofax', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat" value="<?= set_value('Alamat'); ?>">
-                                <?= form_error('Alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                                <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat Perusahaan" value="<?= set_value('alamat'); ?>">
+                                <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-user" id="kodepos" name="kodepos" placeholder="Kode Pos Perusahaan" value="<?= set_value('kodepos'); ?>">
+                                <?= form_error('kodepos', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
                                 <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">

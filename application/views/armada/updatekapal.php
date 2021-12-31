@@ -6,11 +6,8 @@
     <br>
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('armada/updatekapal'); ?>">
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Kapal" value="<?= $kapal['id']; ?>">
-                    <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
-                </div>
+            <form class="user" method="POST" action="">
+                <input type="hidden" id="id" name="id" placeholder="Id Kapal" value="<?= $kapal['id']; ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Kapal" value="<?= $kapal['nama']; ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>

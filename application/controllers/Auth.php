@@ -79,14 +79,16 @@ class Auth extends CI_Controller
 		if ($this->session->userdata('email')) {
 			redirect('user');
 		}
-		$this->form_validation->set_rules('name', 'Name', 'required');
-		$this->form_validation->set_rules('NoTelp', 'No Telp', 'required|trim');
-		$this->form_validation->set_rules('jabatan', 'Jabatan', 'required|trim');
-		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
-		$this->form_validation->set_rules('role', 'Tipe', 'required|trim');
-		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.email]', [
+		$this->form_validation->set_rules('nama', 'Nama Perusahaan', 'required');
+		$this->form_validation->set_rules('email', 'Email Perusahaan', 'required|trim|valid_email|is_unique[user.email]', [
 			'is_unique' => 'This email has already registered! '
 		]);
+		$this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
+		$this->form_validation->set_rules('nofax', 'No Fax Perusahaan', 'required|trim');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('kodepos', 'Kode Pos', 'required|trim');
+		$this->form_validation->set_rules('role', 'Tipe Perusahaan', 'required|trim');
+
 		$this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
 			'matches' => 'Password dont match!',
 			'min_length' => 'Password too short!'
@@ -99,17 +101,33 @@ class Auth extends CI_Controller
 			$this->load->view('auth/registration');
 			$this->load->view('templates/auth_footer');
 		} else {
-			$data = [
-				'nama' => htmlspecialchars($this->input->post('name', true)),
+			$perusahaan = [
+				'nama' => htmlspecialchars($this->input->post('nama', true)),
 				'email' => htmlspecialchars($this->input->post('email', true)),
-				'no_telp' => htmlspecialchars($this->input->post('NoTelp', true)),
-				'jabatan' => htmlspecialchars($this->input->post('jabatan', true)),
+				'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
+				'no_fax' => htmlspecialchars($this->input->post('nofax', true)),
 				'alamat' => htmlspecialchars($this->input->post('alamat', true)),
-				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-				'role_id' => htmlspecialchars($this->input->post('role', true))
+				'kode_pos' => htmlspecialchars($this->input->post('kodepos', true)),
+				'role_id' => htmlspecialchars($this->input->post('role', true)),
 			];
 
-			$this->db->insert('user', $data);
+
+			$this->db->insert('perusahaan', $perusahaan);
+			$query = "SELECT * FROM perusahaan ORDER BY id DESC limit 1";
+			$cekid = $this->db->query($query)->row_array();
+
+			$user = [
+				'id' => $cekid['id'],
+				'nama' => htmlspecialchars($this->input->post('nama', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
+				'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
+				'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+				'jabatan' => 'Admin',
+				'role_id' => htmlspecialchars($this->input->post('role', true)),
+				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+			];
+
+			$this->db->insert('user', $user);
 			$this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please Login</div>');
 			redirect('auth');
 		}
