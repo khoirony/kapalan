@@ -83,7 +83,7 @@
                     echo '';
                 } else {
                     echo '
-                        <a class="nav-link" href="<?= base_url() . $url; ?>/ongoing">
+                        <a class="nav-link" href=' . base_url($url) . '/ongoing>
                             <i class=" fas fa-fw fa-spinner"></i>
                             <span>Ongoing Project</span>
                         </a>

@@ -2,10 +2,10 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"><?= $perusahaan['nama']; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800">Perusahaan <?= $perusahaan['nama']; ?></h1>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('armada/tambahkapal'); ?>">Tambah Kapal</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/tambahkapal'); ?>">Tambah Kapal</a>
     </div>
     <br><br>
     <table class="table">
@@ -23,14 +23,14 @@
         </thead>
         <tbody>
             <?php
-            $queryGal = "SELECT * FROM data_kapal where perusahaan = " . $user['id'];
+            $queryGal = "SELECT * FROM data_kapal where perusahaan = " . $user['perusahaan'];
             $TampilG = $this->db->query($queryGal)->result_array();
             $cek = $this->db->query($queryGal)->row_array();
             $no = 1;
             if ($cek == 0) {
                 echo '
                     <tr>
-                        <td colspan="6"><center>Data Kosong</center></td>
+                        <td colspan="8"><center>Data Kosong</center></td>
                     </tr>
                 ';
             } else {
@@ -45,8 +45,8 @@
                         <td><?= $g['luas']; ?></td>
                         <td><?= $g['tinggi']; ?></td>
                         <td>
-                            <?= anchor('armada/updatekapal/' . $g['id'], '<div class="btn btn-primary rounded-pill pl-3 pr-3">Edit</div>'); ?>
-                            <?= anchor('armada/hapuskapal/' . $g['id'], '<div class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</div>'); ?>
+                            <?= anchor('superintendent/updatekapal/' . $g['id'], '<div class="btn btn-primary rounded-pill pl-3 pr-3">Edit</div>'); ?>
+                            <?= anchor('superintendent/hapuskapal/' . $g['id'], '<div class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</div>'); ?>
                         </td>
                     </tr>
             <?php

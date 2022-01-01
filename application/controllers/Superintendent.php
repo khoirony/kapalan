@@ -13,17 +13,11 @@ class Superintendent extends CI_Controller
     public function kapal()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('owner/tambah');
-        }
 
         $data['title'] = 'Data Kapal';
         $data['user'] = $user;
-        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $user['id']])->row_array();
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $user['perusahaan']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -52,7 +46,7 @@ class Superintendent extends CI_Controller
 
             $data['title'] = 'Data Kapal';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -111,7 +105,7 @@ class Superintendent extends CI_Controller
             $data['id'] = $where;
             $data['user'] = $user;
             $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $where['id']])->row_array();
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -123,7 +117,7 @@ class Superintendent extends CI_Controller
                 'id' => htmlspecialchars($this->input->post('id', true)),
                 'nama' => htmlspecialchars($this->input->post('nama', true)),
                 'imo' => htmlspecialchars($this->input->post('imo', true)),
-                'perusahaan' => $user['id'],
+                'perusahaan' => $user['perusahaan'],
                 'tahun_pembuatan' => htmlspecialchars($this->input->post('tahun_pembuatan', true)),
                 'tipe' => htmlspecialchars($this->input->post('tipe', true)),
                 'material' => htmlspecialchars($this->input->post('material', true)),
@@ -147,16 +141,10 @@ class Superintendent extends CI_Controller
     public function maintenance()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('owner/tambah');
-        }
 
         $data['title'] = 'Riwayat Maintenance';
         $data['user'] = $user;
-        $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
         $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $perusahaan['id']])->row_array();
 
 
@@ -170,12 +158,6 @@ class Superintendent extends CI_Controller
     public function buatlaporan()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('owner/tambah');
-        }
 
         $data['title'] = 'Buat Laporan Maintenance';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -190,16 +172,10 @@ class Superintendent extends CI_Controller
     public function survey()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('owner/tambah');
-        }
 
         $data['title'] = 'Jadwal Survey';
         $data['user'] = $user;
-        $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
         $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $perusahaan['id']])->row_array();
         $data['id'] = $this->input->post('kapal');
 
@@ -213,12 +189,6 @@ class Superintendent extends CI_Controller
     public function buatsurvey()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('owner/tambah');
-        }
 
         $data['title'] = 'Buat Jadwal Survey';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

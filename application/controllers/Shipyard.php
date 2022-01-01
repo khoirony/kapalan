@@ -92,146 +92,87 @@ class Shipyard extends CI_Controller
         }
     }
 
-    public function dockspace()
+    public function user()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
-        }
-
-        $data['title'] = 'Dock Space';
-        $data['user'] = $user;
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('shipyard/dockspace', $data);
-        $this->load->view('templates/footer');
-    }
-
-    public function tambahdock()
-    {
-        $this->form_validation->set_rules('NamaDock', 'Nama Dock', 'required');
-        $this->form_validation->set_rules('TipeDock', 'Tipe Dock', 'required');
-        $this->form_validation->set_rules('Panjang', 'Panjang Dock', 'required|trim');
-        $this->form_validation->set_rules('Lebar', 'Lebar Dock', 'required|trim');
-        $this->form_validation->set_rules('Draft', 'Draft', 'required|trim');
-        $this->form_validation->set_rules('dwt', 'DWT', 'required|trim');
-
-
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Dock';
-            $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $data['user'] = $user;
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('shipyard/tambahdock', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $data = [
-                'perusahaan' => htmlspecialchars($this->input->post('idperusahaan', true)),
-                'nama' => htmlspecialchars($this->input->post('NamaDock', true)),
-                'tipe' => htmlspecialchars($this->input->post('TipeDock', true)),
-                'panjang' => htmlspecialchars($this->input->post('Panjang', true)),
-                'lebar' => htmlspecialchars($this->input->post('Lebar', true)),
-                'draft' => htmlspecialchars($this->input->post('Draft', true)),
-                'DWT' => htmlspecialchars($this->input->post('dwt', true)),
-            ];
-
-            $this->db->insert('galangan', $data);
-
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-            redirect('shipyard/dockspace');
-        }
-    }
-
-    public function editdock()
-    {
-        $this->form_validation->set_rules('NamaDock', 'Nama Dock', 'required');
-        $this->form_validation->set_rules('TipeDock', 'Tipe Dock', 'required');
-        $this->form_validation->set_rules('Panjang', 'Panjang Dock', 'required|trim');
-        $this->form_validation->set_rules('Lebar', 'Lebar Dock', 'required|trim');
-        $this->form_validation->set_rules('Draft', 'Draft', 'required|trim');
-        $this->form_validation->set_rules('dwt', 'DWT', 'required|trim');
-
-
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Dock';
-            $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $data['user'] = $user;
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('shipyard/editdock', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $data = [
-                'perusahaan' => htmlspecialchars($this->input->post('idperusahaan', true)),
-                'nama' => htmlspecialchars($this->input->post('NamaDock', true)),
-                'tipe' => htmlspecialchars($this->input->post('TipeDock', true)),
-                'panjang' => htmlspecialchars($this->input->post('Panjang', true)),
-                'lebar' => htmlspecialchars($this->input->post('Lebar', true)),
-                'draft' => htmlspecialchars($this->input->post('Draft', true)),
-                'DWT' => htmlspecialchars($this->input->post('dwt', true)),
-            ];
-
-            $this->db->insert('galangan', $data);
-
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-            redirect('shipyard/dockspace');
-        }
-    }
-
-    public function jadwal()
-    {
-        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
-        }
-
-        $data['title'] = 'Atur Jadwal';
+        $data['title'] = 'Data Pengguna';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipyard/jadwal', $data);
+        $this->load->view('shipyard/user', $data);
         $this->load->view('templates/footer');
     }
 
-    public function repair()
+    public function tambahuser()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
+
+        $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+        $this->form_validation->set_rules('email', 'Email Perusahaan', 'required|trim|valid_email|is_unique[user.email]', [
+            'is_unique' => 'This email has already registered! '
+        ]);
+        $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('role', 'Tipe Perusahaan', 'required|trim');
+
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
+            'matches' => 'Password dont match!',
+            'min_length' => 'Password too short!'
+        ]);
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
+
+        if ($this->input->post('role') == 6) {
+            $jabatan = 'Project Leader';
+        } else if ($this->input->post('role') == 7) {
+            $jabatan = 'QC / QA';
+        } else if ($this->input->post('role') == 8) {
+            $jabatan = 'Workshop Officer';
+        } else if ($this->input->post('role') == 9) {
+            $jabatan = 'Planning Department';
         }
 
-        $data['title'] = 'Repair List';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('shipyard/repair', $data);
-        $this->load->view('templates/footer');
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Tambah User';
+            $data['user'] = $user;
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('shipyard/tambahuser', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'perusahaan' => $user['perusahaan'],
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'jabatan' => $jabatan,
+                'role_id' => htmlspecialchars($this->input->post('role', true)),
+                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+            ];
+            $this->db->insert('user', $data);
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please Login</div>');
+            redirect('shipyard/user');
+        }
     }
+
+    public function hapususer($id)
+    {
+        $where = array('id' => $id);
+        $this->db->where($where);
+        $this->db->delete('data_kapal');
+        redirect('shipyard/user');
+    }
+
+
+
+
 
     public function ongoing()
     {

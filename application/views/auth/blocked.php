@@ -43,6 +43,14 @@
                         $role_id = $this->session->userdata('role_id');
                         if ($role_id == 1) {
                             $url = 'shipyard';
+                        } else if ($role_id == 2) {
+                            $url = 'adminowner';
+                        } else if ($role_id == 3) {
+                            $url = 'superintendent';
+                        } else if ($role_id == 4) {
+                            $url = 'dockmon';
+                        } else if ($role_id == 5) {
+                            $url = 'shipman';
                         } else {
                             $url = 'owner';
                         }

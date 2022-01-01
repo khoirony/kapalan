@@ -13,7 +13,7 @@
             <div class="col-md-2">
                 <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal">
                     <?php
-                    $query = "SELECT * FROM data_kapal where perusahaan = " . $user['id'];
+                    $query = "SELECT * FROM data_kapal where perusahaan = " . $user['perusahaan'];
                     $Tampil = $this->db->query($query)->result_array();
                     foreach ($Tampil as $t) : ?>
                         <option value="<?= $t['id']; ?>"><?= $t['nama']; ?></option>
@@ -28,7 +28,7 @@
 
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('armada/buatsurvey'); ?>">Buat Laporan</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/buatsurvey'); ?>">Buat Laporan</a>
     </div>
     <br><br>
     <table class="table">
@@ -85,13 +85,13 @@
         const kapalId = $(this).data('kapal');
 
         $.ajax({
-            url: "<?= base_url('armada/survey'); ?>",
+            url: "<?= base_url('superintendent/survey'); ?>",
             type: 'post',
             data: {
                 kapalId: kapalId
             },
             success: function() {
-                document.location.href = "<?= base_url('armada/survey/') ?>" + kapalId;
+                document.location.href = "<?= base_url('superintendent/survey/') ?>" + kapalId;
             }
         });
     });

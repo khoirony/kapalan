@@ -48,21 +48,17 @@ class Auth extends CI_Controller
 				} else if ($user['role_id'] == 2) {
 					redirect('AdminOwner');
 				} else if ($user['role_id'] == 3) {
-					redirect('Superintenden');
+					redirect('Superintendent/kapal');
 				} else if ($user['role_id'] == 4) {
 					redirect('DockMon');
 				} else if ($user['role_id'] == 5) {
 					redirect('ShipMan');
+				} else if ($user['role_id'] == 6) {
+					redirect('projectleader');
+				} else if ($user['role_id'] == 9) {
+					redirect('Planning');
 				} else {
-					$cekOwner = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
-					$hitung = $this->db->query($cekOwner)->num_rows();
-					if ($hitung < 1) {
-						$data = [
-							'pengguna' => $user['id'],
-						];
-						$this->db->insert('pemilik_kapal', $data);
-					}
-					redirect('owner');
+					redirect('auth/blocked');
 				}
 			} else {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');

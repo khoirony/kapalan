@@ -11,10 +11,10 @@
                 <div class="form-group ml-3">
                     <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
                         <?php
-                        $query = "SELECT * FROM data_kapal where perusahaan = " . $user['id'];
+                        $query = "SELECT * FROM data_kapal where perusahaan = " . $user['perusahaan'];
                         $Tampil = $this->db->query($query)->result_array();
                         foreach ($Tampil as $t) : ?>
-                            <form method="POST" action="<?= base_url('armada/maintenance'); ?>">
+                            <form method="POST" action="<?= base_url('superintendent/maintenance'); ?>">
                                 <option value="<?= $t['nama']; ?>"><?= $t['nama']; ?></option>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Submit
@@ -28,7 +28,7 @@
     </div>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('armada/buatlaporan'); ?>">Buat Laporan</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/buatlaporan'); ?>">Buat Laporan</a>
     </div>
     <br><br>
     <table class="table">

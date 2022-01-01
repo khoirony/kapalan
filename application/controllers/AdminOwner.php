@@ -27,12 +27,6 @@ class AdminOwner extends CI_Controller
     public function perusahaan()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
-        }
 
         $data['title'] = 'Profil Perusahaan';
         $data['user'] = $user;

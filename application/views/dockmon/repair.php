@@ -45,8 +45,8 @@
     </div>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/tambahkerja'); ?>">Tambah Pekerja</a>
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/buatrepair'); ?>">Buat Repair List</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/tambahkerja'); ?>">Tambah Pekerja</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/buatrepair'); ?>">Buat Repair List</a>
     </div>
     <br><br>
     <table class="table">
