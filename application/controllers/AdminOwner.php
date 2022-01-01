@@ -39,47 +39,6 @@ class AdminOwner extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    public function tambah()
-    {
-        $this->form_validation->set_rules('NamaPerusahaan', 'Nama Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('AlamatPerusahaan', 'Alamat Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('EmailPerusahaan', 'Email Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('NoTelpPerusahaan', 'No Telp Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('NoFaxPerusahaan', 'No Fax Perusahaan', 'required|trim');
-        $this->form_validation->set_rules('KodePosPerusahaan', 'Kode Pos Perusahaan', 'required|trim');
-
-
-
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Perusahaan';
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('adminowner/tambah', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $data = [
-                'id' => htmlspecialchars($this->input->post('idPerusahaan', true)),
-                'nama' => htmlspecialchars($this->input->post('NamaPerusahaan', true)),
-                'email' => htmlspecialchars($this->input->post('EmailPerusahaan', true)),
-                'alamat' => htmlspecialchars($this->input->post('AlamatPerusahaan', true)),
-                'no_telp' => htmlspecialchars($this->input->post('NoTelpPerusahaan', true)),
-                'no_fax' => htmlspecialchars($this->input->post('NoFaxPerusahaan', true)),
-                'kode_pos' => htmlspecialchars($this->input->post('KodePosPerusahaan', true)),
-            ];
-            $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $query = "UPDATE pemilik_kapal SET perusahaan =" . $user['id'] . " WHERE pengguna=" . $user['id'];
-
-            $this->db->insert('perusahaan', $data);
-            $this->db->query($query);
-
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your company has been added</div>');
-            redirect('owner/perusahaan');
-        }
-    }
-
     public function user()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -120,10 +79,8 @@ class AdminOwner extends CI_Controller
             $jabatan = 'Ship Manager';
         }
 
-
-
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah User';
+            $data['title'] = 'Data Pengguna';
             $data['user'] = $user;
 
             $this->load->view('templates/header', $data);
@@ -143,7 +100,7 @@ class AdminOwner extends CI_Controller
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
             ];
             $this->db->insert('user', $data);
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please Login</div>');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! New account has been created.</div>');
             redirect('AdminOwner/user');
         }
     }
@@ -152,7 +109,54 @@ class AdminOwner extends CI_Controller
     {
         $where = array('id' => $id);
         $this->db->where($where);
-        $this->db->delete('data_kapal');
+        $this->db->delete('user');
         redirect('adminowner/user');
+    }
+
+    public function updateuser($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['id' => $where['id']])->row_array();
+
+        $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('role', 'Tipe Perusahaan', 'required|trim');
+
+        if ($this->input->post('role') == 3) {
+            $jabatan = 'Superintendent';
+        } else if ($this->input->post('role') == 4) {
+            $jabatan = 'Docking Monitoring';
+        } else if ($this->input->post('role') == 5) {
+            $jabatan = 'Ship Manager';
+        }
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Pengguna';
+            $data['user'] = $user;
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('adminowner/updateuser', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'id' => htmlspecialchars($this->input->post('id', true)),
+                'perusahaan' => $user['perusahaan'],
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'jabatan' => $jabatan,
+                'role_id' => htmlspecialchars($this->input->post('role', true)),
+            ];
+
+            $this->db->set($data);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('user');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
+            redirect('AdminOwner/user');
+        }
     }
 }

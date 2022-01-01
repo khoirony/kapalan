@@ -36,6 +36,21 @@ class SuperAdmin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function lihatuser($id)
+    {
+        $where = array('id' => $id);
+
+        $data['title'] = 'Manage User';
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $where['id']])->row_array();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('superadmin/lihatuser', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function aktifkanuser($id)
     {
         $data = [
