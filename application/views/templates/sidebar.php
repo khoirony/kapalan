@@ -9,7 +9,9 @@
                 <div class="sidebar-brand-text mx-3">
                     <?php
                     $role_id = $this->session->userdata('role_id');
-                    if ($role_id == 1) {
+                    if ($role_id == 0) {
+                        echo 'Super-Admin';
+                    } else if ($role_id == 1) {
                         echo 'Shipyard';
                     } else {
                         echo 'Ship Owner';
@@ -23,7 +25,7 @@
 
             <?php
             $role_id = $this->session->userdata('role_id');
-            $queryMenu = "SELECT user_menu.id, menu
+            $queryMenu = "SELECT user_menu.id, menu, nama
                             FROM user_menu JOIN user_access_menu
                             ON user_menu.id = user_access_menu.menu_id
                             WHERE user_access_menu.role_id = $role_id 
@@ -35,7 +37,7 @@
 
             <?php foreach ($menu as $m) : ?>
                 <div class="sidebar-heading">
-                    <?= $m['menu']; ?>
+                    <?= $m['nama']; ?>
                 </div>
 
                 <?php
@@ -76,12 +78,22 @@
                     echo '<li class="nav-item">';
                 }
                 ?>
+                <?php
+                if ($role_id == 0 || $role_id == 2) {
+                    echo '';
+                } else {
+                    echo '
+                        <a class="nav-link" href="<?= base_url() . $url; ?>/ongoing">
+                            <i class=" fas fa-fw fa-spinner"></i>
+                            <span>Ongoing Project</span>
+                        </a>
+                        </li>
+                        ';
+                }
+                ?>
 
-                <a class="nav-link" href="<?= base_url() . $url; ?>/ongoing">
-                    <i class=" fas fa-fw fa-spinner"></i>
-                    <span>Ongoing Project</span>
-                </a>
-                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link pt-0" href="<?= base_url('auth/logout'); ?>">
                         <i class=" fas fa-fw fa-sign-out-alt"></i>

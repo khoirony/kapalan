@@ -41,18 +41,18 @@ class Auth extends CI_Controller
 					'role_id' => $user['role_id']
 				];
 				$this->session->set_userdata($data);
-				if ($user['role_id'] == 1) {
-
-					$cekShipyard = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
-					$hitung = $this->db->query($cekShipyard)->num_rows();
-					if ($hitung < 1) {
-						$data = [
-							'pengguna' => $user['id'],
-						];
-						$this->db->insert('pemilik_galangan', $data);
-					}
-
+				if ($user['role_id'] == 0) {
+					redirect('superadmin');
+				} else if ($user['role_id'] == 1) {
 					redirect('shipyard');
+				} else if ($user['role_id'] == 2) {
+					redirect('AdminOwner');
+				} else if ($user['role_id'] == 3) {
+					redirect('Superintenden');
+				} else if ($user['role_id'] == 4) {
+					redirect('DockMon');
+				} else if ($user['role_id'] == 5) {
+					redirect('ShipMan');
 				} else {
 					$cekOwner = "SELECT * FROM pemilik_kapal WHERE pengguna=" . $user['id'];
 					$hitung = $this->db->query($cekOwner)->num_rows();
