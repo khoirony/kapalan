@@ -55,6 +55,10 @@ class Auth extends CI_Controller
 					redirect('ShipMan');
 				} else if ($user['role_id'] == 6) {
 					redirect('projectleader');
+				} else if ($user['role_id'] == 7) {
+					redirect('qcqa');
+				} else if ($user['role_id'] == 8) {
+					redirect('workshopofficer');
 				} else if ($user['role_id'] == 9) {
 					redirect('Planning');
 				} else {
