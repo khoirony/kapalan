@@ -39,6 +39,47 @@ class AdminOwner extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function updateperusahaan($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['id' => $where['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+
+        $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('nofax', 'Tipe Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('kodepos', 'Tipe Perusahaan', 'required|trim');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Pengguna';
+            $data['user'] = $user;
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('adminowner/updateperusahaan', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'id' => htmlspecialchars($this->input->post('id', true)),
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'no_fax' => htmlspecialchars($this->input->post('nofax', true)),
+                'kode_pos' => htmlspecialchars($this->input->post('kodepos', true)),
+            ];
+
+            $this->db->set($data);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('perusahaan');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
+            redirect('AdminOwner/perusahaan');
+        }
+    }
+
     public function user()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -98,11 +139,36 @@ class AdminOwner extends CI_Controller
                 'jabatan' => $jabatan,
                 'role_id' => htmlspecialchars($this->input->post('role', true)),
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'active' => 1
             ];
             $this->db->insert('user', $data);
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! New account has been created.</div>');
             redirect('AdminOwner/user');
         }
+    }
+
+    public function aktifkanuser($id)
+    {
+        $data = [
+            'active' => 1,
+        ];
+        $this->db->set($data);
+        $this->db->where('id', $id);
+        $this->db->update('user');
+
+        redirect('adminowner/user');
+    }
+
+    public function nonaktifkanuser($id)
+    {
+        $data = [
+            'active' => 0,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id', $id);
+        $this->db->update('user');
+        redirect('adminowner/user');
     }
 
     public function hapususer($id)

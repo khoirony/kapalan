@@ -13,7 +13,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Nomor Telp</th>
                 <th scope="col">Jabatan</th>
-                <th scope="col" class="text-center" width="20%">Aksi</th>
+                <th scope="col" class="text-center" width="14%">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -39,12 +39,12 @@
                         <td><?= $t['jabatan']; ?></td>
                         <td>
                             <?php
-                            echo anchor('superadmin/lihatuser/' . $t['id'], '<div class="btn btn-primary rounded-pill pl-3 pr-3">Lihat</div>');
+                            echo anchor('superadmin/lihatuser/' . $t['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Lihat</div>');
                             if ($t['active'] == 1) {
                                 echo
-                                anchor('superadmin/nonaktifkanuser/' . $t['id'], '<div class="btn btn-danger rounded-pill pl-3 pr-3">Nonaktifkan</div>');
+                                anchor('superadmin/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
                             } else {
-                                echo anchor('superadmin/aktifkanuser/' . $t['id'], '<div class=" btn btn-warning rounded-pill pl-3 pr-3">Aktifkan</div>');
+                                echo anchor('superadmin/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
                             }
                             ?>
                         </td>

@@ -3,7 +3,12 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Perusahaan Saya</h1>
-
+    <br>
+    <?= $this->session->flashdata('msg');
+    if (isset($_SESSION['msg'])) {
+        unset($_SESSION['msg']);
+    } ?>
+    <br>
     <div class="row">
         <div class="col-3">
             Nama Perusahaan
@@ -49,9 +54,14 @@
             Alamat Perusahaan
         </div>
         <div class="col-5">
-            : <?= $perusahaan['alamat']; ?>
+            : <?= $perusahaan['alamat']; ?>, <?= $perusahaan['kota']; ?>
         </div>
     </div>
+
+    <br><br>
+    <?php
+    echo anchor('adminowner/updateperusahaan/' . $perusahaan['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
+    ?>
 
 
 

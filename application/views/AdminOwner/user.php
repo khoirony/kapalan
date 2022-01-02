@@ -21,7 +21,7 @@
                 <th scope="col">Email</th>
                 <th scope="col">Nomor Telp</th>
                 <th scope="col">Jabatan</th>
-                <th scope="col" class="text-center" width="18%">Aksi</th>
+                <th scope="col" class="text-center" width="17%">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -49,8 +49,16 @@
                         <td><?= $t['no_telp']; ?></td>
                         <td><?= $t['jabatan']; ?></td>
                         <td>
-                            <?= anchor('adminowner/updateuser/' . $t['id'], '<div class="btn btn-primary rounded-pill pl-3 pr-3">Edit</div>'); ?>
-                            <?= anchor('adminowner/hapususer/' . $t['id'], '<div class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</div>'); ?>
+                            <?php
+                            echo anchor('adminowner/updateuser/' . $t['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3"><i class="fas fa-edit"></i></div>');
+                            echo anchor('adminowner/hapususer/' . $t['id'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3"><i class="fas fa-trash-alt"></i></i></div>');
+                            if ($t['active'] == 1) {
+                                echo
+                                anchor('adminowner/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
+                            } else {
+                                echo anchor('adminowner/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
+                            }
+                            ?>
                         </td>
                     </tr>
             <?php

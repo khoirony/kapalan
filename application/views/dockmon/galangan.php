@@ -31,7 +31,7 @@
                         <td><?= $no; ?></td>
                         <td><?= $t['nama']; ?></td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/jadwal/' . $t['id']); ?>">Lihat jadwal</a>
+                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/requestbooking/' . $t['id']); ?>">Booking</a>
                         </td>
                     </tr>
             <?php

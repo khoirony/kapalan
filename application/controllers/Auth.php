@@ -35,41 +35,46 @@ class Auth extends CI_Controller
 		$user = $this->db->get_where('user', ['email' => $email])->row_array();
 
 		if ($user) {
-			if (password_verify($password, $user['password'])) {
-				$data = [
-					'email' => $user['email'],
-					'role_id' => $user['role_id']
-				];
-				$this->session->set_userdata($data);
-				if ($user['role_id'] == 0) {
-					redirect('superadmin');
-				} else if ($user['role_id'] == 1) {
-					redirect('shipyard');
-				} else if ($user['role_id'] == 2) {
-					redirect('AdminOwner');
-				} else if ($user['role_id'] == 3) {
-					redirect('Superintendent/kapal');
-				} else if ($user['role_id'] == 4) {
-					redirect('DockMon');
-				} else if ($user['role_id'] == 5) {
-					redirect('ShipMan');
-				} else if ($user['role_id'] == 6) {
-					redirect('projectleader');
-				} else if ($user['role_id'] == 7) {
-					redirect('qcqa');
-				} else if ($user['role_id'] == 8) {
-					redirect('workshopofficer');
-				} else if ($user['role_id'] == 9) {
-					redirect('Planning');
+			if ($user['active'] == 1) {
+				if (password_verify($password, $user['password'])) {
+					$data = [
+						'email' => $user['email'],
+						'role_id' => $user['role_id']
+					];
+					$this->session->set_userdata($data);
+					if ($user['role_id'] == 0) {
+						redirect('superadmin');
+					} else if ($user['role_id'] == 1) {
+						redirect('shipyard');
+					} else if ($user['role_id'] == 2) {
+						redirect('AdminOwner');
+					} else if ($user['role_id'] == 3) {
+						redirect('Superintendent/kapal');
+					} else if ($user['role_id'] == 4) {
+						redirect('DockMon');
+					} else if ($user['role_id'] == 5) {
+						redirect('ShipMan');
+					} else if ($user['role_id'] == 6) {
+						redirect('projectleader');
+					} else if ($user['role_id'] == 7) {
+						redirect('qcqa');
+					} else if ($user['role_id'] == 8) {
+						redirect('workshopofficer');
+					} else if ($user['role_id'] == 9) {
+						redirect('Planning/dockspace');
+					} else {
+						redirect('auth/blocked');
+					}
 				} else {
-					redirect('auth/blocked');
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
+					redirect('auth');
 				}
 			} else {
-				$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Akun Belum Akif!</div>');
 				redirect('auth');
 			}
 		} else {
-			$this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Email is not registered!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
 			redirect('auth');
 		}
 	}

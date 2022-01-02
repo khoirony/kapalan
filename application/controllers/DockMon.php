@@ -38,6 +38,43 @@ class DockMon extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function requestbooking($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['galangan'] = $this->db->get_where('galangan', ['id' => $where['id']])->row_array();
+        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $user['perusahaan']])->row_array();
+
+        $data['title'] = 'List Galangan';
+        $data['user'] = $user;
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dockmon/requestbooking', $data);
+        $this->load->view('templates/footer');
+    }
+
+
+    public function addbooking()
+    {
+        $this->form_validation->set_rules('jenis', 'Jenis Survey', 'required');
+        $this->form_validation->set_rules('tglawal', 'Tanggal Mulai', 'required');
+        $this->form_validation->set_rules('tglakhr', 'Tanggal Selesai', 'required');
+
+        $data = [
+            'id' => NULL,
+            'kapal' => $this->input->post('kapal'),
+            'jenis_survey' => $this->input->post('jenis'),
+            'tgl_mulai' => $this->input->post('tglawal'),
+            'tgl_akhir' => $this->input->post('tglakhir'),
+            'galangan' => $this->input->post('galangan'),
+        ];
+
+        $this->db->insert('booking', $data);
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! Galangan has been booked.</div>');
+        redirect('Dockmon/galangan');
+    }
+
 
     public function docking()
     {
@@ -50,6 +87,28 @@ class DockMon extends CI_Controller
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('dockmon/docking', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function caridock()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+
+        $query = "SELECT * FROM galangan WHERE ";
+
+        if ($this->input->post('kapal') != NULL) {
+            $query .= "SELECT * FROM galangan WHERE";
+        }
+
+        $data['title'] = 'Docking Space';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dockmon/caridock', $data);
         $this->load->view('templates/footer');
     }
 
