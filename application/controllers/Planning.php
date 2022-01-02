@@ -15,6 +15,7 @@ class Planning extends CI_Controller
 
         $data['title'] = 'Dock Space';
         $data['user'] = $user;
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -25,20 +26,20 @@ class Planning extends CI_Controller
 
     public function tambahdock()
     {
-        $this->form_validation->set_rules('NamaDock', 'Nama Dock', 'required');
-        $this->form_validation->set_rules('TipeDock', 'Tipe Dock', 'required');
-        $this->form_validation->set_rules('Panjang', 'Panjang Dock', 'required|trim');
-        $this->form_validation->set_rules('Lebar', 'Lebar Dock', 'required|trim');
-        $this->form_validation->set_rules('Draft', 'Draft', 'required|trim');
+        $this->form_validation->set_rules('nama', 'Nama Dock', 'required');
+        $this->form_validation->set_rules('tipe', 'Tipe Dock', 'required');
+        $this->form_validation->set_rules('panjang', 'Panjang Dock', 'required|trim');
+        $this->form_validation->set_rules('lebar', 'Lebar Dock', 'required|trim');
+        $this->form_validation->set_rules('draft', 'Draft', 'required|trim');
         $this->form_validation->set_rules('dwt', 'DWT', 'required|trim');
 
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah Dock';
+            $data['title'] = 'Dock Space';
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['user'] = $user;
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -48,11 +49,11 @@ class Planning extends CI_Controller
         } else {
             $data = [
                 'perusahaan' => htmlspecialchars($this->input->post('idperusahaan', true)),
-                'nama' => htmlspecialchars($this->input->post('NamaDock', true)),
-                'tipe' => htmlspecialchars($this->input->post('TipeDock', true)),
-                'panjang' => htmlspecialchars($this->input->post('Panjang', true)),
-                'lebar' => htmlspecialchars($this->input->post('Lebar', true)),
-                'draft' => htmlspecialchars($this->input->post('Draft', true)),
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'tipe' => htmlspecialchars($this->input->post('tipe', true)),
+                'panjang' => htmlspecialchars($this->input->post('panjang', true)),
+                'lebar' => htmlspecialchars($this->input->post('lebar', true)),
+                'draft' => htmlspecialchars($this->input->post('draft', true)),
                 'DWT' => htmlspecialchars($this->input->post('dwt', true)),
             ];
 
@@ -63,22 +64,32 @@ class Planning extends CI_Controller
         }
     }
 
-    public function editdock()
+    public function hapusdock($id)
     {
-        $this->form_validation->set_rules('NamaDock', 'Nama Dock', 'required');
-        $this->form_validation->set_rules('TipeDock', 'Tipe Dock', 'required');
-        $this->form_validation->set_rules('Panjang', 'Panjang Dock', 'required|trim');
-        $this->form_validation->set_rules('Lebar', 'Lebar Dock', 'required|trim');
-        $this->form_validation->set_rules('Draft', 'Draft', 'required|trim');
+        $where = array('id' => $id);
+        $this->db->where($where);
+        $this->db->delete('galangan');
+        redirect('planning/dockspace');
+    }
+
+    public function editdock($id)
+    {
+        $where = array('id' => $id);
+        $this->form_validation->set_rules('nama', 'Nama Dock', 'required');
+        $this->form_validation->set_rules('tipe', 'Tipe Dock', 'required');
+        $this->form_validation->set_rules('panjang', 'Panjang Dock', 'required|trim');
+        $this->form_validation->set_rules('lebar', 'Lebar Dock', 'required|trim');
+        $this->form_validation->set_rules('draft', 'Draft', 'required|trim');
         $this->form_validation->set_rules('dwt', 'DWT', 'required|trim');
 
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Edit Dock';
+            $data['title'] = 'Dock Space';
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['user'] = $user;
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
+            $data['galangan'] = $this->db->get_where('galangan', ['id' => $where['id']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -87,16 +98,19 @@ class Planning extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
+                'id' => $this->input->post('id'),
                 'perusahaan' => htmlspecialchars($this->input->post('idperusahaan', true)),
-                'nama' => htmlspecialchars($this->input->post('NamaDock', true)),
-                'tipe' => htmlspecialchars($this->input->post('TipeDock', true)),
-                'panjang' => htmlspecialchars($this->input->post('Panjang', true)),
-                'lebar' => htmlspecialchars($this->input->post('Lebar', true)),
-                'draft' => htmlspecialchars($this->input->post('Draft', true)),
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'tipe' => htmlspecialchars($this->input->post('tipe', true)),
+                'panjang' => htmlspecialchars($this->input->post('panjang', true)),
+                'lebar' => htmlspecialchars($this->input->post('lebar', true)),
+                'draft' => htmlspecialchars($this->input->post('draft', true)),
                 'DWT' => htmlspecialchars($this->input->post('dwt', true)),
             ];
 
-            $this->db->insert('galangan', $data);
+            $this->db->set($data);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('galangan');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
             redirect('planning/dockspace');
@@ -108,13 +122,79 @@ class Planning extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['title'] = 'Atur Jadwal';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('planning/jadwal', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function updatejadwal($id)
+    {
+        $where = array('id' => $id);
+
+        $this->form_validation->set_rules('tglawal', 'Tanggal Mulai', 'required');
+        $this->form_validation->set_rules('tglakhir', 'Tanggal Selesai', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+            $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $booking = $this->db->get_where('booking', ['booking_id' => $where['id']])->row_array();
+            $data['booking'] = $booking;
+            $data['galangan'] = $this->db->get_where('galangan', ['id' => $booking['galangan']])->row_array();
+            $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $booking['kapal']])->row_array();
+
+            $data['title'] = 'List Galangan';
+            $data['user'] = $user;
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('planning/updatejadwal', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'booking_id' => $this->input->post('id'),
+                'kapal' => $this->input->post('kapal'),
+                'jenis' => $this->input->post('jenis'),
+                'tgl_mulai' => $this->input->post('tglawal'),
+                'tgl_akhir' => $this->input->post('tglakhir'),
+                'galangan' => $this->input->post('galangan'),
+                'perusahaan' => $this->input->post('perusahaan'),
+            ];
+
+            $this->db->set($data);
+            $this->db->where('booking_id', $this->input->post('id'));
+            $this->db->update('booking');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! Galangan has been booked.</div>');
+            redirect('planning/jadwal');
+        }
+    }
+
+
+    public function confirm($id)
+    {
+        $data = [
+            'active' => 1,
+        ];
+        $this->db->set($data);
+        $this->db->where('booking_id', $id);
+        $this->db->update('booking');
+
+        redirect('planning/jadwal');
+    }
+
+    public function unconfirm($id)
+    {
+        $data = [
+            'active' => 0,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('booking_id', $id);
+        $this->db->update('booking');
+        redirect('planning/jadwal');
     }
 
     public function repair()

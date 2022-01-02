@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Perusahaan <?= $perusahaan['nama']; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800">Kapal <?= $perusahaan['nama']; ?></h1>
     <br>
     <div style="float: right;" class="mr-3">
         <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/tambahkapal'); ?>">Tambah Kapal</a>

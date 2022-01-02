@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Atur Jadwal</h1>
+    <h1 class="h3 mb-4 text-gray-800">Hasil Booking Galangan</h1>
 
     <br>
     <br><br>
@@ -14,12 +14,12 @@
                 <th scope="col">Jenis Survey</th>
                 <th scope="col">Mulai</th>
                 <th scope="col">Selesai</th>
-                <th scope="col" class="text-center" width="20%">Status</th>
+                <th scope="col" class="text-center" width="15%">Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM booking INNER JOIN data_kapal ON booking.kapal = data_kapal.id where booking.perusahaan_galangan = " . $user['perusahaan'];
+            $query = "SELECT * FROM booking INNER JOIN data_kapal ON booking.kapal = data_kapal.id where booking.perusahaan_kapal = " . $user['perusahaan'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
@@ -40,13 +40,11 @@
                         <td><?= $t['tgl_akhir']; ?></td>
                         <td>
                             <?php
-                            echo
-                            anchor('planning/updatejadwal/' . $t['booking_id'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">Ubah</div>');
                             if ($t['active'] == 1) {
                                 echo
-                                anchor('planning/unconfirm/' . $t['booking_id'], '<div class=" btn btn-sm btn-danger rounded-pill pl-3 pr-3">Confirmed</div>');
+                                anchor('dockmon/buatrepair/' . $t['booking_id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">Buat Repair</div>');
                             } else {
-                                echo anchor('planning/confirm/' . $t['booking_id'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Booked</div>');
+                                echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Buat Repair</div>';
                             }
                             ?>
                         </td>

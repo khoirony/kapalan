@@ -13,6 +13,22 @@
                         echo 'Super-Admin';
                     } else if ($role_id == 1) {
                         echo 'Shipyard';
+                    } else if ($role_id == 2) {
+                        echo 'Ship Owner';
+                    } else if ($role_id == 3) {
+                        echo 'Ship Owner';
+                    } else if ($role_id == 4) {
+                        echo 'Ship Owner';
+                    } else if ($role_id == 5) {
+                        echo 'Ship Owner';
+                    } else if ($role_id == 6) {
+                        echo 'Shipyard';
+                    } else if ($role_id == 7) {
+                        echo 'Shipyard';
+                    } else if ($role_id == 8) {
+                        echo 'Shipyard';
+                    } else if ($role_id == 9) {
+                        echo 'Shipyard';
                     } else {
                         echo 'Ship Owner';
                     }

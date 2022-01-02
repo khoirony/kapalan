@@ -6,18 +6,19 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('armada/buatrepair'); ?>">
+            <form class="user" method="POST" action="<?= base_url('dockmon/buatrepair'); ?>">
+                <input type="hidden" id="id" name="id" value="<?= $booking['booking_id']; ?>">
+                <input type="hidden" id="kapal" name="kapal" value="<?= $kapal['id']; ?>">
+                <input type="hidden" id="perusahaan" name="perusahaan" value="<?= $perusahaan['id']; ?>">
+                <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id']; ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Kapal" value="<?= set_value('nama'); ?>">
-                    <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $kapal['nama']; ?>" disabled>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="perusahaan" name="perusahaan" placeholder="Nama Perusahaan" value="<?= set_value('perusahaan'); ?>">
-                    <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $perusahaan['nama']; ?>" disabled>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="galangan" name="galangan" placeholder="Nama Galangan" value="<?= set_value('galangan'); ?>">
-                    <?= form_error('galangan', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $galangan['nama']; ?>" disabled>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="kelas" name="kelas" placeholder="Kelas Kapal" value="<?= set_value('kelas'); ?>">
@@ -29,10 +30,10 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <input type="text" class="form-control form-control-user" id="date1" name="date1" placeholder="Tanggal Awal">
+                        <input type="date" class="form-control form-control-user" id="date1" name="date1" placeholder="Tanggal Awal" value="<?= $booking['tgl_mulai']; ?>">
                     </div>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control form-control-user" id="date2" name="date2" placeholder="Tanggal Akhir">
+                        <input type="date" class="form-control form-control-user" id="date2" name="date2" placeholder="Tanggal Akhir" value="<?= $booking['tgl_akhir']; ?>">
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
