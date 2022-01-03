@@ -69,7 +69,9 @@ class DockMon extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['title'] = 'Docking Space';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->row_array();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -84,11 +86,13 @@ class DockMon extends CI_Controller
 
 
 
-        $query = "SELECT * FROM galangan WHERE ";
+        $query = "SELECT * FROM perusahaan INNER JOIN galangan ON perusahaan.id_perusahaan = galangan.perusahaan WHERE ";
 
-        if ($this->input->post('kapal') != NULL) {
-            $query .= "SELECT * FROM galangan WHERE";
+        if ($this->input->post('kota') != NULL) {
+            $query .= "perusahaan.kota LIKE '" . $this->input->post('kota') . "%'";
         }
+
+        $data['cari'] = $this->db->query($query)->result_array();
 
         $data['title'] = 'Docking Space';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

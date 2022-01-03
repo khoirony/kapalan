@@ -8,34 +8,37 @@
         <div class="col-md-5">
             <form class="user" method="POST" action="<?= base_url('dockmon/caridock'); ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="lokasi" name="lokasi" placeholder="Lokasi">
+                    <div class="form-group">
+                        <select class="form-select form-select-lg rounded-pill fs-6" id="kota" name="kota">
+                            <?php
+                            $query = "SELECT * FROM perusahaan WHERE role_id = 1";
+                            $Tampil = $this->db->query($query)->result_array();
+                            foreach ($Tampil as $t) : ?>
+                                <option value="<?= $t['kota']; ?>"><?= $t['kota']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="date" class="form-control form-control-user" id="tanggal" name="tanggal" placeholder="Tanggal">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="method" name="method" placeholder="Docking Method">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="kapal" name="kapal" placeholder="Data Kapal">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="tipe" name="tipe" placeholder="Tipe Kapal">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="material" name="material" placeholder="Material Kapal">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="loa" name="loa" placeholder="Loa">
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="lpp" name="lpp" placeholder="lpp">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <select class="form-select form-select-lg rounded-pill fs-6" id="tipe" name="tipe">
+                                <option value="Floating Dock">Floating Dock</option>
+                                <option value="Graving Dock">Graving Dock</option>
+                                <option value="Rampway">Rampway</option>
+                                <option value="Helling Dock">Helling Dock</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="lebar" name="lebar" placeholder="Lebar">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="tinggi" name="tinggi" placeholder="Tinggi">
+                    <input type="text" class="form-control form-control-user" id="panjang" name="panjang" placeholder="Panjang">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="dwt" name="dwt" placeholder="DWT">
