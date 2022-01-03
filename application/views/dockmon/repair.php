@@ -12,11 +12,11 @@
             <div class="form-group">
                 <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
                     <?php
-                    $query = "SELECT * FROM data_kapal INNER JOIN repair ON data_kapal.id = repair.id where repair.perusahaan = " . $user['perusahaan'];
+                    $query = "SELECT * FROM kapal INNER JOIN repair ON kapal.id_kapal = repair.kapal WHERE id_repair = " . $repair['id_repair'];
                     $Tampil = $this->db->query($query)->result_array();
                     foreach ($Tampil as $t) : ?>
-                        <form method="POST" action="<?= base_url('armada/maintenance'); ?>">
-                            <option value="<?= $t['id']; ?>"><?= $t['nama']; ?></option>
+                        <form method="POST" action="<?= base_url('superintendent/maintenance'); ?>">
+                            <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Submit
                             </button>
@@ -45,7 +45,7 @@
     </div>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/tambahkerja'); ?>">Tambah Pekerja</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/tambahkerja/' . $repair['id_repair']); ?>">Tambah Pekerja</a>
     </div>
     <br><br>
     <table class="table">
@@ -58,7 +58,7 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM pekerjaan where kapal = " . $kapal['id'];
+            $query = "SELECT * FROM pekerjaan where kapal = " . $kapal['id_kapal'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
