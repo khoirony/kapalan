@@ -7,9 +7,9 @@
     <div class="row ml-3">
         <div class="col-md-5">
             <form class="user" method="POST" action="">
-                <input type="hidden" id="id" name="id" value="<?= $perusahaan['id']; ?>">
+                <input type="hidden" id="id" name="id" value="<?= $perusahaan['id_perusahaan']; ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Perusahaan" value="<?= $perusahaan['nama']; ?>">
+                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Perusahaan" value="<?= $perusahaan['nama_perusahaan']; ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">

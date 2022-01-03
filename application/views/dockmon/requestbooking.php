@@ -8,17 +8,19 @@
     <div class="row">
         <div class="col-md-5">
             <form class="user" method="POST" action="<?= base_url('dockmon/addbooking'); ?>">
-                <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id']; ?>">
+                <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id_galangan']; ?>">
+                <input type="hidden" id="perusahaan_galangan" name="perusahaan_galangan" value="<?= $galangan['perusahaan']; ?>">
+                <input type="hidden" id="perusahaan_kapal" name="perusahaan_kapal" value="<?= $kapal['perusahaan']; ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="gal" name="gal" value="<?= $galangan['nama']; ?>" disabled>
+                    <input type="text" class="form-control form-control-user" id="gal" name="gal" value="<?= $galangan['nama_galangan']; ?>" disabled>
                 </div>
                 <div class="form-group">
                     <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal">
                         <?php
-                        $query = "SELECT * FROM data_kapal where perusahaan = " . $user['perusahaan'];
+                        $query = "SELECT * FROM kapal where perusahaan = " . $user['perusahaan'];
                         $Tampil = $this->db->query($query)->result_array();
                         foreach ($Tampil as $t) : ?>
-                            <option value="<?= $t['id']; ?>"><?= $t['nama']; ?></option>
+                            <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>

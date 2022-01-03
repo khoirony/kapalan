@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-5">
             <form class="user" method="POST" action="<?= base_url('planning/tambahdock'); ?>">
-                <input type="hidden" id="idperusahaan" name="idperusahaan" value="<?= $perusahaan['id']; ?>">
+                <input type="hidden" id="idperusahaan" name="idperusahaan" value="<?= $perusahaan['id_perusahaan']; ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Dock" value="<?= set_value('nama'); ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>

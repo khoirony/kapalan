@@ -8,16 +8,13 @@
     <div class="row">
         <div class="col-md-5">
             <form class="user" method="POST" action="">
-                <input type="hidden" id="id" name="id" value="<?= $booking['booking_id']; ?>">
-                <input type="hidden" id="galangan" name="galangan" value="<?= $booking['galangan']; ?>">
-                <input type="hidden" id="kapal" name="kapal" value="<?= $booking['kapal']; ?>">
-                <input type="hidden" id="perusahaan" name="perusahaan" value="<?= $booking['perusahaan']; ?>">
+                <input type="hidden" id="id" name="id" value="<?= $booking['id_booking']; ?>">
                 <input type="hidden" id="jenis" name="jenis" value="<?= $booking['jenis']; ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="gal" name="gal" value="<?= $galangan['nama']; ?>" disabled>
+                    <input type="text" class="form-control form-control-user" id="gal" name="gal" value="<?= $galangan['nama_galangan']; ?>" disabled>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="gal" name="gal" value="<?= $kapal['nama']; ?>" disabled>
+                    <input type="text" class="form-control form-control-user" id="gal" name="gal" value="<?= $kapal['nama_kapal']; ?>" disabled>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="gal" name="gal" value="<?= $booking['jenis']; ?>" disabled>

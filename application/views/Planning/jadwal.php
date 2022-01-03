@@ -19,7 +19,7 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM booking INNER JOIN data_kapal ON booking.kapal = data_kapal.id where booking.perusahaan_galangan = " . $user['perusahaan'];
+            $query = "SELECT * FROM booking INNER JOIN kapal ON booking.kapal = kapal.id_kapal where booking.perusahaan_galangan = " . $user['perusahaan'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
@@ -34,19 +34,19 @@
             ?>
                     <tr>
                         <td><?= $no; ?> </td>
-                        <td><?= $t['nama']; ?></td>
+                        <td><?= $t['nama_kapal']; ?></td>
                         <td><?= $t['jenis']; ?></td>
                         <td><?= $t['tgl_mulai']; ?></td>
                         <td><?= $t['tgl_akhir']; ?></td>
                         <td>
                             <?php
                             echo
-                            anchor('planning/updatejadwal/' . $t['booking_id'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">Ubah</div>');
+                            anchor('planning/updatejadwal/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">Ubah</div>');
                             if ($t['active'] == 1) {
                                 echo
-                                anchor('planning/unconfirm/' . $t['booking_id'], '<div class=" btn btn-sm btn-danger rounded-pill pl-3 pr-3">Confirmed</div>');
+                                anchor('planning/unconfirm/' . $t['id_booking'], '<div class=" btn btn-sm btn-danger rounded-pill pl-3 pr-3">Confirmed</div>');
                             } else {
-                                echo anchor('planning/confirm/' . $t['booking_id'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Booked</div>');
+                                echo anchor('planning/confirm/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Booked</div>');
                             }
                             ?>
                         </td>

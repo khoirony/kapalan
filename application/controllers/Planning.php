@@ -15,7 +15,7 @@ class Planning extends CI_Controller
 
         $data['title'] = 'Dock Space';
         $data['user'] = $user;
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -39,7 +39,7 @@ class Planning extends CI_Controller
             $data['title'] = 'Dock Space';
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['user'] = $user;
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -49,7 +49,7 @@ class Planning extends CI_Controller
         } else {
             $data = [
                 'perusahaan' => htmlspecialchars($this->input->post('idperusahaan', true)),
-                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'nama_galangan' => htmlspecialchars($this->input->post('nama', true)),
                 'tipe' => htmlspecialchars($this->input->post('tipe', true)),
                 'panjang' => htmlspecialchars($this->input->post('panjang', true)),
                 'lebar' => htmlspecialchars($this->input->post('lebar', true)),
@@ -66,7 +66,7 @@ class Planning extends CI_Controller
 
     public function hapusdock($id)
     {
-        $where = array('id' => $id);
+        $where = array('id_galangan' => $id);
         $this->db->where($where);
         $this->db->delete('galangan');
         redirect('planning/dockspace');
@@ -88,8 +88,8 @@ class Planning extends CI_Controller
             $data['title'] = 'Dock Space';
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
             $data['user'] = $user;
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
-            $data['galangan'] = $this->db->get_where('galangan', ['id' => $where['id']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+            $data['galangan'] = $this->db->get_where('galangan', ['id_galangan' => $where['id']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -98,9 +98,9 @@ class Planning extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'id' => $this->input->post('id'),
+                'id_galangan' => $this->input->post('id'),
                 'perusahaan' => htmlspecialchars($this->input->post('idperusahaan', true)),
-                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'nama_galangan' => htmlspecialchars($this->input->post('nama', true)),
                 'tipe' => htmlspecialchars($this->input->post('tipe', true)),
                 'panjang' => htmlspecialchars($this->input->post('panjang', true)),
                 'lebar' => htmlspecialchars($this->input->post('lebar', true)),
@@ -109,7 +109,7 @@ class Planning extends CI_Controller
             ];
 
             $this->db->set($data);
-            $this->db->where('id', $this->input->post('id'));
+            $this->db->where('id_galangan', $this->input->post('id'));
             $this->db->update('galangan');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
@@ -141,10 +141,10 @@ class Planning extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $booking = $this->db->get_where('booking', ['booking_id' => $where['id']])->row_array();
+            $booking = $this->db->get_where('booking', ['id_booking' => $where['id']])->row_array();
             $data['booking'] = $booking;
-            $data['galangan'] = $this->db->get_where('galangan', ['id' => $booking['galangan']])->row_array();
-            $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $booking['kapal']])->row_array();
+            $data['galangan'] = $this->db->get_where('galangan', ['id_galangan' => $booking['galangan']])->row_array();
+            $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $booking['kapal']])->row_array();
 
             $data['title'] = 'List Galangan';
             $data['user'] = $user;
@@ -155,17 +155,14 @@ class Planning extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'booking_id' => $this->input->post('id'),
-                'kapal' => $this->input->post('kapal'),
+                'id_booking' => $this->input->post('id'),
                 'jenis' => $this->input->post('jenis'),
                 'tgl_mulai' => $this->input->post('tglawal'),
                 'tgl_akhir' => $this->input->post('tglakhir'),
-                'galangan' => $this->input->post('galangan'),
-                'perusahaan' => $this->input->post('perusahaan'),
             ];
 
             $this->db->set($data);
-            $this->db->where('booking_id', $this->input->post('id'));
+            $this->db->where('id_booking', $this->input->post('id'));
             $this->db->update('booking');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! Galangan has been booked.</div>');
             redirect('planning/jadwal');
@@ -179,7 +176,7 @@ class Planning extends CI_Controller
             'active' => 1,
         ];
         $this->db->set($data);
-        $this->db->where('booking_id', $id);
+        $this->db->where('id_booking', $id);
         $this->db->update('booking');
 
         redirect('planning/jadwal');
@@ -192,7 +189,7 @@ class Planning extends CI_Controller
         ];
 
         $this->db->set($data);
-        $this->db->where('booking_id', $id);
+        $this->db->where('id_booking', $id);
         $this->db->update('booking');
         redirect('planning/jadwal');
     }

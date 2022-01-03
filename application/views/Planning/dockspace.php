@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Galangan <?= $perusahaan['nama']; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800">Galangan <?= $perusahaan['nama_perusahaan']; ?></h1>
 
     <br>
     <div style="float: right;" class="mr-3">
@@ -37,13 +37,13 @@
             ?>
                     <tr>
                         <td><?= $no; ?> </td>
-                        <td><?= $g['nama']; ?></td>
+                        <td><?= $g['nama_galangan']; ?></td>
                         <td><?= $g['tipe']; ?></td>
                         <td><?= $g['panjang']; ?></td>
                         <td><?= $g['lebar']; ?></td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('planning/editdock/' . $g['id']); ?>">Edit</a>
-                            <a class="btn btn-secondary rounded-pill pl-3 pr-3" href="<?= base_url('planning/hapusdock/' . $g['id']); ?>">Hapus</a>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('planning/editdock/' . $g['id_galangan']); ?>">Edit</a>
+                            <a class="btn btn-secondary rounded-pill pl-3 pr-3" href="<?= base_url('planning/hapusdock/' . $g['id_galangan']); ?>">Hapus</a>
                         </td>
                     </tr>
             <?php

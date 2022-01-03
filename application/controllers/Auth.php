@@ -51,7 +51,7 @@ class Auth extends CI_Controller
 					} else if ($user['role_id'] == 3) {
 						redirect('Superintendent/kapal');
 					} else if ($user['role_id'] == 4) {
-						redirect('DockMon');
+						redirect('Dockmon/galangan');
 					} else if ($user['role_id'] == 5) {
 						redirect('ShipMan');
 					} else if ($user['role_id'] == 6) {
@@ -107,7 +107,7 @@ class Auth extends CI_Controller
 			$this->load->view('templates/auth_footer');
 		} else {
 			$perusahaan = [
-				'nama' => htmlspecialchars($this->input->post('nama', true)),
+				'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
 				'email' => htmlspecialchars($this->input->post('email', true)),
 				'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
 				'no_fax' => htmlspecialchars($this->input->post('nofax', true)),
@@ -118,7 +118,7 @@ class Auth extends CI_Controller
 
 
 			$this->db->insert('perusahaan', $perusahaan);
-			$query = "SELECT * FROM perusahaan ORDER BY id DESC limit 1";
+			$query = "SELECT * FROM perusahaan ORDER BY id_perusahaan DESC limit 1";
 			$cekid = $this->db->query($query)->row_array();
 
 			$user = [
@@ -142,6 +142,7 @@ class Auth extends CI_Controller
 	{
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
+		$this->session->sess_destroy();
 
 		$this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">You have been logged out</div>');
 		redirect('auth');

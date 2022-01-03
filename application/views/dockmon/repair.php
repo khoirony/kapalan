@@ -8,15 +8,15 @@
         <div class="col-2">
             Data kapal
         </div>
-        <div class="col-3 align-self-start">
-            <div class="form-group ml-3">
+        <div class="col-3">
+            <div class="form-group">
                 <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
                     <?php
-                    $query = "SELECT * FROM data_kapal where perusahaan = " . $user['id'];
+                    $query = "SELECT * FROM data_kapal INNER JOIN repair ON data_kapal.id = repair.id where repair.perusahaan = " . $user['perusahaan'];
                     $Tampil = $this->db->query($query)->result_array();
                     foreach ($Tampil as $t) : ?>
                         <form method="POST" action="<?= base_url('armada/maintenance'); ?>">
-                            <option value="<?= $t['nama']; ?>"><?= $t['nama']; ?></option>
+                            <option value="<?= $t['id']; ?>"><?= $t['nama']; ?></option>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
                                 Submit
                             </button>
@@ -35,10 +35,10 @@
         <div class="col-4">
             <div class="form-group row">
                 <div class="col-sm-5 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="date1" name="date1" placeholder="date1">
-                </div> -
+                    <input type="text" class="form-control form-control-user rounded-pill" id="date1" name="date1" placeholder="date1" value="<?= $repair['tgl_awal']; ?>">
+                </div>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control form-control-user" id="date2" name="date2" placeholder="date2">
+                    <input type="text" class="form-control form-control-user rounded-pill" id="date2" name="date2" placeholder="date2" value="<?= $repair['tgl_akhir']; ?>">
                 </div>
             </div>
         </div>
@@ -46,7 +46,6 @@
     <br>
     <div style="float: right;" class="mr-3">
         <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/tambahkerja'); ?>">Tambah Pekerja</a>
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/buatrepair'); ?>">Buat Repair List</a>
     </div>
     <br><br>
     <table class="table">

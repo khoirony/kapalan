@@ -11,11 +11,11 @@
                 <div class="form-group ml-3">
                     <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
                         <?php
-                        $query = "SELECT * FROM data_kapal where perusahaan = " . $user['perusahaan'];
+                        $query = "SELECT * FROM kapal where perusahaan = " . $user['perusahaan'];
                         $Tampil = $this->db->query($query)->result_array();
                         foreach ($Tampil as $t) : ?>
                             <form method="POST" action="<?= base_url('superintendent/maintenance'); ?>">
-                                <option value="<?= $t['nama']; ?>"><?= $t['nama']; ?></option>
+                                <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Submit
                                 </button>
@@ -42,7 +42,7 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM maintenance where data_kapal = " . $kapal['id'];
+            $query = "SELECT * FROM maintenance where kapal = " . $kapal['id_kapal'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
@@ -60,7 +60,7 @@
                         <td><?= $t['komponen']; ?></td>
                         <td><?= $t['deskripsi']; ?></td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipyard/editdock/' . $g['id']); ?>">Edit</a>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipyard/editdock/' . $g['id_maintenance']); ?>">Edit</a>
                             <btn class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
                         </td>
                     </tr>

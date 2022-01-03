@@ -30,7 +30,7 @@ class AdminOwner extends CI_Controller
 
         $data['title'] = 'Profil Perusahaan';
         $data['user'] = $user;
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['id']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -43,7 +43,7 @@ class AdminOwner extends CI_Controller
     {
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['id' => $where['id']])->row_array();
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['id']])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
         $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
@@ -63,8 +63,8 @@ class AdminOwner extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'id' => htmlspecialchars($this->input->post('id', true)),
-                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'id_perusahaan' => htmlspecialchars($this->input->post('id', true)),
+                'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
@@ -73,7 +73,7 @@ class AdminOwner extends CI_Controller
             ];
 
             $this->db->set($data);
-            $this->db->where('id', $this->input->post('id'));
+            $this->db->where('id_perusahaan', $this->input->post('id'));
             $this->db->update('perusahaan');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
             redirect('AdminOwner/perusahaan');
@@ -139,7 +139,7 @@ class AdminOwner extends CI_Controller
                 'jabatan' => $jabatan,
                 'role_id' => htmlspecialchars($this->input->post('role', true)),
                 'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'active' => 1
+                'active' => 0
             ];
             $this->db->insert('user', $data);
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! New account has been created.</div>');

@@ -41,7 +41,7 @@ class SuperAdmin extends CI_Controller
         $where = array('id' => $id);
 
         $data['title'] = 'Manage User';
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $where['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $where['id']])->row_array();
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);

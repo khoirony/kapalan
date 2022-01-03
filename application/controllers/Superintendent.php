@@ -16,8 +16,8 @@ class Superintendent extends CI_Controller
 
         $data['title'] = 'Data Kapal';
         $data['user'] = $user;
-        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $user['perusahaan']])->row_array();
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -46,7 +46,7 @@ class Superintendent extends CI_Controller
 
             $data['title'] = 'Data Kapal';
             $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -55,9 +55,9 @@ class Superintendent extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'nama_kapal' => htmlspecialchars($this->input->post('nama', true)),
                 'imo' => htmlspecialchars($this->input->post('imo', true)),
-                'perusahaan' => $user['id'],
+                'perusahaan' => $user['perusahaan'],
                 'tahun_pembuatan' => htmlspecialchars($this->input->post('tahun_pembuatan', true)),
                 'tipe' => htmlspecialchars($this->input->post('tipe', true)),
                 'material' => htmlspecialchars($this->input->post('material', true)),
@@ -69,7 +69,7 @@ class Superintendent extends CI_Controller
                 'dwt' => htmlspecialchars($this->input->post('dwt', true)),
             ];
 
-            $this->db->insert('data_kapal', $data);
+            $this->db->insert('kapal', $data);
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
             redirect('superintendent/kapal');
@@ -78,9 +78,9 @@ class Superintendent extends CI_Controller
 
     public function hapuskapal($id)
     {
-        $where = array('id' => $id);
+        $where = array('id_kapal' => $id);
         $this->db->where($where);
-        $this->db->delete('data_kapal');
+        $this->db->delete('kapal');
         redirect('superintendent/kapal');
     }
 
@@ -104,8 +104,8 @@ class Superintendent extends CI_Controller
             $data['title'] = 'Data Kapal';
             $data['id'] = $where;
             $data['user'] = $user;
-            $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $where['id']])->row_array();
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
+            $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $where['id']])->row_array();
+            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -114,8 +114,8 @@ class Superintendent extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'id' => htmlspecialchars($this->input->post('id', true)),
-                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'id_kapal' => htmlspecialchars($this->input->post('id', true)),
+                'nama_kapal' => htmlspecialchars($this->input->post('nama', true)),
                 'imo' => htmlspecialchars($this->input->post('imo', true)),
                 'perusahaan' => $user['perusahaan'],
                 'tahun_pembuatan' => htmlspecialchars($this->input->post('tahun_pembuatan', true)),
@@ -130,8 +130,8 @@ class Superintendent extends CI_Controller
             ];
 
             $this->db->set($data);
-            $this->db->where('id', $this->input->post('id'));
-            $this->db->update('data_kapal');
+            $this->db->where('id_kapal', $this->input->post('id'));
+            $this->db->update('kapal');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
             redirect('superintendent/kapal');
@@ -144,8 +144,8 @@ class Superintendent extends CI_Controller
 
         $data['title'] = 'Riwayat Maintenance';
         $data['user'] = $user;
-        $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
-        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $perusahaan['id']])->row_array();
+        $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
 
 
         $this->load->view('templates/header', $data);
@@ -159,7 +159,7 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Buat Laporan Maintenance';
+        $data['title'] = 'Riwayat Maintenance';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
@@ -175,8 +175,8 @@ class Superintendent extends CI_Controller
 
         $data['title'] = 'Jadwal Survey';
         $data['user'] = $user;
-        $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
-        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $perusahaan['id']])->row_array();
+        $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
         $data['id'] = $this->input->post('kapal');
 
         $this->load->view('templates/header', $data);
@@ -190,13 +190,27 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Buat Jadwal Survey';
+        $data['title'] = 'Jadwal Survey';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('superintendent/buatsurvey', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function ongoing()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'Ongoing Project';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('superintendent/ongoing', $data);
         $this->load->view('templates/footer');
     }
 }

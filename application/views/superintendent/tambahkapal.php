@@ -7,7 +7,7 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('armada/tambahkapal'); ?>">
+            <form class="user" method="POST" action="<?= base_url('superintendent/tambahkapal'); ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Kapal" value="<?= set_value('nama'); ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -17,7 +17,7 @@
                     <?= form_error('imo', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="perusahaan" name="perusahaan" placeholder="<?= $perusahaan['nama']; ?>" value="<?= $perusahaan['nama']; ?>" disabled>
+                    <input type="text" class="form-control form-control-user" id="perusahaan" name="perusahaan" placeholder="Nama Perusahaan" value="<?= $perusahaan['nama_perusahaan']; ?>" disabled>
                     <?= form_error('perusahaan', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">

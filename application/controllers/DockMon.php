@@ -10,20 +10,6 @@ class DockMon extends CI_Controller
         $this->load->library('form_validation');
     }
 
-    public function index()
-    {
-        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $data['title'] = 'List Galangan';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/galangan', $data);
-        $this->load->view('templates/footer');
-    }
-
     public function galangan()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -42,8 +28,8 @@ class DockMon extends CI_Controller
     {
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $data['galangan'] = $this->db->get_where('galangan', ['id' => $where['id']])->row_array();
-        $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $user['perusahaan']])->row_array();
+        $data['galangan'] = $this->db->get_where('galangan', ['id_galangan' => $where['id']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->row_array();
 
         $data['title'] = 'List Galangan';
         $data['user'] = $user;
@@ -62,12 +48,14 @@ class DockMon extends CI_Controller
         $this->form_validation->set_rules('tglakhr', 'Tanggal Selesai', 'required');
 
         $data = [
-            'id' => NULL,
+            'id_booking' => NULL,
             'kapal' => $this->input->post('kapal'),
-            'jenis_survey' => $this->input->post('jenis'),
+            'jenis' => $this->input->post('jenis'),
             'tgl_mulai' => $this->input->post('tglawal'),
             'tgl_akhir' => $this->input->post('tglakhir'),
             'galangan' => $this->input->post('galangan'),
+            'perusahaan_galangan' => $this->input->post('perusahaan_galangan'),
+            'perusahaan_kapal' => $this->input->post('perusahaan_kapal'),
         ];
 
         $this->db->insert('booking', $data);
@@ -127,6 +115,23 @@ class DockMon extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function repairlist()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'Repair List';
+        $data['user'] = $user;
+
+        $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+        $data['repair'] = $this->db->get_where('repair', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dockmon/repairlist', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function repair()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -135,6 +140,7 @@ class DockMon extends CI_Controller
         $data['user'] = $user;
         $perusahaan = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
         $data['kapal'] = $this->db->get_where('data_kapal', ['perusahaan' => $perusahaan['id']])->row_array();
+        $data['repair'] = $this->db->get_where('repair', ['perusahaan' => $perusahaan['id']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -148,37 +154,39 @@ class DockMon extends CI_Controller
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Repair List';
-            $data['user'] = $user;
-            $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
-            $booking = $this->db->get_where('booking', ['booking_id' => $where['id']])->row_array();
-            $data['booking'] = $booking;
-            $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $booking['kapal']])->row_array();
-            $data['galangan'] = $this->db->get_where('galangan', ['id' => $booking['galangan']])->row_array();
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('dockmon/buatrepair', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $data = [
-                'id' => $this->input->post('id'),
-                'kapal' => $this->input->post('kapal'),
-                'perusahaan' => htmlspecialchars($this->input->post('perusahaan', true)),
-                'galangan' => htmlspecialchars($this->input->post('galangan', true)),
-                'kelas' => htmlspecialchars($this->input->post('kelas', true)),
-                'jenis' => htmlspecialchars($this->input->post('jenis', true)),
-                'tgl_awal' => htmlspecialchars($this->input->post('date1', true)),
-                'tgl_akhir' => htmlspecialchars($this->input->post('date2', true)),
-            ];
+        $data['title'] = 'Repair List';
+        $data['user'] = $user;
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
+        $booking = $this->db->get_where('booking', ['booking_id' => $where['id']])->row_array();
+        $data['booking'] = $booking;
+        $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $booking['kapal']])->row_array();
+        $data['galangan'] = $this->db->get_where('galangan', ['id' => $booking['galangan']])->row_array();
 
-            $this->db->insert('repair', $data);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dockmon/buatrepair', $data);
+        $this->load->view('templates/footer');
+    }
 
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-            redirect('planning/booking');
-        }
+    public function addrepair()
+    {
+        $data = [
+            'id' => $this->input->post('id'),
+            'kapal' => $this->input->post('kapal'),
+            'perusahaan' => htmlspecialchars($this->input->post('perusahaan', true)),
+            'galangan' => htmlspecialchars($this->input->post('galangan', true)),
+            'kelas' => htmlspecialchars($this->input->post('kelas', true)),
+            'jenis' => htmlspecialchars($this->input->post('jenis', true)),
+            'tgl_awal' => htmlspecialchars($this->input->post('date1', true)),
+            'tgl_akhir' => htmlspecialchars($this->input->post('date2', true)),
+        ];
+
+        $this->db->insert('repair', $data);
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
+        redirect('dockmon/booking');
     }
 
     public function tambahkerja()

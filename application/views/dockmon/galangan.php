@@ -3,7 +3,11 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">List Galangan</h1>
-
+    <br>
+    <div style="float: right;" class="mr-3">
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/booking'); ?>">Hasil Booking</a>
+    </div>
+    <br><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -29,9 +33,9 @@
             ?>
                     <tr>
                         <td><?= $no; ?></td>
-                        <td><?= $t['nama']; ?></td>
+                        <td><?= $t['nama_galangan']; ?></td>
                         <td>
-                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/requestbooking/' . $t['id']); ?>">Booking</a>
+                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/requestbooking/' . $t['id_galangan']); ?>">Booking</a>
                         </td>
                     </tr>
             <?php

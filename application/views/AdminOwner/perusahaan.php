@@ -14,7 +14,7 @@
             Nama Perusahaan
         </div>
         <div class="col-5">
-            : <?= $perusahaan['nama']; ?>
+            : <?= $perusahaan['nama_perusahaan']; ?>
         </div>
     </div>
     <div class="row pt-3">
@@ -60,7 +60,7 @@
 
     <br><br>
     <?php
-    echo anchor('adminowner/updateperusahaan/' . $perusahaan['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
+    echo anchor('adminowner/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
     ?>
 
 

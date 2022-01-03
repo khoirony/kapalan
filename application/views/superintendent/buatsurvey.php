@@ -6,7 +6,7 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('armada/buatsurvey'); ?>">
+            <form class="user" method="POST" action="<?= base_url('superintendent/buatsurvey'); ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Kapal" value="<?= set_value('nama'); ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>

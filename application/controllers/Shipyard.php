@@ -13,12 +13,6 @@ class Shipyard extends CI_Controller
     public function index()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
-        }
 
         $data['title'] = 'Dashboard';
         $data['user'] = $user;
@@ -33,16 +27,10 @@ class Shipyard extends CI_Controller
     public function perusahaan()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
-        }
 
         $data['title'] = 'Profil Perusahaan';
         $data['user'] = $user;
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['id']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -55,7 +43,7 @@ class Shipyard extends CI_Controller
     {
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['id' => $where['id']])->row_array();
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['id']])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
         $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
@@ -66,7 +54,7 @@ class Shipyard extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Pengguna';
+            $data['title'] = 'Profil Perusahaan';
             $data['user'] = $user;
 
             $this->load->view('templates/header', $data);
@@ -76,8 +64,8 @@ class Shipyard extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                'id' => htmlspecialchars($this->input->post('id', true)),
-                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'id_perusahaan' => htmlspecialchars($this->input->post('id', true)),
+                'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
                 'email' => htmlspecialchars($this->input->post('email', true)),
                 'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
@@ -87,7 +75,7 @@ class Shipyard extends CI_Controller
             ];
 
             $this->db->set($data);
-            $this->db->where('id', $this->input->post('id'));
+            $this->db->where('id_perusahaan', $this->input->post('id'));
             $this->db->update('perusahaan');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
             redirect('shipyard/perusahaan');
@@ -168,7 +156,7 @@ class Shipyard extends CI_Controller
     {
         $where = array('id' => $id);
         $this->db->where($where);
-        $this->db->delete('data_kapal');
+        $this->db->delete('user');
         redirect('shipyard/user');
     }
 
@@ -196,26 +184,52 @@ class Shipyard extends CI_Controller
         redirect('shipyard/user');
     }
 
-
-
-
-    public function ongoing()
+    public function updateuser($id)
     {
-        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-        $cekPerusahaan = "SELECT * FROM pemilik_galangan WHERE pengguna=" . $user['id'];
-        $cek = $this->db->query($cekPerusahaan)->row_array();
-        if ($cek['perusahaan'] == 0) {
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Please Add Your Company First</div>');
-            redirect('shipyard/tambah');
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['id' => $where['id']])->row_array();
+
+        $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+        $this->form_validation->set_rules('role', 'Tipe Perusahaan', 'required|trim');
+
+        if ($this->input->post('role') == 6) {
+            $jabatan = 'Project Leader';
+        } else if ($this->input->post('role') == 7) {
+            $jabatan = 'QC / QA';
+        } else if ($this->input->post('role') == 8) {
+            $jabatan = 'Workshop Officer';
+        } else if ($this->input->post('role') == 9) {
+            $jabatan = 'Planning Department';
         }
 
-        $data['title'] = 'Ongoing Project';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Data Pengguna';
+            $data['user'] = $user;
 
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('shipyard/ongoing', $data);
-        $this->load->view('templates/footer');
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('shipyard/updateuser', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'id' => htmlspecialchars($this->input->post('id', true)),
+                'perusahaan' => $user['perusahaan'],
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+                'jabatan' => $jabatan,
+                'role_id' => htmlspecialchars($this->input->post('role', true)),
+            ];
+
+            $this->db->set($data);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('user');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
+            redirect('shipyard/user');
+        }
     }
 }

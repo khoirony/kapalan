@@ -13,10 +13,10 @@
             <div class="col-md-2">
                 <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal">
                     <?php
-                    $query = "SELECT * FROM data_kapal where perusahaan = " . $user['perusahaan'];
+                    $query = "SELECT * FROM kapal where perusahaan = " . $user['perusahaan'];
                     $Tampil = $this->db->query($query)->result_array();
                     foreach ($Tampil as $t) : ?>
-                        <option value="<?= $t['id']; ?>"><?= $t['nama']; ?></option>
+                        <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -44,9 +44,9 @@
             <?php
 
             if ($id > 0) {
-                $query = "SELECT * FROM jadwal_survey where data_kapal = " . $id;
+                $query = "SELECT * FROM survey where dkapal = " . $id;
             } else {
-                $query = "SELECT * FROM jadwal_survey where data_kapal = " . $kapal['id'];
+                $query = "SELECT * FROM survey where kapal = " . $kapal['id_kapal'];
             }
             echo $id;
 
@@ -64,10 +64,10 @@
             ?>
                     <tr>
                         <td><?= $no; ?></td>
-                        <td><?= $t['jenis_survey']; ?></td>
+                        <td><?= $t['jenis']; ?></td>
                         <td><?= $t['tanggal']; ?></td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('owner/editsurvey/' . $t['id']); ?>">Edit</a>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/editsurvey/' . $t['id_survey']); ?>">Edit</a>
                             <btn class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
                         </td>
                     </tr>

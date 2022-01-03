@@ -95,7 +95,7 @@
                 }
                 ?>
                 <?php
-                if ($role_id == 0 || $role_id == 2) {
+                if ($role_id == 0 || $role_id == 1 || $role_id == 2 || $role_id == 4 || $role_id == 9) {
                     echo '';
                 } else {
                     echo '
