@@ -7,18 +7,18 @@
     <div class="row ml-3">
         <div class="col-md-5">
             <form class="user" method="POST" action="<?= base_url('dockmon/addrepair'); ?>">
-                <input type="hidden" id="id" name="id" value="<?= $booking['booking_id']; ?>">
-                <input type="hidden" id="kapal" name="kapal" value="<?= $kapal['id']; ?>">
-                <input type="hidden" id="perusahaan" name="perusahaan" value="<?= $perusahaan['id']; ?>">
-                <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id']; ?>">
+                <input type="hidden" id="id" name="id" value="<?= $booking['id_booking']; ?>">
+                <input type="hidden" id="kapal" name="kapal" value="<?= $kapal['id_kapal']; ?>">
+                <input type="hidden" id="perusahaan" name="perusahaan" value="<?= $perusahaan['id_perusahaan']; ?>">
+                <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id_galangan']; ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $kapal['nama']; ?>" disabled>
+                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $kapal['nama_kapal']; ?>" disabled>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $perusahaan['nama']; ?>" disabled>
+                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $perusahaan['nama_perusahaan']; ?>" disabled>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $galangan['nama']; ?>" disabled>
+                    <input type="text" class="form-control form-control-user" id="" name="" placeholder="" value="<?= $galangan['nama_galangan']; ?>" disabled>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="kelas" name="kelas" placeholder="Kelas Kapal" value="<?= set_value('kelas'); ?>">

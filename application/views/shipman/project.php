@@ -45,7 +45,7 @@
     </div>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/tambahkerja/' . $repair['id_repair']); ?>">Tambah Pekerja</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/tambahkerja/' . $repair['id_repair']); ?>">Ajukan Revisi</a>
     </div>
     <br><br>
     <table class="table">

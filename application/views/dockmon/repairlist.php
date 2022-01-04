@@ -3,21 +3,23 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Repair List</h1>
+
+    <br>
     <br><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
                 <th scope="col">Nama Kapal</th>
-                <th scope="col">Nama Galangan</th>
-                <th scope="col">Tanggal Mulai</th>
-                <th scope="col">Tanggal Berakhir</th>
-                <th scope="col" width="15%">Aksi</th>
+                <th scope="col">Jenis Survey</th>
+                <th scope="col">Mulai</th>
+                <th scope="col">Selesai</th>
+                <th scope="col" class="text-center" width="18%">Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM repair JOIN kapal ON repair.kapal = kapal.id_kapal JOIN galangan ON repair.galangan = galangan.id_galangan";
+            $query = "SELECT * FROM booking INNER JOIN kapal ON booking.kapal = kapal.id_kapal where booking.perusahaan_kapal = " . $user['perusahaan'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
@@ -31,13 +33,22 @@
                 foreach ($Tampil as $t) {
             ?>
                     <tr>
-                        <td><?= $no; ?></td>
+                        <td><?= $no; ?> </td>
                         <td><?= $t['nama_kapal']; ?></td>
-                        <td><?= $t['nama_galangan']; ?></td>
-                        <td><?= $t['tgl_awal']; ?></td>
+                        <td><?= $t['jenis']; ?></td>
+                        <td><?= $t['tgl_mulai']; ?></td>
                         <td><?= $t['tgl_akhir']; ?></td>
                         <td>
-                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/repair/' . $t['id_repair']); ?>">Lihat List</a>
+                            <?php
+                            if ($t['active'] == 1) {
+                                echo
+                                anchor('dockmon/buatrepair/' . $t['id_booking'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
+                                echo
+                                anchor('dockmon/repair/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
+                            } else {
+                                echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
+                            }
+                            ?>
                         </td>
                     </tr>
             <?php
@@ -45,6 +56,7 @@
                 }
             }
             ?>
+
         </tbody>
     </table>
 

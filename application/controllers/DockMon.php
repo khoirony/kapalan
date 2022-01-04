@@ -24,6 +24,22 @@ class DockMon extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function profilgalangan($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'List Galangan';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $where['id']])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dockmon/profilgalangan', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function requestbooking($id)
     {
         $where = array('id' => $id);
@@ -104,30 +120,12 @@ class DockMon extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-
-    public function booking()
-    {
-        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $data['title'] = 'Repair List';
-        $data['user'] = $user;
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/booking', $data);
-        $this->load->view('templates/footer');
-    }
-
     public function repairlist()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['title'] = 'Repair List';
         $data['user'] = $user;
-
-        $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
-        $data['repair'] = $this->db->get_where('repair', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -162,11 +160,11 @@ class DockMon extends CI_Controller
 
         $data['title'] = 'Repair List';
         $data['user'] = $user;
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id' => $user['perusahaan']])->row_array();
-        $booking = $this->db->get_where('booking', ['booking_id' => $where['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+        $booking = $this->db->get_where('booking', ['id_booking' => $where['id']])->row_array();
         $data['booking'] = $booking;
-        $data['kapal'] = $this->db->get_where('data_kapal', ['id' => $booking['kapal']])->row_array();
-        $data['galangan'] = $this->db->get_where('galangan', ['id' => $booking['galangan']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $booking['kapal']])->row_array();
+        $data['galangan'] = $this->db->get_where('galangan', ['id_galangan' => $booking['galangan']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -199,34 +197,36 @@ class DockMon extends CI_Controller
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        if ($this->form_validation->run() == false) {
-            $data['title'] = 'Repair List';
-            $data['user'] = $user;
-            $repair = $this->db->get_where('repair', ['id_repair' => $where['id']])->row_array();
-            $data['repair'] = $repair;
-            $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $repair['kapal']])->row_array();
 
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/sidebar', $data);
-            $this->load->view('templates/topbar', $data);
-            $this->load->view('dockmon/tambahkerja', $data);
-            $this->load->view('templates/footer');
-        } else {
-            $data = [
-                'id' => $this->input->post('id'),
-                'kapal' => $this->input->post('kapal'),
-                'perusahaan' => htmlspecialchars($this->input->post('perusahaan', true)),
-                'galangan' => htmlspecialchars($this->input->post('galangan', true)),
-                'kelas' => htmlspecialchars($this->input->post('kelas', true)),
-                'jenis' => htmlspecialchars($this->input->post('jenis', true)),
-                'tgl_awal' => htmlspecialchars($this->input->post('date1', true)),
-                'tgl_akhir' => htmlspecialchars($this->input->post('date2', true)),
-            ];
+        $data['title'] = 'Repair List';
+        $data['user'] = $user;
+        $repair = $this->db->get_where('repair', ['id_repair' => $where['id']])->row_array();
+        $data['repair'] = $repair;
+        $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $repair['kapal']])->row_array();
 
-            $this->db->insert('repair', $data);
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('dockmon/tambahkerja', $data);
+        $this->load->view('templates/footer');
+    }
 
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-            redirect('dockmon/repairlist');
-        }
+    public function additempekerja()
+    {
+        $data = [
+            'kapal' => $this->input->post('kapal'),
+            'tgl_awal' => htmlspecialchars($this->input->post('tgl_awal', true)),
+            'tgl_akhir' => htmlspecialchars($this->input->post('tgl_akhir', true)),
+            'bidang' => htmlspecialchars($this->input->post('bidang', true)),
+            'jenis' => htmlspecialchars($this->input->post('jenis', true)),
+            'uraian' => htmlspecialchars($this->input->post('uraian', true)),
+            'repair' => htmlspecialchars($this->input->post('id_repair', true)),
+
+        ];
+
+        $this->db->insert('pekerjaan', $data);
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
+        redirect('dockmon/repair/' . $this->input->post('id_repair'));
     }
 }
