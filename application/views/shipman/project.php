@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Repair List</h1>
+    <h1 class="h3 mb-4 text-gray-800">Ongoing Project</h1>
 
     <div class="row">
         <div class="col-2">
@@ -11,17 +11,7 @@
         <div class="col-3">
             <div class="form-group">
                 <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
-                    <?php
-                    $query = "SELECT * FROM kapal INNER JOIN repair ON kapal.id_kapal = repair.kapal WHERE id_repair = " . $repair['id_repair'];
-                    $Tampil = $this->db->query($query)->result_array();
-                    foreach ($Tampil as $t) : ?>
-                        <form method="POST" action="<?= base_url('superintendent/maintenance'); ?>">
-                            <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Submit
-                            </button>
-                        </form>
-                    <?php endforeach; ?>
+                    <option value="<?= $kapal['id_kapal']; ?>"><?= $kapal['nama_kapal']; ?></option>
                 </select>
             </div>
         </div>
@@ -35,26 +25,23 @@
         <div class="col-4">
             <div class="form-group row">
                 <div class="col-sm-5 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user rounded-pill" id="date1" name="date1" placeholder="date1" value="<?= $repair['tgl_awal']; ?>">
+                    <input type="text" class="form-control form-control-user rounded-pill" id="date1" name="date1" placeholder="date1" value="<?= $repair['tgl_awal']; ?>" disabled>
                 </div>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control form-control-user rounded-pill" id="date2" name="date2" placeholder="date2" value="<?= $repair['tgl_akhir']; ?>">
+                    <input type="text" class="form-control form-control-user rounded-pill" id="date2" name="date2" placeholder="date2" value="<?= $repair['tgl_akhir']; ?>" disabled>
                 </div>
             </div>
         </div>
     </div>
     <br>
-    <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/tambahkerja/' . $repair['id_repair']); ?>">Ajukan Revisi</a>
-    </div>
-    <br><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col" width="35%">Bidang</th>
+                <th scope="col">Bidang</th>
                 <th scope="col">Jenis</th>
-                <th scope="col" width="17%">Aksi</th>
+                <th scope="col">Uraian</th>
+                <th scope="col" class="text-center" width="29%">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -76,10 +63,8 @@
                         <td><?= $no; ?></td>
                         <td><?= $t['bidang']; ?></td>
                         <td><?= $t['jenis']; ?></td>
-                        <td>
-                            <a class="btn btn-primary btn-sm rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/editpekerja/' . $t['id_pekerjaan']); ?>">Edit</a>
-                            <btn class=" btn btn-secondary btn-sm rounded-pill pl-3 pr-3">Hapus</btn>
-                        </td>
+                        <td><?= $t['uraian']; ?></td>
+                        <td> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/cekhasil/' . $t['id_pekerjaan']); ?>">Cek Hasil</a></td>
                     </tr>
             <?php
                     $no++;
