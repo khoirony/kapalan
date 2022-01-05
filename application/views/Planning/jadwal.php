@@ -42,10 +42,10 @@
                             <?php
                             echo
                             anchor('planning/updatejadwal/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">Ubah</div>');
-                            if ($t['active'] == 1) {
+                            if ($t['active'] == 2) {
                                 echo
                                 anchor('planning/unconfirm/' . $t['id_booking'], '<div class=" btn btn-sm btn-danger rounded-pill pl-3 pr-3">Confirmed</div>');
-                            } else {
+                            } else if ($t['active'] == 1) {
                                 echo anchor('planning/confirm/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Booked</div>');
                             }
                             ?>

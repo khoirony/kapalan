@@ -19,7 +19,7 @@
                 Email Perusahaan
             </div>
             <div class="col-5">
-                : <?= $perusahaan['email']; ?>
+                : <?= $perusahaan['email_perusahaan']; ?>
             </div>
         </div>
         <div class="row pt-3">

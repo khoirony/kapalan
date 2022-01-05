@@ -13,7 +13,7 @@
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email" value="<?= $perusahaan['email']; ?>">
+                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email" value="<?= $perusahaan['email_perusahaan']; ?>">
                     <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">

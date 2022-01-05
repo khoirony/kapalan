@@ -38,6 +38,44 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function accept($id)
+    {
+        $data = [
+            'active' => 2,
+        ];
+        $this->db->set($data);
+        $this->db->where('id_booking', $id);
+        $this->db->update('booking');
+
+        redirect('projectleader/repair');
+    }
+
+    public function decline($id)
+    {
+        $data = [
+            'active' => 1,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_booking', $id);
+        $this->db->update('booking');
+        redirect('projectleader/repair');
+    }
+
+    public function seemore()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'Repair List';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('projectleader/seemore', $data);
+        $this->load->view('templates/footer');
+    }
+
     public function ongoing()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();

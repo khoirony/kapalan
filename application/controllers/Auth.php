@@ -122,7 +122,7 @@ class Auth extends CI_Controller
 			$cekid = $this->db->query($query)->row_array();
 
 			$user = [
-				'id' => $cekid['id'],
+				'perusahaan' => $cekid['id_perusahaan'],
 				'nama' => htmlspecialchars($this->input->post('nama', true)),
 				'email' => htmlspecialchars($this->input->post('email', true)),
 				'no_telp' => htmlspecialchars($this->input->post('notelp', true)),

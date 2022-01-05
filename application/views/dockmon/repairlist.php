@@ -11,6 +11,7 @@
             <tr>
                 <th scope="col" width="5%">No</th>
                 <th scope="col">Nama Kapal</th>
+                <th scope="col">Nama Galangan</th>
                 <th scope="col">Jenis Survey</th>
                 <th scope="col">Mulai</th>
                 <th scope="col">Selesai</th>
@@ -19,7 +20,7 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM booking INNER JOIN kapal ON booking.kapal = kapal.id_kapal where booking.perusahaan_kapal = " . $user['perusahaan'];
+            $query = "SELECT * FROM booking JOIN kapal ON booking.kapal = kapal.id_kapal JOIN galangan ON booking.galangan = galangan.id_galangan where booking.perusahaan_kapal = " . $user['perusahaan'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
@@ -35,18 +36,24 @@
                     <tr>
                         <td><?= $no; ?> </td>
                         <td><?= $t['nama_kapal']; ?></td>
+                        <td><?= $t['nama_galangan']; ?></td>
                         <td><?= $t['jenis']; ?></td>
                         <td><?= $t['tgl_mulai']; ?></td>
                         <td><?= $t['tgl_akhir']; ?></td>
                         <td>
                             <?php
-                            if ($t['active'] == 1) {
+                            if ($t['active'] == 2) {
                                 echo
                                 anchor('dockmon/buatrepair/' . $t['id_booking'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
-                                echo
-                                anchor('dockmon/repair/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
                             } else {
                                 echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
+                            }
+
+                            $sql = "SELECT * FROM repair where id_repair = " . $t['id_booking'];
+                            $cek = $this->db->query($sql)->result_array();
+                            foreach ($cek as $c) {
+                                echo
+                                anchor('dockmon/repair/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
                             }
                             ?>
                         </td>

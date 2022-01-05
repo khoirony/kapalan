@@ -38,7 +38,7 @@
                 ';
             } else {
                 foreach ($Tampil as $t) {
-                    if ($t['id'] == $t['perusahaan']) {
+                    if ($t['role_id'] == 2) {
                         continue;
                     }
             ?>

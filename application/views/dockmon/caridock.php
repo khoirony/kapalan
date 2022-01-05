@@ -15,16 +15,20 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM perusahaan JOIN galangan ON perusahaan.id_perusahaan = galangan.perusahaan JOIN booking ON galangan.id_galangan = booking.galangan WHERE ";
+            $query = "SELECT * FROM galangan JOIN perusahaan ON galangan.perusahaan = perusahaan.id_perusahaan ";
+
+            if ($this->input->post('tgl_awal') != NULL) {
+                $query .= "JOIN booking ON galangan.id_galangan = booking.galangan WHERE booking.active = 0 AND booking.tgl_akhir < '" . $this->input->post('tgl_awal') . "' AND ";
+            } else {
+                $query .= "WHERE ";
+            }
 
             if ($this->input->post('kota') != NULL) {
-                $query .= "perusahaan.kota LIKE '" . $this->input->post('kota') . "%'";
+                $query .= "perusahaan.kota LIKE '" . $this->input->post('kota') . "%' AND ";
             }
-            if ($this->input->post('tgl_awal') != NULL) {
-                $query .= " AND booking.active = 1 AND booking.tgl_akhir < '" . $this->input->post('tgl_awal') . "'";
-            }
+
             if ($this->input->post('tipe') != NULL) {
-                $query .= " AND galangan.tipe LIKE '" . $this->input->post('tipe') . "%'";
+                $query .= "galangan.tipe LIKE '%" . $this->input->post('tipe') . "%'";
             }
             if ($this->input->post('panjang') != NULL) {
                 $query .= " AND galangan.panjang >= " . $this->input->post('panjang');

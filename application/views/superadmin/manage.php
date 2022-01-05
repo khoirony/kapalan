@@ -39,7 +39,7 @@
                         <td><?= $t['jabatan']; ?></td>
                         <td>
                             <?php
-                            echo anchor('superadmin/lihatuser/' . $t['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Lihat</div>');
+                            echo anchor('superadmin/lihatuser/' . $t['perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Lihat</div>');
                             if ($t['active'] == 1) {
                                 echo
                                 anchor('superadmin/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');

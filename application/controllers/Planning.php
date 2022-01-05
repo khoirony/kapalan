@@ -56,8 +56,18 @@ class Planning extends CI_Controller
                 'draft' => htmlspecialchars($this->input->post('draft', true)),
                 'DWT' => htmlspecialchars($this->input->post('dwt', true)),
             ];
-
             $this->db->insert('galangan', $data);
+
+            $query = "SELECT * FROM galangan ORDER BY id_galangan DESC limit 1";
+            $cekid = $this->db->query($query)->row_array();
+            $book = [
+                'perusahaan_galangan' => htmlspecialchars($this->input->post('idperusahaan', true)),
+                'galangan' => $cekid['id_galangan'],
+                'active' => 1,
+            ];
+            $this->db->insert('booking', $book);
+
+
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
             redirect('planning/dockspace');
@@ -173,7 +183,7 @@ class Planning extends CI_Controller
     public function confirm($id)
     {
         $data = [
-            'active' => 1,
+            'active' => 2,
         ];
         $this->db->set($data);
         $this->db->where('id_booking', $id);
@@ -185,7 +195,7 @@ class Planning extends CI_Controller
     public function unconfirm($id)
     {
         $data = [
-            'active' => 0,
+            'active' => 1,
         ];
 
         $this->db->set($data);

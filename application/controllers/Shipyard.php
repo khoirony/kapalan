@@ -30,7 +30,7 @@ class Shipyard extends CI_Controller
 
         $data['title'] = 'Profil Perusahaan';
         $data['user'] = $user;
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -66,7 +66,7 @@ class Shipyard extends CI_Controller
             $data = [
                 'id_perusahaan' => htmlspecialchars($this->input->post('id', true)),
                 'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
+                'email_perusahaan' => htmlspecialchars($this->input->post('email', true)),
                 'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
                 'kota' => htmlspecialchars($this->input->post('kota', true)),
@@ -87,7 +87,9 @@ class Shipyard extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['title'] = 'Data Pengguna';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

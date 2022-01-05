@@ -72,7 +72,15 @@ class DockMon extends CI_Controller
             'galangan' => $this->input->post('galangan'),
             'perusahaan_galangan' => $this->input->post('perusahaan_galangan'),
             'perusahaan_kapal' => $this->input->post('perusahaan_kapal'),
+            'active' => 1
         ];
+
+        // $query = "DELETE FROM booking WHERE kapal = 0 AND galangan = " . $this->input->post('galangan');
+        // $this->db->query($query)->row_array();
+
+        $where = array('galangan' => $this->input->post('galangan'), 'kapal' => 0);
+        $this->db->where($where);
+        $this->db->delete('booking');
 
         $this->db->insert('booking', $data);
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! Galangan has been booked.</div>');
@@ -99,16 +107,6 @@ class DockMon extends CI_Controller
     public function caridock()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-
-
-        $query = "SELECT * FROM perusahaan INNER JOIN galangan ON perusahaan.id_perusahaan = galangan.perusahaan WHERE ";
-
-        if ($this->input->post('kota') != NULL) {
-            $query .= "perusahaan.kota LIKE '" . $this->input->post('kota') . "%'";
-        }
-
-        $data['cari'] = $this->db->query($query)->result_array();
 
         $data['title'] = 'Docking Space';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
@@ -176,7 +174,7 @@ class DockMon extends CI_Controller
     public function addrepair()
     {
         $data = [
-            'id' => $this->input->post('id'),
+            'id_repair' => $this->input->post('id'),
             'kapal' => $this->input->post('kapal'),
             'perusahaan' => htmlspecialchars($this->input->post('perusahaan', true)),
             'galangan' => htmlspecialchars($this->input->post('galangan', true)),
@@ -189,7 +187,7 @@ class DockMon extends CI_Controller
         $this->db->insert('repair', $data);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-        redirect('dockmon/booking');
+        redirect('dockmon/repairlist');
     }
 
     public function tambahkerja($id)

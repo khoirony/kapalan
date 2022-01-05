@@ -15,12 +15,7 @@
                     $query = "SELECT * FROM kapal INNER JOIN repair ON kapal.id_kapal = repair.kapal WHERE id_repair = " . $repair['id_repair'];
                     $Tampil = $this->db->query($query)->result_array();
                     foreach ($Tampil as $t) : ?>
-                        <form method="POST" action="<?= base_url('superintendent/maintenance'); ?>">
-                            <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
-                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Submit
-                            </button>
-                        </form>
+                        <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>

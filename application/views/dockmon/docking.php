@@ -8,16 +8,7 @@
         <div class="col-md-5">
             <form class="user" method="POST" action="<?= base_url('dockmon/caridock'); ?>">
                 <div class="form-group">
-                    <div class="form-group">
-                        <select class="form-select form-select-lg rounded-pill fs-6" id="kota" name="kota">
-                            <?php
-                            $query = "SELECT * FROM perusahaan WHERE role_id = 1";
-                            $Tampil = $this->db->query($query)->result_array();
-                            foreach ($Tampil as $t) : ?>
-                                <option value="<?= $t['kota']; ?>"><?= $t['kota']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
+                    <input type="text" class="form-control form-control-user" id="kota" name="kota" placeholder="Kota">
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">

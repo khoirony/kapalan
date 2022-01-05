@@ -53,7 +53,7 @@ class AdminOwner extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Pengguna';
+            $data['title'] = 'Profil Perusahaan';
             $data['user'] = $user;
 
             $this->load->view('templates/header', $data);
