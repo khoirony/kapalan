@@ -3,10 +3,11 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Request Booking</h1>
-    <br>
+
 
     <div class="row">
         <div class="col-md-5">
+            <br><br><br>
             <form class="user" method="POST" action="<?= base_url('dockmon/addbooking'); ?>">
                 <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id_galangan']; ?>">
                 <input type="hidden" id="perusahaan_galangan" name="perusahaan_galangan" value="<?= $galangan['perusahaan']; ?>">
@@ -45,6 +46,40 @@
                 </button>
             </form>
             <br>
+        </div>
+        <div class="col-md-7">
+            <div class="container pl-5 pr-5">
+                <div id="calendar"></div>
+
+            </div>
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+            <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.js'></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var calendarEl = document.getElementById('calendar');
+                    var calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: 'dayGridMonth',
+                        events: [<?php
+
+                                    $query = "SELECT * FROM booking JOIN kapal ON booking.kapal = kapal.id_kapal where booking.galangan = " . $galangan['id_galangan'];
+                                    $Tampil = $this->db->query($query)->result_array();
+                                    foreach ($Tampil as $t) {
+                                    ?> {
+                                    title: '<?php echo $t['nama_kapal']; ?>', //menampilkan title dari tabel
+                                    start: '<?php echo $t['tgl_mulai']; ?>', //menampilkan tgl mulai dari tabel
+                                    end: '<?php echo $t['tgl_akhir']; ?>' //menampilkan tgl selesai dari tabel
+                                },
+                            <?php } ?>
+                        ],
+                        selectOverlap: function(event) {
+                            return event.rendering === 'background';
+                        }
+                    });
+
+                    calendar.render();
+                });
+            </script>
         </div>
     </div>
 </div>

@@ -63,7 +63,6 @@ class Planning extends CI_Controller
             $book = [
                 'perusahaan_galangan' => htmlspecialchars($this->input->post('idperusahaan', true)),
                 'galangan' => $cekid['id_galangan'],
-                'active' => 1,
             ];
             $this->db->insert('booking', $book);
 
