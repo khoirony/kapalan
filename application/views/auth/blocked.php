@@ -51,8 +51,16 @@
                             $url = 'dockmon';
                         } else if ($role_id == 5) {
                             $url = 'shipman';
+                        } else if ($role_id == 6) {
+                            $url = 'projectleader';
+                        } else if ($role_id == 7) {
+                            $url = 'qcqa';
+                        } else if ($role_id == 8) {
+                            $url = 'workshopofficer';
+                        } else if ($role_id == 9) {
+                            $url = 'planning';
                         } else {
-                            $url = 'owner';
+                            $url = 'auth';
                         }
                         ?>
                         <a href="<?= base_url() . $url; ?>">&larr; Back to Dashboard</a>

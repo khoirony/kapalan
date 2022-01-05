@@ -13,7 +13,7 @@ class Auth extends CI_Controller
 	{
 		// $this->session->sess_destroy();
 		if ($this->session->userdata('email')) {
-			redirect('owner');
+			redirect('auth/blocked');
 		}
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');

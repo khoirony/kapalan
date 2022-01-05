@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM booking JOIN kapal ON booking.kapal = kapal.id_kapal JOIN galangan ON booking.galangan = galangan.id_galangan where booking.perusahaan_galangan = " . $user['perusahaan'];
+            $query = "SELECT * FROM repair JOIN kapal ON repair.kapal = kapal.id_kapal JOIN galangan ON repair.galangan = galangan.id_galangan where repair.perusahaan_galangan = " . $user['perusahaan'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
@@ -38,19 +38,11 @@
                         <td><?= $t['nama_kapal']; ?></td>
                         <td><?= $t['nama_galangan']; ?></td>
                         <td><?= $t['jenis']; ?></td>
-                        <td><?= $t['tgl_mulai']; ?></td>
+                        <td><?= $t['tgl_awal']; ?></td>
                         <td><?= $t['tgl_akhir']; ?></td>
-                        <td>
-                            <?php
-                            if ($t['active'] == 1) {
-                                echo
-                                anchor('projectleader/accept/' . $t['id_booking'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3 mr-1">Accept</div>');
-                            } else {
-                                echo
-                                anchor('projectleader/decline/' . $t['id_booking'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3 mr-1">Decline</div>');
-                            }
+                        <td><?php
                             echo
-                            anchor('projectleader/seemore/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
+                            anchor('projectleader/seemore/' . $t['id_repair'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See More</div>');
                             ?>
                         </td>
                     </tr>

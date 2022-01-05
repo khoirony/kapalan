@@ -6,7 +6,10 @@
 
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="">
+            <br><br>
+            <form class="user" method="POST" action="<?= base_url('shipman/setujuihasil'); ?>">
+                <input type="hidden" class="form-control form-control-user" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
+                <input type="hidden" id="id_repair" name="id_repair" value="<?= $repair['id_repair']; ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="" name="" value="<?= $kapal['nama_kapal']; ?>" disabled>
                 </div>
@@ -30,16 +33,36 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    Hasil Pengerjaan
+                    Disetujui oleh :<br>
+                    <?php
+                    if ($pekerja['pl'] == 0) {
+                        echo 'Project Leader <span class="badge bg-secondary">Belum</span><br>';
+                    } else {
+                        echo 'Project Leader <span class="badge bg-primary">Setuju</span><br>';
+                    }
+                    if ($pekerja['qcqa'] == 0) {
+                        echo 'QC / QA <span class="badge bg-secondary">Belum</span><br>';
+                    } else {
+                        echo 'QC / QA <span class="badge bg-primary">Setuju</span><br>';
+                    }
+                    if ($pekerja['wo'] == 0) {
+                        echo 'Workshop Officer <span class="badge bg-secondary">Belum</span><br>';
+                    } else {
+                        echo 'Workshop Officer <span class="badge bg-primary">Setuju</span><br>';
+                    }
+                    ?>
                 </div>
                 <div class="form-group">
-                    Disetujui oleh
-                </div>
-                <div class="form-group">
-                    Setujui Hasil
+                    <button type="submit" class="btn btn-primary btn-user btn-block">Setujui Hasil</button>
                 </div>
             </form>
             <br>
+        </div>
+        <div class="col-md-7">
+            <div class="container text-center">
+                Hasil Pengerjaan <br> <br>
+                <img src="<?= base_url('assets/img/project/' . $pekerja['image']); ?>" alt="" class="img-thumbnail">
+            </div>
         </div>
     </div>
 

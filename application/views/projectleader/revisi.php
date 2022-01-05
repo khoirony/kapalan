@@ -6,7 +6,7 @@
     <br>
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('shipman/ajukanrevisi'); ?>">
+            <form class="user" method="POST" action="<?= base_url('projectleader/setujuirevisi'); ?>">
                 <input type="hidden" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
                 <input type="hidden" id="id_repair" name="id_repair" value="<?= $repair['id_repair']; ?>">
                 <div class="form-group">
@@ -32,23 +32,11 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Alasan Pengajuan"><?= $pekerja['revisi']; ?></textarea>
+                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian"><?= $pekerja['revisi']; ?></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">Ajukan Revisi</button>
+                <button type="submit" class="btn btn-primary btn-user btn-block">Setujui Revisi</button>
             </form>
             <br>
-        </div>
-        <div class="col-md-7">
-            <div class="container text-center">
-                Status Revisi :
-                <?php
-                if ($pekerja['setujui_revisi'] == 0) {
-                    echo '<span class="badge bg-secondary">Belum Disetujui</span><br>';
-                } else {
-                    echo '<span class="badge bg-warning">Sudah Disetujui</span><br>';
-                }
-                ?>
-            </div>
         </div>
     </div>
 

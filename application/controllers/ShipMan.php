@@ -153,6 +153,19 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    public function ajukanrevisi()
+    {
+        $data = [
+            'revisi' => $this->input->post('uraian')
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_pekerjaan', $this->input->post('id'));
+        $this->db->update('pekerjaan');
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
+        redirect('shipman/project/' . $this->input->post('id_repair'));
+    }
+
     public function cekhasil($id)
     {
         $where = array('id' => $id);
@@ -170,5 +183,18 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('shipman/cekhasil', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function setujuihasil()
+    {
+        $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $this->input->post('id')])->row_array();
+
+        $this->db->where('id_pekerjaan', $this->input->post('id'));
+        $this->db->delete('pekerjaan');
+
+        unlink(FCPATH . 'assets/img/project/' . $pekerja['image']);
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
+        redirect('shipman/project/' . $this->input->post('id_repair'));
     }
 }
