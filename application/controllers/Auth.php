@@ -108,7 +108,7 @@ class Auth extends CI_Controller
 		} else {
 			$perusahaan = [
 				'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
-				'email' => htmlspecialchars($this->input->post('email', true)),
+				'email_perusahaan' => htmlspecialchars($this->input->post('email', true)),
 				'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
 				'no_fax' => htmlspecialchars($this->input->post('nofax', true)),
 				'alamat' => htmlspecialchars($this->input->post('alamat', true)),

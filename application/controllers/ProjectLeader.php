@@ -262,4 +262,21 @@ class ProjectLeader extends CI_Controller
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
         redirect('projectleader/project/' . $this->input->post('id_repair'));
     }
+
+    public function setujuihasil($id)
+    {
+
+        $where = array('id' => $id);
+        $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $where['id']])->row_array();
+        $repair = $this->db->get_where('repair', ['id_repair' => $pekerja['repair']])->row_array();
+        $data = [
+            'pl' => 1
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_pekerjaan', $where['id']);
+        $this->db->update('pekerjaan');
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
+        redirect('projectleader/project/' . $repair['id_repair']);
+    }
 }

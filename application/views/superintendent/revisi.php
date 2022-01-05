@@ -2,14 +2,14 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Cek Hasil Pengerjaan</h1>
-
+    <h1 class="h3 mb-4 text-gray-800">Ajukan Revisi</h1>
+    <br>
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('projectleader/submitupload'); ?>" enctype="multipart/form-data">
-                <input type="hidden" id="id_repair" name="id_repair" value="<?= $pekerja['repair']; ?>">
+            <form class="user" method="POST" action="<?= base_url('superintendent/ajukanrevisi'); ?>">
                 <input type="hidden" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
-                <div class=" form-group">
+                <input type="hidden" id="id_repair" name="id_repair" value="<?= $repair['id_repair']; ?>">
+                <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="" name="" value="<?= $kapal['nama_kapal']; ?>" disabled>
                 </div>
                 <div class="form-group">
@@ -31,24 +31,24 @@
                     <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Uraian"><?= $pekerja['uraian']; ?></textarea>
                 </div>
                 <hr>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Upload Hasl Pengerjaan</label>
-                    <input type="file" id="image" name="image" class="form-control">
+                <div class="form-group">
+                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Alasan Pengajuan"><?= $pekerja['revisi']; ?></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Submit
-                </button>
+                <button type="submit" class="btn btn-primary btn-user btn-block">Ajukan Revisi</button>
             </form>
-            <a href="<?= base_url('projectleader/setujuihasil/' . $pekerja['id_pekerjaan']); ?>" class="btn btn-success btn-user btn-block rounded-pill mt-3">Setujui</a>
             <br>
         </div>
         <div class="col-md-7">
             <div class="container text-center">
-                Gambar Hasil Pengerjaan Sebelumnya <br>
-                <br>
-                <img src="<?= base_url('assets/img/project/' . $pekerja['image']); ?>" alt="" class="img-thumbnail">
+                Status Revisi :
+                <?php
+                if ($pekerja['setujui_revisi'] == 0) {
+                    echo '<span class="badge bg-secondary">Belum Disetujui</span><br>';
+                } else {
+                    echo '<span class="badge bg-warning">Sudah Disetujui</span><br>';
+                }
+                ?>
             </div>
-
         </div>
     </div>
 

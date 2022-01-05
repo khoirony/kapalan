@@ -6,10 +6,11 @@
 
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('projectleader/submitupload'); ?>" enctype="multipart/form-data">
-                <input type="hidden" id="id_repair" name="id_repair" value="<?= $pekerja['repair']; ?>">
-                <input type="hidden" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
-                <div class=" form-group">
+            <br><br>
+            <form class="user" method="POST" action="<?= base_url('superintendent/setujuihasil'); ?>">
+                <input type="hidden" class="form-control form-control-user" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
+                <input type="hidden" id="id_repair" name="id_repair" value="<?= $repair['id_repair']; ?>">
+                <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="" name="" value="<?= $kapal['nama_kapal']; ?>" disabled>
                 </div>
                 <div class="form-group">
@@ -31,24 +32,37 @@
                     <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Uraian"><?= $pekerja['uraian']; ?></textarea>
                 </div>
                 <hr>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Upload Hasl Pengerjaan</label>
-                    <input type="file" id="image" name="image" class="form-control">
+                <div class="form-group">
+                    Disetujui oleh :<br>
+                    <?php
+                    if ($pekerja['pl'] == 0) {
+                        echo 'Project Leader <span class="badge bg-secondary">Belum</span><br>';
+                    } else {
+                        echo 'Project Leader <span class="badge bg-primary">Setuju</span><br>';
+                    }
+                    if ($pekerja['qcqa'] == 0) {
+                        echo 'QC / QA <span class="badge bg-secondary">Belum</span><br>';
+                    } else {
+                        echo 'QC / QA <span class="badge bg-primary">Setuju</span><br>';
+                    }
+                    if ($pekerja['wo'] == 0) {
+                        echo 'Workshop Officer <span class="badge bg-secondary">Belum</span><br>';
+                    } else {
+                        echo 'Workshop Officer <span class="badge bg-primary">Setuju</span><br>';
+                    }
+                    ?>
                 </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Submit
-                </button>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-user btn-block">Setujui Hasil</button>
+                </div>
             </form>
-            <a href="<?= base_url('projectleader/setujuihasil/' . $pekerja['id_pekerjaan']); ?>" class="btn btn-success btn-user btn-block rounded-pill mt-3">Setujui</a>
             <br>
         </div>
         <div class="col-md-7">
             <div class="container text-center">
-                Gambar Hasil Pengerjaan Sebelumnya <br>
-                <br>
+                Hasil Pengerjaan <br> <br>
                 <img src="<?= base_url('assets/img/project/' . $pekerja['image']); ?>" alt="" class="img-thumbnail">
             </div>
-
         </div>
     </div>
 
