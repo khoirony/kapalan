@@ -6,7 +6,7 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('superintendent/updatesurvey'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Superintendent/updatesurvey'); ?>">
                 <input type="hidden" id="id" name="id" value="<?= $survey['id_survey']; ?>">
                 <input type="hidden" id="kapal" name="kapal" value="<?= $survey['kapal']; ?>">
                 <div class="form-group">

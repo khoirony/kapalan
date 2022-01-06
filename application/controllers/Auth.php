@@ -13,15 +13,15 @@ class Auth extends CI_Controller
 	{
 		// $this->session->sess_destroy();
 		if ($this->session->userdata('email')) {
-			redirect('auth/blocked');
+			redirect('Auth/blocked');
 		}
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 		if ($this->form_validation->run() == false) {
 			$data['title'] = 'Login';
-			$this->load->view('templates/auth_header', $data);
-			$this->load->view('auth/login');
-			$this->load->view('templates/auth_footer');
+			$this->load->view('templates/Auth_header', $data);
+			$this->load->view('Auth/login');
+			$this->load->view('templates/Auth_footer');
 		} else {
 			$this->_login();
 		}
@@ -43,46 +43,46 @@ class Auth extends CI_Controller
 					];
 					$this->session->set_userdata($data);
 					if ($user['role_id'] == 0) {
-						redirect('superadmin');
+						redirect('SuperAdmin');
 					} else if ($user['role_id'] == 1) {
-						redirect('shipyard');
+						redirect('Shipyard');
 					} else if ($user['role_id'] == 2) {
 						redirect('AdminOwner');
 					} else if ($user['role_id'] == 3) {
 						redirect('Superintendent/kapal');
 					} else if ($user['role_id'] == 4) {
-						redirect('Dockmon/galangan');
+						redirect('DockMon/galangan');
 					} else if ($user['role_id'] == 5) {
 						redirect('ShipMan');
 					} else if ($user['role_id'] == 6) {
-						redirect('projectleader');
+						redirect('ProjectLeader');
 					} else if ($user['role_id'] == 7) {
-						redirect('qcqa');
+						redirect('Qcqa');
 					} else if ($user['role_id'] == 8) {
-						redirect('workshopofficer');
+						redirect('WorkshopOfficer');
 					} else if ($user['role_id'] == 9) {
 						redirect('Planning/dockspace');
 					} else {
-						redirect('auth/blocked');
+						redirect('Auth/blocked');
 					}
 				} else {
 					$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Wrong Password!</div>');
-					redirect('auth');
+					redirect('Auth');
 				}
 			} else {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Akun Belum Akif!</div>');
-				redirect('auth');
+				redirect('Auth');
 			}
 		} else {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger" role="alert">Email is not registered!</div>');
-			redirect('auth');
+			redirect('Auth');
 		}
 	}
 
 	public function registration()
 	{
 		if ($this->session->userdata('email')) {
-			redirect('user');
+			redirect('Auth/blocked');
 		}
 		$this->form_validation->set_rules('nama', 'Nama Perusahaan', 'required');
 		$this->form_validation->set_rules('email', 'Email Perusahaan', 'required|trim|valid_email|is_unique[user.email]', [
@@ -102,9 +102,9 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data['title'] = 'Registrasi';
-			$this->load->view('templates/auth_header', $data);
-			$this->load->view('auth/registration');
-			$this->load->view('templates/auth_footer');
+			$this->load->view('templates/Auth_header', $data);
+			$this->load->view('Auth/registration');
+			$this->load->view('templates/Auth_footer');
 		} else {
 			$perusahaan = [
 				'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
@@ -134,7 +134,7 @@ class Auth extends CI_Controller
 
 			$this->db->insert('user', $user);
 			$this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please Login</div>');
-			redirect('auth');
+			redirect('Auth');
 		}
 	}
 
@@ -145,11 +145,11 @@ class Auth extends CI_Controller
 		$this->session->sess_destroy();
 
 		$this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">You have been logged out</div>');
-		redirect('auth');
+		redirect('Auth');
 	}
 
 	public function blocked()
 	{
-		$this->load->view('auth/blocked');
+		$this->load->view('Auth/blocked');
 	}
 }

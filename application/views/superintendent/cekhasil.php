@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-5">
             <br><br>
-            <form class="user" method="POST" action="<?= base_url('superintendent/setujuihasil'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Superintendent/setujuihasil'); ?>">
                 <input type="hidden" class="form-control form-control-user" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
                 <input type="hidden" id="id_repair" name="id_repair" value="<?= $repair['id_repair']; ?>">
                 <div class="form-group">

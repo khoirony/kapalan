@@ -57,7 +57,7 @@
                         <td><?= $no; ?></td>
                         <td><?= $t['nama_galangan']; ?></td>
                         <td>
-                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/requestbooking/' . $t['id_galangan']); ?>">Booking</a>
+                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/requestbooking/' . $t['id_galangan']); ?>">Booking</a>
                         </td>
                     </tr>
             <?php

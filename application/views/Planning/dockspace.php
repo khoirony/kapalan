@@ -6,7 +6,7 @@
 
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('planning/tambahdock'); ?>">Tambah Dock</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Planning/tambahdock'); ?>">Tambah Dock</a>
     </div>
     <br><br>
     <table class="table">
@@ -42,8 +42,8 @@
                         <td><?= $g['panjang']; ?></td>
                         <td><?= $g['lebar']; ?></td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('planning/editdock/' . $g['id_galangan']); ?>">Edit</a>
-                            <a class="btn btn-secondary rounded-pill pl-3 pr-3" href="<?= base_url('planning/hapusdock/' . $g['id_galangan']); ?>">Hapus</a>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Planning/editdock/' . $g['id_galangan']); ?>">Edit</a>
+                            <a class="btn btn-secondary rounded-pill pl-3 pr-3" href="<?= base_url('Planning/hapusdock/' . $g['id_galangan']); ?>">Hapus</a>
                         </td>
                     </tr>
             <?php

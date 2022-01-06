@@ -20,7 +20,7 @@ class Shipyard extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipyard/index', $data);
+        $this->load->view('Shipyard/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -35,7 +35,7 @@ class Shipyard extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipyard/perusahaan', $data);
+        $this->load->view('Shipyard/perusahaan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -60,7 +60,7 @@ class Shipyard extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('shipyard/updateperusahaan', $data);
+            $this->load->view('Shipyard/updateperusahaan', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -79,7 +79,7 @@ class Shipyard extends CI_Controller
             $this->db->where('id_perusahaan', $this->input->post('id'));
             $this->db->update('perusahaan');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-            redirect('shipyard/perusahaan');
+            redirect('Shipyard/perusahaan');
         }
     }
 
@@ -95,7 +95,7 @@ class Shipyard extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipyard/user', $data);
+        $this->load->view('Shipyard/user', $data);
         $this->load->view('templates/footer');
     }
 
@@ -136,7 +136,7 @@ class Shipyard extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('shipyard/tambahuser', $data);
+            $this->load->view('Shipyard/tambahuser', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -151,7 +151,7 @@ class Shipyard extends CI_Controller
             ];
             $this->db->insert('user', $data);
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your account has been created. Please Login</div>');
-            redirect('shipyard/user');
+            redirect('Shipyard/user');
         }
     }
 
@@ -160,7 +160,7 @@ class Shipyard extends CI_Controller
         $where = array('id' => $id);
         $this->db->where($where);
         $this->db->delete('user');
-        redirect('shipyard/user');
+        redirect('Shipyard/user');
     }
 
     public function aktifkanuser($id)
@@ -172,7 +172,7 @@ class Shipyard extends CI_Controller
         $this->db->where('id', $id);
         $this->db->update('user');
 
-        redirect('shipyard/user');
+        redirect('Shipyard/user');
     }
 
     public function nonaktifkanuser($id)
@@ -184,7 +184,7 @@ class Shipyard extends CI_Controller
         $this->db->set($data);
         $this->db->where('id', $id);
         $this->db->update('user');
-        redirect('shipyard/user');
+        redirect('Shipyard/user');
     }
 
     public function updateuser($id)
@@ -214,7 +214,7 @@ class Shipyard extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('shipyard/updateuser', $data);
+            $this->load->view('Shipyard/updateuser', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -232,7 +232,7 @@ class Shipyard extends CI_Controller
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('user');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-            redirect('shipyard/user');
+            redirect('Shipyard/user');
         }
     }
 }

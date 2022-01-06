@@ -46,7 +46,7 @@
                             <?php
                             if ($t['active'] == 1) {
                                 echo
-                                anchor('qcqa/project/' . $t['id_repair'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">See Project</div>');
+                                anchor('Qcqa/project/' . $t['id_repair'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">See Project</div>');
                             } else {
                                 echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
                             }

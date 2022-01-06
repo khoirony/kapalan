@@ -42,25 +42,25 @@
                         <?php
                         $role_id = $this->session->userdata('role_id');
                         if ($role_id == 1) {
-                            $url = 'shipyard';
+                            $url = 'Shipyard';
                         } else if ($role_id == 2) {
-                            $url = 'adminowner';
+                            $url = 'AdminOwner';
                         } else if ($role_id == 3) {
-                            $url = 'superintendent';
+                            $url = 'Superintendent';
                         } else if ($role_id == 4) {
-                            $url = 'dockmon';
+                            $url = 'DockMon';
                         } else if ($role_id == 5) {
-                            $url = 'shipman';
+                            $url = 'ShipMan';
                         } else if ($role_id == 6) {
-                            $url = 'projectleader';
+                            $url = 'ProjectLeader';
                         } else if ($role_id == 7) {
                             $url = 'qcqa';
                         } else if ($role_id == 8) {
-                            $url = 'workshopofficer';
+                            $url = 'WorkshopOfficer';
                         } else if ($role_id == 9) {
-                            $url = 'planning';
+                            $url = 'Planning';
                         } else {
-                            $url = 'auth';
+                            $url = 'Auth';
                         }
                         ?>
                         <a href="<?= base_url() . $url; ?>">&larr; Back to Dashboard</a>

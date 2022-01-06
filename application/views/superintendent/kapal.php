@@ -5,7 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800">Kapal <?= $perusahaan['nama_perusahaan']; ?></h1>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/tambahkapal'); ?>">Add Ship</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/tambahkapal'); ?>">Add Ship</a>
     </div>
     <br><br>
     <table class="table">
@@ -45,8 +45,8 @@
                         <td><?= $g['loa']; ?></td>
                         <td><?= $g['breadth']; ?></td>
                         <td>
-                            <?= anchor('superintendent/updatekapal/' . $g['id_kapal'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update</div>'); ?>
-                            <?= anchor('superintendent/hapuskapal/' . $g['id_kapal'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Delete</div>'); ?>
+                            <?= anchor('Superintendent/updatekapal/' . $g['id_kapal'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update</div>'); ?>
+                            <?= anchor('Superintendent/hapuskapal/' . $g['id_kapal'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Delete</div>'); ?>
                         </td>
                     </tr>
             <?php

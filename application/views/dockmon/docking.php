@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('dockmon/caridock'); ?>">
+            <form class="user" method="POST" action="<?= base_url('DockMon/caridock'); ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="kota" name="kota" placeholder="Kota">
                 </div>

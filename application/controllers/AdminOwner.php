@@ -20,7 +20,7 @@ class AdminOwner extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('adminowner/index', $data);
+        $this->load->view('AdminOwner/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -35,7 +35,7 @@ class AdminOwner extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('adminowner/perusahaan', $data);
+        $this->load->view('AdminOwner/perusahaan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -59,7 +59,7 @@ class AdminOwner extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('adminowner/updateperusahaan', $data);
+            $this->load->view('AdminOwner/updateperusahaan', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -90,7 +90,7 @@ class AdminOwner extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('adminowner/user', $data);
+        $this->load->view('AdminOwner/user', $data);
         $this->load->view('templates/footer');
     }
 
@@ -127,7 +127,7 @@ class AdminOwner extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('adminowner/tambahuser', $data);
+            $this->load->view('AdminOwner/tambahuser', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -156,7 +156,7 @@ class AdminOwner extends CI_Controller
         $this->db->where('id', $id);
         $this->db->update('user');
 
-        redirect('adminowner/user');
+        redirect('AdminOwner/user');
     }
 
     public function nonaktifkanuser($id)
@@ -168,7 +168,7 @@ class AdminOwner extends CI_Controller
         $this->db->set($data);
         $this->db->where('id', $id);
         $this->db->update('user');
-        redirect('adminowner/user');
+        redirect('AdminOwner/user');
     }
 
     public function hapususer($id)
@@ -176,7 +176,7 @@ class AdminOwner extends CI_Controller
         $where = array('id' => $id);
         $this->db->where($where);
         $this->db->delete('user');
-        redirect('adminowner/user');
+        redirect('AdminOwner/user');
     }
 
     public function updateuser($id)
@@ -204,7 +204,7 @@ class AdminOwner extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('adminowner/updateuser', $data);
+            $this->load->view('AdminOwner/updateuser', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [

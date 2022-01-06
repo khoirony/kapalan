@@ -12,7 +12,7 @@
                 unset($_SESSION['msg']);
             } ?>
 
-            <form class="user" method="POST" action="<?= base_url('shipyard/tambahuser'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Shipyard/tambahuser'); ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= set_value('nama'); ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>

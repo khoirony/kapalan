@@ -6,7 +6,7 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('superintendent/updatedata'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Superintendent/updatedata'); ?>">
                 <input type="hidden" id="id" name="id" value="<?= $maintenance['id_maintenance']; ?>">
                 <input type="hidden" id="kapal" name="kapal" value="<?= $maintenance['kapal']; ?>">
                 <div class="form-group">

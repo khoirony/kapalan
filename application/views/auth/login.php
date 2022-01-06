@@ -19,7 +19,7 @@
                                 if (isset($_SESSION['msg'])) {
                                     unset($_SESSION['msg']);
                                 } ?>
-                                <form class="user" method="POST" action="<?= base_url('auth'); ?>">
+                                <form class="user" method="POST" action="<?= base_url('Auth'); ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Enter Email Address..." value="<?= set_value('email'); ?>">
                                         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
@@ -41,7 +41,7 @@
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="<?= base_url('auth/registration'); ?>">Create an Account!</a>
+                                    <a class="small" href="<?= base_url('Auth/registration'); ?>">Create an Account!</a>
                                 </div>
                             </div>
                         </div>

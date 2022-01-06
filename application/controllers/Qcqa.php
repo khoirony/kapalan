@@ -20,7 +20,7 @@ class Qcqa extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('qcqa/index', $data);
+        $this->load->view('Qcqa/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -36,7 +36,7 @@ class Qcqa extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('qcqa/ongoing', $data);
+        $this->load->view('Qcqa/ongoing', $data);
         $this->load->view('templates/footer');
     }
 
@@ -54,7 +54,7 @@ class Qcqa extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('qcqa/project', $data);
+        $this->load->view('Qcqa/project', $data);
         $this->load->view('templates/footer');
     }
 
@@ -73,7 +73,7 @@ class Qcqa extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('qcqa/upload', $data);
+        $this->load->view('Qcqa/upload', $data);
         $this->load->view('templates/footer');
     }
 
@@ -103,7 +103,7 @@ class Qcqa extends CI_Controller
                 echo $this->upload->display_errors();
             }
         }
-        redirect('qcqa/project/' . $this->input->post('id_repair'));
+        redirect('Qcqa/project/' . $this->input->post('id_repair'));
     }
 
     public function revisi($id)
@@ -121,7 +121,7 @@ class Qcqa extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('qcqa/revisi', $data);
+        $this->load->view('Qcqa/revisi', $data);
         $this->load->view('templates/footer');
     }
 
@@ -135,7 +135,7 @@ class Qcqa extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('qcqa/project/' . $this->input->post('id_repair'));
+        redirect('Qcqa/project/' . $this->input->post('id_repair'));
     }
 
     public function progress($id)
@@ -153,7 +153,7 @@ class Qcqa extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('qcqa/progress', $data);
+        $this->load->view('Qcqa/progress', $data);
         $this->load->view('templates/footer');
     }
 
@@ -168,7 +168,7 @@ class Qcqa extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('qcqa/project/' . $this->input->post('id_repair'));
+        redirect('Qcqa/project/' . $this->input->post('id_repair'));
     }
 
     public function setujuihasil($id)
@@ -178,14 +178,14 @@ class Qcqa extends CI_Controller
         $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $where['id']])->row_array();
         $repair = $this->db->get_where('repair', ['id_repair' => $pekerja['repair']])->row_array();
         $data = [
-            'qcqa' => 1
+            'Qcqa' => 1
         ];
 
         $this->db->set($data);
         $this->db->where('id_pekerjaan', $where['id']);
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('qcqa/project/' . $repair['id_repair']);
+        redirect('Qcqa/project/' . $repair['id_repair']);
     }
 
     public function selesai($id)

@@ -37,13 +37,13 @@
         <?php
         if ($repair['active'] == 1) {
             echo
-            anchor('projectleader/decline/' . $repair['id_repair'], '<div class=" btn btn-danger rounded-pill pl-3 pr-3">Decline</div>');
+            anchor('ProjectLeader/decline/' . $repair['id_repair'], '<div class=" btn btn-danger rounded-pill pl-3 pr-3">Decline</div>');
         } else {
             echo
-            anchor('projectleader/accept/' . $repair['id_repair'], '<div class="btn btn-warning rounded-pill pl-3 pr-3">Accept</div>');
+            anchor('ProjectLeader/accept/' . $repair['id_repair'], '<div class="btn btn-warning rounded-pill pl-3 pr-3">Accept</div>');
         }
         ?>
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('projectleader/tambahkerja/' . $repair['id_repair']); ?>">Tambah Pekerja</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/tambahkerja/' . $repair['id_repair']); ?>">Tambah Pekerja</a>
     </div>
     <br><br>
     <table class="table">

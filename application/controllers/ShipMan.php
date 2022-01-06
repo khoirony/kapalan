@@ -20,7 +20,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/index', $data);
+        $this->load->view('ShipMan/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -35,7 +35,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/perusahaan', $data);
+        $this->load->view('ShipMan/perusahaan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -59,7 +59,7 @@ class ShipMan extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('shipman/updateperusahaan', $data);
+            $this->load->view('ShipMan/updateperusahaan', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -76,7 +76,7 @@ class ShipMan extends CI_Controller
             $this->db->where('id_perusahaan', $this->input->post('id'));
             $this->db->update('perusahaan');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-            redirect('shipman/perusahaan');
+            redirect('ShipMan/perusahaan');
         }
     }
 
@@ -93,7 +93,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/ongoing', $data);
+        $this->load->view('ShipMan/ongoing', $data);
         $this->load->view('templates/footer');
     }
 
@@ -111,7 +111,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/project', $data);
+        $this->load->view('ShipMan/project', $data);
         $this->load->view('templates/footer');
     }
 
@@ -130,7 +130,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/progress', $data);
+        $this->load->view('ShipMan/progress', $data);
         $this->load->view('templates/footer');
     }
 
@@ -149,7 +149,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/revisi', $data);
+        $this->load->view('ShipMan/revisi', $data);
         $this->load->view('templates/footer');
     }
 
@@ -163,7 +163,7 @@ class ShipMan extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('shipman/project/' . $this->input->post('id_repair'));
+        redirect('ShipMan/project/' . $this->input->post('id_repair'));
     }
 
     public function cekhasil($id)
@@ -181,7 +181,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/cekhasil', $data);
+        $this->load->view('ShipMan/cekhasil', $data);
         $this->load->view('templates/footer');
     }
 
@@ -203,7 +203,7 @@ class ShipMan extends CI_Controller
         // unlink(FCPATH . 'assets/img/project/' . $pekerja['image']);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('shipman/project/' . $this->input->post('id_repair'));
+        redirect('ShipMan/project/' . $this->input->post('id_repair'));
     }
 
     public function selesai($id)
@@ -221,7 +221,7 @@ class ShipMan extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('shipman/selesai', $data);
+        $this->load->view('ShipMan/selesai', $data);
         $this->load->view('templates/footer');
     }
 
@@ -235,6 +235,6 @@ class ShipMan extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('shipman/repair/' . $id);
+        redirect('ShipMan/repair/' . $id);
     }
 }

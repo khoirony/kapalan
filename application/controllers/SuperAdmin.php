@@ -19,7 +19,7 @@ class SuperAdmin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superadmin/index', $data);
+        $this->load->view('SuperAdmin/index', $data);
         $this->load->view('templates/footer');
     }
     public function manage()
@@ -32,7 +32,7 @@ class SuperAdmin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superadmin/manage', $data);
+        $this->load->view('SuperAdmin/manage', $data);
         $this->load->view('templates/footer');
     }
 
@@ -47,7 +47,7 @@ class SuperAdmin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superadmin/lihatuser', $data);
+        $this->load->view('SuperAdmin/lihatuser', $data);
         $this->load->view('templates/footer');
     }
 
@@ -60,7 +60,7 @@ class SuperAdmin extends CI_Controller
         $this->db->where('id', $id);
         $this->db->update('user');
 
-        redirect('superadmin/manage');
+        redirect('SuperAdmin/manage');
     }
 
     public function nonaktifkanuser($id)
@@ -72,6 +72,6 @@ class SuperAdmin extends CI_Controller
         $this->db->set($data);
         $this->db->where('id', $id);
         $this->db->update('user');
-        redirect('superadmin/manage');
+        redirect('SuperAdmin/manage');
     }
 }

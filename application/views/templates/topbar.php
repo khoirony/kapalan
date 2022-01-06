@@ -37,7 +37,7 @@
                             My Profile
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="<?= base_url('auth/logout'); ?>" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <a href="<?= base_url('Auth/logout'); ?>" class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>

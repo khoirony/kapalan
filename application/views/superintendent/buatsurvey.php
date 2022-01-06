@@ -6,7 +6,7 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('superintendent/buatsurvey'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Superintendent/buatsurvey'); ?>">
                 <div class="form-group">
                     <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal">
                         <?php

@@ -20,7 +20,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/galangan', $data);
+        $this->load->view('DockMon/galangan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -36,7 +36,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/profilgalangan', $data);
+        $this->load->view('DockMon/profilgalangan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -52,7 +52,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/requestbooking', $data);
+        $this->load->view('DockMon/requestbooking', $data);
         $this->load->view('templates/footer');
     }
 
@@ -84,7 +84,7 @@ class DockMon extends CI_Controller
 
         $this->db->insert('booking', $data);
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! Galangan has been booked.</div>');
-        redirect('Dockmon/galangan');
+        redirect('DockMon/galangan');
     }
 
 
@@ -100,7 +100,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/docking', $data);
+        $this->load->view('DockMon/docking', $data);
         $this->load->view('templates/footer');
     }
 
@@ -114,7 +114,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/caridock', $data);
+        $this->load->view('DockMon/caridock', $data);
         $this->load->view('templates/footer');
     }
 
@@ -128,7 +128,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/repairlist', $data);
+        $this->load->view('DockMon/repairlist', $data);
         $this->load->view('templates/footer');
     }
 
@@ -146,7 +146,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/repair', $data);
+        $this->load->view('DockMon/repair', $data);
         $this->load->view('templates/footer');
     }
 
@@ -167,7 +167,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/buatrepair', $data);
+        $this->load->view('DockMon/buatrepair', $data);
         $this->load->view('templates/footer');
     }
 
@@ -187,7 +187,7 @@ class DockMon extends CI_Controller
         $this->db->insert('repair', $data);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-        redirect('dockmon/repairlist');
+        redirect('DockMon/repairlist');
     }
 
     public function tambahkerja($id)
@@ -205,7 +205,7 @@ class DockMon extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('dockmon/tambahkerja', $data);
+        $this->load->view('DockMon/tambahkerja', $data);
         $this->load->view('templates/footer');
     }
 
@@ -225,6 +225,6 @@ class DockMon extends CI_Controller
         $this->db->insert('pekerjaan', $data);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-        redirect('dockmon/repair/' . $this->input->post('id_repair'));
+        redirect('DockMon/repair/' . $this->input->post('id_repair'));
     }
 }

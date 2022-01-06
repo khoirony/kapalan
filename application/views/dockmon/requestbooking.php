@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-5">
             <br><br><br>
-            <form class="user" method="POST" action="<?= base_url('dockmon/addbooking'); ?>">
+            <form class="user" method="POST" action="<?= base_url('DockMon/addbooking'); ?>">
                 <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id_galangan']; ?>">
                 <input type="hidden" id="perusahaan_galangan" name="perusahaan_galangan" value="<?= $galangan['perusahaan']; ?>">
                 <input type="hidden" id="perusahaan_kapal" name="perusahaan_kapal" value="<?= $kapal['perusahaan']; ?>">

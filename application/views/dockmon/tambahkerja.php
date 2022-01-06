@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('dockmon/additempekerja'); ?>">
+            <form class="user" method="POST" action="<?= base_url('DockMon/additempekerja'); ?>">
                 <input type="hidden" class="form-control form-control-user" id="id_repair" name="id_repair" value="<?= $repair['id_repair']; ?>">
                 <input type="hidden" class="form-control form-control-user" id="kapal" name="kapal" value="<?= $repair['kapal']; ?>">
                 <input type="hidden" class="form-control form-control-user" id="tgl_awal" name="tgl_awal" value="<?= $repair['tgl_awal']; ?>">

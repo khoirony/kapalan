@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('qcqa/submitupload'); ?>" enctype="multipart/form-data">
+            <form class="user" method="POST" action="<?= base_url('Qcqa/submitupload'); ?>" enctype="multipart/form-data">
                 <input type="hidden" id="id_repair" name="id_repair" value="<?= $pekerja['repair']; ?>">
                 <input type="hidden" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
                 <div class=" form-group">
@@ -39,7 +39,7 @@
                     Submit
                 </button>
             </form>
-            <a href="<?= base_url('qcqa/setujuihasil/' . $pekerja['id_pekerjaan']); ?>" class="btn btn-success btn-user btn-block rounded-pill mt-3">Setujui</a>
+            <a href="<?= base_url('Qcqa/setujuihasil/' . $pekerja['id_pekerjaan']); ?>" class="btn btn-success btn-user btn-block rounded-pill mt-3">Setujui</a>
             <br>
         </div>
         <div class="col-md-7">

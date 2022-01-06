@@ -5,7 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800">Riwayat Maintenance</h1>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/buatlaporan'); ?>">Buat Laporan</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/buatlaporan'); ?>">Buat Laporan</a>
     </div>
     <br><br>
     <table class="table">
@@ -39,8 +39,8 @@
                         <td><?= $t['komponen']; ?></td>
                         <td><?= $t['deskripsi']; ?></td>
                         <td>
-                            <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/editlaporan/' . $t['id_maintenance']); ?>">Edit</a>
-                            <a class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/hapuslaporan/' . $t['id_maintenance']); ?>">Hapus</a>
+                            <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/editlaporan/' . $t['id_maintenance']); ?>">Edit</a>
+                            <a class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/hapuslaporan/' . $t['id_maintenance']); ?>">Hapus</a>
                         </td>
                     </tr>
             <?php

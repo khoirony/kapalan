@@ -43,7 +43,7 @@
 
         <br><br>
         <?php
-        echo anchor('shipyard/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
+        echo anchor('Shipyard/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
         ?>
     </div>
 

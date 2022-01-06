@@ -20,7 +20,7 @@ class Planning extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('planning/dockspace', $data);
+        $this->load->view('Planning/dockspace', $data);
         $this->load->view('templates/footer');
     }
 
@@ -44,7 +44,7 @@ class Planning extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('planning/tambahdock', $data);
+            $this->load->view('Planning/tambahdock', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -69,7 +69,7 @@ class Planning extends CI_Controller
 
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-            redirect('planning/dockspace');
+            redirect('Planning/dockspace');
         }
     }
 
@@ -78,7 +78,7 @@ class Planning extends CI_Controller
         $where = array('id_galangan' => $id);
         $this->db->where($where);
         $this->db->delete('galangan');
-        redirect('planning/dockspace');
+        redirect('Planning/dockspace');
     }
 
     public function editdock($id)
@@ -103,7 +103,7 @@ class Planning extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('planning/editdock', $data);
+            $this->load->view('Planning/editdock', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -122,7 +122,7 @@ class Planning extends CI_Controller
             $this->db->update('galangan');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-            redirect('planning/dockspace');
+            redirect('Planning/dockspace');
         }
     }
 
@@ -136,7 +136,7 @@ class Planning extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('planning/jadwal', $data);
+        $this->load->view('Planning/jadwal', $data);
         $this->load->view('templates/footer');
     }
 
@@ -160,7 +160,7 @@ class Planning extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('planning/updatejadwal', $data);
+            $this->load->view('Planning/updatejadwal', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -174,7 +174,7 @@ class Planning extends CI_Controller
             $this->db->where('id_booking', $this->input->post('id'));
             $this->db->update('booking');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! Galangan has been booked.</div>');
-            redirect('planning/jadwal');
+            redirect('Planning/jadwal');
         }
     }
 
@@ -188,7 +188,7 @@ class Planning extends CI_Controller
         $this->db->where('id_booking', $id);
         $this->db->update('booking');
 
-        redirect('planning/jadwal');
+        redirect('Planning/jadwal');
     }
 
     public function unconfirm($id)
@@ -200,7 +200,7 @@ class Planning extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_booking', $id);
         $this->db->update('booking');
-        redirect('planning/jadwal');
+        redirect('Planning/jadwal');
     }
 
     public function repair()
@@ -213,7 +213,7 @@ class Planning extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('planning/repair', $data);
+        $this->load->view('Planning/repair', $data);
         $this->load->view('templates/footer');
     }
 }

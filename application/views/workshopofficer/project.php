@@ -38,7 +38,7 @@
         <?php
         if ($repair['selesai'] == 0) {
         ?>
-            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('workshopofficer/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
+            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('WorkshopOfficer/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
         <?php
         } else {
         ?>
@@ -83,11 +83,11 @@
                             <?php
                             if ($t['selesai'] == 0) {
                             ?>
-                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('workshopofficer/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('workshopofficer/upload/' . $t['id_pekerjaan']); ?>">Upload</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('workshopofficer/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a>
+                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('WorkshopOfficer/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('WorkshopOfficer/upload/' . $t['id_pekerjaan']); ?>">Upload</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('WorkshopOfficer/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a>
                             <?php
                             } else {
                             ?>
-                                <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('workshopofficer/selesai/' . $t['id_pekerjaan']); ?>">Selesai</a>
+                                <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('WorkshopOfficer/selesai/' . $t['id_pekerjaan']); ?>">Selesai</a>
                             <?php
                             }
                             ?>

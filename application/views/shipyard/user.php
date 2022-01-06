@@ -5,7 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800">Data Pengguna</h1>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipyard/tambahuser'); ?>">Tambah Pengguna</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Shipyard/tambahuser'); ?>">Tambah Pengguna</a>
     </div>
     <br><br>
     <table class="table">
@@ -45,13 +45,13 @@
                         <td><?= $t['jabatan']; ?></td>
                         <td>
                             <?php
-                            echo anchor('shipyard/updateuser/' . $t['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3"><i class="fas fa-edit"></i></div>');
-                            echo anchor('shipyard/hapususer/' . $t['id'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3"><i class="fas fa-trash-alt"></i></i></div>');
+                            echo anchor('Shipyard/updateuser/' . $t['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3"><i class="fas fa-edit"></i></div>');
+                            echo anchor('Shipyard/hapususer/' . $t['id'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3"><i class="fas fa-trash-alt"></i></i></div>');
                             if ($t['active'] == 1) {
                                 echo
-                                anchor('shipyard/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
+                                anchor('Shipyard/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
                             } else {
-                                echo anchor('shipyard/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
+                                echo anchor('Shipyard/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
                             }
                             ?>
                         </td>

@@ -41,12 +41,12 @@
                         <td>
                             <?php
                             echo
-                            anchor('planning/updatejadwal/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">Ubah</div>');
+                            anchor('Planning/updatejadwal/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">Ubah</div>');
                             if ($t['active'] == 2) {
                                 echo
-                                anchor('planning/unconfirm/' . $t['id_booking'], '<div class=" btn btn-sm btn-danger rounded-pill pl-3 pr-3">Confirmed</div>');
+                                anchor('Planning/unconfirm/' . $t['id_booking'], '<div class=" btn btn-sm btn-danger rounded-pill pl-3 pr-3">Confirmed</div>');
                             } else if ($t['active'] == 1) {
-                                echo anchor('planning/confirm/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Booked</div>');
+                                echo anchor('Planning/confirm/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Booked</div>');
                             }
                             ?>
                         </td>

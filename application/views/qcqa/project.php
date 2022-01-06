@@ -38,7 +38,7 @@
         <?php
         if ($repair['selesai'] == 0) {
         ?>
-            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
+            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
         <?php
         } else {
         ?>
@@ -83,11 +83,11 @@
                             <?php
                             if ($t['selesai'] == 0) {
                             ?>
-                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/upload/' . $t['id_pekerjaan']); ?>">Upload</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a>
+                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/upload/' . $t['id_pekerjaan']); ?>">Upload</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a>
                             <?php
                             } else {
                             ?>
-                                <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/selesai/' . $t['id_pekerjaan']); ?>">Selesai</a>
+                                <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/selesai/' . $t['id_pekerjaan']); ?>">Selesai</a>
                             <?php
                             }
                             ?>

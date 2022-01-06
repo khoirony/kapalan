@@ -39,12 +39,12 @@
                         <td><?= $t['jabatan']; ?></td>
                         <td>
                             <?php
-                            echo anchor('superadmin/lihatuser/' . $t['perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Lihat</div>');
+                            echo anchor('SuperAdmin/lihatuser/' . $t['perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Lihat</div>');
                             if ($t['active'] == 1) {
                                 echo
-                                anchor('superadmin/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
+                                anchor('SuperAdmin/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
                             } else {
-                                echo anchor('superadmin/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
+                                echo anchor('SuperAdmin/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
                             }
                             ?>
                         </td>

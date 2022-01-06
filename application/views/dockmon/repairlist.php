@@ -47,7 +47,7 @@
                                 $cekada = $this->db->query($quer)->row_array();
                                 if (!$cekada) {
                                     echo
-                                    anchor('dockmon/buatrepair/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
+                                    anchor('DockMon/buatrepair/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
                                 }
                             } else {
                                 echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
@@ -58,7 +58,7 @@
                             foreach ($cek as $c) {
                                 if ($c['id_repair'] == $t['id_booking']) {
                                     echo
-                                    anchor('dockmon/repair/' . $c['id_repair'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
+                                    anchor('DockMon/repair/' . $c['id_repair'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
                                 }
                             }
                             ?>

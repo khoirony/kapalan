@@ -6,7 +6,7 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('dockmon/addrepair'); ?>">
+            <form class="user" method="POST" action="<?= base_url('DockMon/addrepair'); ?>">
                 <input type="hidden" id="id" name="id" value="<?= $booking['id_booking']; ?>">
                 <input type="hidden" id="kapal" name="kapal" value="<?= $kapal['id_kapal']; ?>">
                 <input type="hidden" id="perusahaan" name="perusahaan" value="<?= $perusahaan['id_perusahaan']; ?>">

@@ -6,7 +6,7 @@
 
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/buatsurvey'); ?>">Buat Laporan</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/buatsurvey'); ?>">Buat Laporan</a>
     </div>
     <br><br>
     <table class="table">
@@ -42,8 +42,8 @@
                         <td><?= $t['tanggal']; ?></td>
                         <td><?= $t['selisih']; ?> Hari</td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/editsurvey/' . $t['id_survey']); ?>">Edit</a>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/hapussurvey/' . $t['id_survey']); ?>">Hapus</a>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/editsurvey/' . $t['id_survey']); ?>">Edit</a>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/hapussurvey/' . $t['id_survey']); ?>">Hapus</a>
                         </td>
                     </tr>
             <?php
@@ -60,13 +60,13 @@
         const kapalId = $(this).data('kapal');
 
         $.ajax({
-            url: "<?= base_url('superintendent/survey'); ?>",
+            url: "<?= base_url('Superintendent/survey'); ?>",
             type: 'post',
             data: {
                 kapalId: kapalId
             },
             success: function() {
-                document.location.href = "<?= base_url('superintendent/survey/') ?>" + kapalId;
+                document.location.href = "<?= base_url('Superintendent/survey/') ?>" + kapalId;
             }
         });
     });

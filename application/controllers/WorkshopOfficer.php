@@ -20,7 +20,7 @@ class WorkshopOfficer extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('workshopofficer/index', $data);
+        $this->load->view('WorkshopOfficer/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -36,7 +36,7 @@ class WorkshopOfficer extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('workshopofficer/ongoing', $data);
+        $this->load->view('WorkshopOfficer/ongoing', $data);
         $this->load->view('templates/footer');
     }
 
@@ -54,7 +54,7 @@ class WorkshopOfficer extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('workshopofficer/project', $data);
+        $this->load->view('WorkshopOfficer/project', $data);
         $this->load->view('templates/footer');
     }
 
@@ -73,7 +73,7 @@ class WorkshopOfficer extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('workshopofficer/upload', $data);
+        $this->load->view('WorkshopOfficer/upload', $data);
         $this->load->view('templates/footer');
     }
 
@@ -103,7 +103,7 @@ class WorkshopOfficer extends CI_Controller
                 echo $this->upload->display_errors();
             }
         }
-        redirect('workshopofficer/project/' . $this->input->post('id_repair'));
+        redirect('WorkshopOfficer/project/' . $this->input->post('id_repair'));
     }
 
     public function revisi($id)
@@ -121,7 +121,7 @@ class WorkshopOfficer extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('workshopofficer/revisi', $data);
+        $this->load->view('WorkshopOfficer/revisi', $data);
         $this->load->view('templates/footer');
     }
 
@@ -135,7 +135,7 @@ class WorkshopOfficer extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('workshopofficer/project/' . $this->input->post('id_repair'));
+        redirect('WorkshopOfficer/project/' . $this->input->post('id_repair'));
     }
 
     public function progress($id)
@@ -153,7 +153,7 @@ class WorkshopOfficer extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('workshopofficer/progress', $data);
+        $this->load->view('WorkshopOfficer/progress', $data);
         $this->load->view('templates/footer');
     }
 
@@ -168,7 +168,7 @@ class WorkshopOfficer extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('workshopofficer/project/' . $this->input->post('id_repair'));
+        redirect('WorkshopOfficer/project/' . $this->input->post('id_repair'));
     }
 
     public function setujuihasil($id)
@@ -185,7 +185,7 @@ class WorkshopOfficer extends CI_Controller
         $this->db->where('id_pekerjaan', $where['id']);
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('workshopofficer/project/' . $repair['id_repair']);
+        redirect('WorkshopOfficer/project/' . $repair['id_repair']);
     }
 
     public function selesai($id)
@@ -203,7 +203,7 @@ class WorkshopOfficer extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('workshopofficer/selesai', $data);
+        $this->load->view('WorkshopOfficer/selesai', $data);
         $this->load->view('templates/footer');
     }
 
@@ -217,6 +217,6 @@ class WorkshopOfficer extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('workshopofficer/repair/' . $id);
+        redirect('WorkshopOfficer/repair/' . $id);
     }
 }

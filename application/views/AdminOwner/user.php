@@ -50,13 +50,13 @@
                         <td><?= $t['jabatan']; ?></td>
                         <td>
                             <?php
-                            echo anchor('adminowner/updateuser/' . $t['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3"><i class="fas fa-edit"></i></div>');
-                            echo anchor('adminowner/hapususer/' . $t['id'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3"><i class="fas fa-trash-alt"></i></i></div>');
+                            echo anchor('AdminOwner/updateuser/' . $t['id'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3"><i class="fas fa-edit"></i></div>');
+                            echo anchor('AdminOwner/hapususer/' . $t['id'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3"><i class="fas fa-trash-alt"></i></i></div>');
                             if ($t['active'] == 1) {
                                 echo
-                                anchor('adminowner/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
+                                anchor('AdminOwner/nonaktifkanuser/' . $t['id'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3"><i class="fas fa-lock-open"></i></div>');
                             } else {
-                                echo anchor('adminowner/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
+                                echo anchor('AdminOwner/aktifkanuser/' . $t['id'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3"><i class="fas fa-lock"></i></i></div>');
                             }
                             ?>
                         </td>

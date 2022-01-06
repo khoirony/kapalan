@@ -32,7 +32,7 @@
                         <td><?= $no; ?></td>
                         <td><?= $t['nama_perusahaan']; ?></td>
                         <td>
-                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/profilgalangan/' . $t['id_perusahaan']); ?>">See More</a>
+                            <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/profilgalangan/' . $t['id_perusahaan']); ?>">See More</a>
                         </td>
                     </tr>
             <?php

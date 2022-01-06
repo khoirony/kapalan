@@ -7,7 +7,7 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('superintendent/tambahkapal'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Superintendent/tambahkapal'); ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Ship Name" value="<?= set_value('nama'); ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>

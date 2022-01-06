@@ -42,7 +42,7 @@
                         <td><?= $t['tgl_akhir']; ?></td>
                         <td><?php
                             echo
-                            anchor('projectleader/seemore/' . $t['id_repair'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See More</div>');
+                            anchor('ProjectLeader/seemore/' . $t['id_repair'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See More</div>');
                             ?>
                         </td>
                     </tr>

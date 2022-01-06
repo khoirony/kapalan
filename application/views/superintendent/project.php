@@ -64,7 +64,7 @@
                         <td><?= $t['bidang']; ?></td>
                         <td><?= $t['jenis']; ?></td>
                         <td><?= $t['uraian']; ?></td>
-                        <td> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/cekhasil/' . $t['id_pekerjaan']); ?>">Cek Hasil</a></td>
+                        <td> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/cekhasil/' . $t['id_pekerjaan']); ?>">Cek Hasil</a></td>
                     </tr>
             <?php
                     $no++;

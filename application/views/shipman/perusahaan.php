@@ -60,7 +60,7 @@
 
     <br><br>
     <?php
-    echo anchor('shipman/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
+    echo anchor('ShipMan/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
     ?>
 
 

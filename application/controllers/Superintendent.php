@@ -22,7 +22,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/kapal', $data);
+        $this->load->view('Superintendent/kapal', $data);
         $this->load->view('templates/footer');
     }
 
@@ -51,7 +51,7 @@ class Superintendent extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('superintendent/tambahkapal', $data);
+            $this->load->view('Superintendent/tambahkapal', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -72,7 +72,7 @@ class Superintendent extends CI_Controller
             $this->db->insert('kapal', $data);
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-            redirect('superintendent/kapal');
+            redirect('Superintendent/kapal');
         }
     }
 
@@ -81,7 +81,7 @@ class Superintendent extends CI_Controller
         $where = array('id_kapal' => $id);
         $this->db->where($where);
         $this->db->delete('kapal');
-        redirect('superintendent/kapal');
+        redirect('Superintendent/kapal');
     }
 
     public function updatekapal($id)
@@ -110,7 +110,7 @@ class Superintendent extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('superintendent/updatekapal', $data);
+            $this->load->view('Superintendent/updatekapal', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -134,7 +134,7 @@ class Superintendent extends CI_Controller
             $this->db->update('kapal');
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-            redirect('superintendent/kapal');
+            redirect('Superintendent/kapal');
         }
     }
 
@@ -151,7 +151,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/maintenance', $data);
+        $this->load->view('Superintendent/maintenance', $data);
         $this->load->view('templates/footer');
     }
 
@@ -172,7 +172,7 @@ class Superintendent extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('superintendent/buatlaporan', $data);
+            $this->load->view('Superintendent/buatlaporan', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -187,7 +187,7 @@ class Superintendent extends CI_Controller
             $this->db->insert('maintenance', $data);
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-            redirect('superintendent/maintenance');
+            redirect('Superintendent/maintenance');
         }
     }
 
@@ -212,7 +212,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/editlaporan', $data);
+        $this->load->view('Superintendent/editlaporan', $data);
         $this->load->view('templates/footer');
     }
 
@@ -233,7 +233,7 @@ class Superintendent extends CI_Controller
         $this->db->update('maintenance');
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-        redirect('superintendent/maintenance');
+        redirect('Superintendent/maintenance');
     }
 
     public function hapuslaporan($id)
@@ -241,7 +241,7 @@ class Superintendent extends CI_Controller
         $where = array('id_maintenance' => $id);
         $this->db->where($where);
         $this->db->delete('maintenance');
-        redirect('superintendent/maintenance');
+        redirect('Superintendent/maintenance');
     }
 
     public function survey()
@@ -257,7 +257,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/survey', $data);
+        $this->load->view('Superintendent/survey', $data);
         $this->load->view('templates/footer');
     }
 
@@ -277,7 +277,7 @@ class Superintendent extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
             $this->load->view('templates/topbar', $data);
-            $this->load->view('superintendent/buatsurvey', $data);
+            $this->load->view('Superintendent/buatsurvey', $data);
             $this->load->view('templates/footer');
         } else {
             $data = [
@@ -291,7 +291,7 @@ class Superintendent extends CI_Controller
             $this->db->insert('survey', $data);
 
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-            redirect('superintendent/survey');
+            redirect('Superintendent/survey');
         }
     }
 
@@ -314,7 +314,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/editsurvey', $data);
+        $this->load->view('Superintendent/editsurvey', $data);
         $this->load->view('templates/footer');
     }
 
@@ -334,7 +334,7 @@ class Superintendent extends CI_Controller
         $this->db->update('survey');
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-        redirect('superintendent/survey');
+        redirect('Superintendent/survey');
     }
 
     public function hapussurvey($id)
@@ -342,7 +342,7 @@ class Superintendent extends CI_Controller
         $where = array('id_survey' => $id);
         $this->db->where($where);
         $this->db->delete('survey');
-        redirect('superintendent/survey');
+        redirect('Superintendent/survey');
     }
 
     public function ongoing()
@@ -358,7 +358,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/ongoing', $data);
+        $this->load->view('Superintendent/ongoing', $data);
         $this->load->view('templates/footer');
     }
 
@@ -376,7 +376,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/project', $data);
+        $this->load->view('Superintendent/project', $data);
         $this->load->view('templates/footer');
     }
 
@@ -395,7 +395,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/progress', $data);
+        $this->load->view('Superintendent/progress', $data);
         $this->load->view('templates/footer');
     }
 
@@ -414,7 +414,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/revisi', $data);
+        $this->load->view('Superintendent/revisi', $data);
         $this->load->view('templates/footer');
     }
 
@@ -428,7 +428,7 @@ class Superintendent extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('superintendent/project/' . $this->input->post('id_repair'));
+        redirect('Superintendent/project/' . $this->input->post('id_repair'));
     }
 
     public function cekhasil($id)
@@ -446,7 +446,7 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/cekhasil', $data);
+        $this->load->view('Superintendent/cekhasil', $data);
         $this->load->view('templates/footer');
     }
 
@@ -460,6 +460,6 @@ class Superintendent extends CI_Controller
         unlink(FCPATH . 'assets/img/project/' . $pekerja['image']);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('superintendent/project/' . $this->input->post('id_repair'));
+        redirect('Superintendent/project/' . $this->input->post('id_repair'));
     }
 }

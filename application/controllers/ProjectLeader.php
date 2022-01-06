@@ -20,7 +20,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/index', $data);
+        $this->load->view('ProjectLeader/index', $data);
         $this->load->view('templates/footer');
     }
 
@@ -34,7 +34,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/repair', $data);
+        $this->load->view('ProjectLeader/repair', $data);
         $this->load->view('templates/footer');
     }
 
@@ -47,7 +47,7 @@ class ProjectLeader extends CI_Controller
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
 
-        redirect('projectleader/seemore/' . $id);
+        redirect('ProjectLeader/seemore/' . $id);
     }
 
     public function decline($id)
@@ -59,7 +59,7 @@ class ProjectLeader extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('projectleader/seemore/' . $id);
+        redirect('ProjectLeader/seemore/' . $id);
     }
 
     public function seemore($id)
@@ -74,7 +74,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/seemore', $data);
+        $this->load->view('ProjectLeader/seemore', $data);
         $this->load->view('templates/footer');
     }
 
@@ -113,7 +113,7 @@ class ProjectLeader extends CI_Controller
         $this->db->insert('pekerjaan', $data);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
-        redirect('projectleader/seemore/' . $this->input->post('id_repair'));
+        redirect('ProjectLeader/seemore/' . $this->input->post('id_repair'));
     }
 
     public function ongoing()
@@ -128,7 +128,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/ongoing', $data);
+        $this->load->view('ProjectLeader/ongoing', $data);
         $this->load->view('templates/footer');
     }
 
@@ -146,7 +146,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/project', $data);
+        $this->load->view('ProjectLeader/project', $data);
         $this->load->view('templates/footer');
     }
 
@@ -165,7 +165,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/upload', $data);
+        $this->load->view('ProjectLeader/upload', $data);
         $this->load->view('templates/footer');
     }
 
@@ -195,7 +195,7 @@ class ProjectLeader extends CI_Controller
                 echo $this->upload->display_errors();
             }
         }
-        redirect('projectleader/project/' . $this->input->post('id_repair'));
+        redirect('ProjectLeader/project/' . $this->input->post('id_repair'));
     }
 
     public function revisi($id)
@@ -213,7 +213,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/revisi', $data);
+        $this->load->view('ProjectLeader/revisi', $data);
         $this->load->view('templates/footer');
     }
 
@@ -227,7 +227,7 @@ class ProjectLeader extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('projectleader/project/' . $this->input->post('id_repair'));
+        redirect('ProjectLeader/project/' . $this->input->post('id_repair'));
     }
 
     public function progress($id)
@@ -245,7 +245,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/progress', $data);
+        $this->load->view('ProjectLeader/progress', $data);
         $this->load->view('templates/footer');
     }
 
@@ -260,7 +260,7 @@ class ProjectLeader extends CI_Controller
         $this->db->where('id_pekerjaan', $this->input->post('id'));
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('projectleader/project/' . $this->input->post('id_repair'));
+        redirect('ProjectLeader/project/' . $this->input->post('id_repair'));
     }
 
     public function setujuihasil($id)
@@ -277,7 +277,7 @@ class ProjectLeader extends CI_Controller
         $this->db->where('id_pekerjaan', $where['id']);
         $this->db->update('pekerjaan');
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
-        redirect('projectleader/project/' . $repair['id_repair']);
+        redirect('ProjectLeader/project/' . $repair['id_repair']);
     }
 
     public function selesai($id)
@@ -295,7 +295,7 @@ class ProjectLeader extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/selesai', $data);
+        $this->load->view('ProjectLeader/selesai', $data);
         $this->load->view('templates/footer');
     }
 
@@ -309,6 +309,6 @@ class ProjectLeader extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('projectleader/repair/' . $id);
+        redirect('ProjectLeader/repair/' . $id);
     }
 }
