@@ -5,19 +5,19 @@
     <h1 class="h3 mb-4 text-gray-800">Kapal <?= $perusahaan['nama_perusahaan']; ?></h1>
     <br>
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/tambahkapal'); ?>">Tambah Kapal</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/tambahkapal'); ?>">Add Ship</a>
     </div>
     <br><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Nama</th>
-                <th scope="col">Tahun Buat</th>
-                <th scope="col">Tipe</th>
+                <th scope="col">Name</th>
+                <th scope="col">Created</th>
+                <th scope="col">Type</th>
                 <th scope="col">Material</th>
-                <th scope="col">Luas</th>
-                <th scope="col">Tinggi</th>
+                <th scope="col">LOA</th>
+                <th scope="col">Width</th>
                 <th scope="col" class="text-center" width="18%">Aksi</th>
             </tr>
         </thead>
@@ -42,11 +42,11 @@
                         <td><?= $g['tahun_pembuatan']; ?></td>
                         <td><?= $g['tipe']; ?></td>
                         <td><?= $g['material']; ?></td>
-                        <td><?= $g['luas']; ?></td>
-                        <td><?= $g['tinggi']; ?></td>
+                        <td><?= $g['loa']; ?></td>
+                        <td><?= $g['breadth']; ?></td>
                         <td>
-                            <?= anchor('superintendent/updatekapal/' . $g['id_kapal'], '<div class="btn btn-primary rounded-pill pl-3 pr-3">Edit</div>'); ?>
-                            <?= anchor('superintendent/hapuskapal/' . $g['id_kapal'], '<div class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</div>'); ?>
+                            <?= anchor('superintendent/updatekapal/' . $g['id_kapal'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update</div>'); ?>
+                            <?= anchor('superintendent/hapuskapal/' . $g['id_kapal'], '<div class=" btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Delete</div>'); ?>
                         </td>
                     </tr>
             <?php

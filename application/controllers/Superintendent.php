@@ -63,7 +63,7 @@ class Superintendent extends CI_Controller
                 'material' => htmlspecialchars($this->input->post('material', true)),
                 'loa' => htmlspecialchars($this->input->post('loa', true)),
                 'lpp' => htmlspecialchars($this->input->post('lpp', true)),
-                'luas' => htmlspecialchars($this->input->post('luas', true)),
+                'breadth' => htmlspecialchars($this->input->post('breadth', true)),
                 'draft' => htmlspecialchars($this->input->post('draft', true)),
                 'tinggi' => htmlspecialchars($this->input->post('tinggi', true)),
                 'dwt' => htmlspecialchars($this->input->post('dwt', true)),
@@ -93,7 +93,7 @@ class Superintendent extends CI_Controller
         $this->form_validation->set_rules('tipe', 'Tipe Kapal', 'required|trim');
         $this->form_validation->set_rules('material', 'Material Kapal', 'required');
         $this->form_validation->set_rules('lpp', 'LPP', 'required|trim');
-        $this->form_validation->set_rules('luas', 'Luas', 'required|trim');
+        $this->form_validation->set_rules('breadth', 'Breadth', 'required|trim');
         $this->form_validation->set_rules('draft', 'Draft', 'required|trim');
         $this->form_validation->set_rules('tinggi', 'Tinggi', 'required|trim');
         $this->form_validation->set_rules('dwt', 'DWT', 'required|trim');
@@ -123,7 +123,7 @@ class Superintendent extends CI_Controller
                 'material' => htmlspecialchars($this->input->post('material', true)),
                 'loa' => htmlspecialchars($this->input->post('loa', true)),
                 'lpp' => htmlspecialchars($this->input->post('lpp', true)),
-                'luas' => htmlspecialchars($this->input->post('luas', true)),
+                'breadth' => htmlspecialchars($this->input->post('breadth', true)),
                 'draft' => htmlspecialchars($this->input->post('draft', true)),
                 'tinggi' => htmlspecialchars($this->input->post('tinggi', true)),
                 'dwt' => htmlspecialchars($this->input->post('dwt', true)),
@@ -162,11 +162,86 @@ class Superintendent extends CI_Controller
         $data['title'] = 'Riwayat Maintenance';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+        $this->form_validation->set_rules('tanggal', 'Date', 'required|trim');
+        $this->form_validation->set_rules('komponen', 'Ship Component', 'required|trim');
+        $this->form_validation->set_rules('pembuat', 'Shipbuilder', 'required|trim');
+        $this->form_validation->set_rules('tipe', 'Ship Type', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Description', 'required|trim');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('superintendent/buatlaporan', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'kapal' => htmlspecialchars($this->input->post('kapal', true)),
+                'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
+                'komponen' => htmlspecialchars($this->input->post('komponen', true)),
+                'pembuat' => htmlspecialchars($this->input->post('pembuat', true)),
+                'tipe' => htmlspecialchars($this->input->post('tipe', true)),
+                'deskripsi' => htmlspecialchars($this->input->post('deskripsi', true)),
+            ];
+
+            $this->db->insert('maintenance', $data);
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
+            redirect('superintendent/maintenance');
+        }
+    }
+
+    public function editlaporan($id)
+    {
+        $where = array('id' => $id);
+        $this->form_validation->set_rules('tanggal', 'Date', 'required|trim');
+        $this->form_validation->set_rules('komponen', 'Ship Component', 'required|trim');
+        $this->form_validation->set_rules('pembuat', 'Shipbuilder', 'required|trim');
+        $this->form_validation->set_rules('tipe', 'Ship Type', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Description', 'required|trim');
+
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'Riwayat Maintenance';
+        $data['user'] = $user;
+        $maintenance = $this->db->get_where('maintenance', ['id_maintenance' => $where['id']])->row_array();
+        $data['maintenance'] = $maintenance;
+        $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $maintenance['kapal']])->row_array();
+
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/buatlaporan', $data);
+        $this->load->view('superintendent/editlaporan', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function updatedata()
+    {
+        $data = [
+            'id_maintenance' => $this->input->post('id'),
+            'kapal' => $this->input->post('kapal'),
+            'tanggal' => $this->input->post('tanggal'),
+            'komponen' => $this->input->post('komponen'),
+            'pembuat' => $this->input->post('pembuat'),
+            'tipe' => $this->input->post('tipe'),
+            'deskripsi' => $this->input->post('deskripsi'),
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_maintenance', $this->input->post('id'));
+        $this->db->update('maintenance');
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
+        redirect('superintendent/maintenance');
+    }
+
+    public function hapuslaporan($id)
+    {
+        $where = array('id_maintenance' => $id);
+        $this->db->where($where);
+        $this->db->delete('maintenance');
+        redirect('superintendent/maintenance');
     }
 
     public function survey()

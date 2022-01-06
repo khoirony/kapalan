@@ -6,29 +6,35 @@
 
     <div class="row ml-3">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('superintendent/laporan'); ?>">
+            <form class="user" method="POST" action="<?= base_url('superintendent/buatlaporan'); ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Kapal" value="<?= set_value('nama'); ?>">
-                    <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal">
+                        <?php
+                        $query = "SELECT * FROM kapal where perusahaan = " . $user['perusahaan'];
+                        $Tampil = $this->db->query($query)->result_array();
+                        foreach ($Tampil as $t) : ?>
+                            <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="tanggal" name="tanggal" placeholder="Tanggal" value="<?= set_value('tanggal'); ?>">
+                    <input type="date" class="form-control form-control-user" id="tanggal" name="tanggal" placeholder="Date" value="<?= set_value('tanggal'); ?>">
                     <?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="komponen" name="komponen" placeholder="Komponen Kapal" value="<?= set_value('komponen'); ?>">
+                    <input type="text" class="form-control form-control-user" id="komponen" name="komponen" placeholder="Ship Components" value="<?= set_value('komponen'); ?>">
                     <?= form_error('komponen', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="pembuat" name="pembuat" placeholder="Pembuat Kapal" value="<?= set_value('pembuat'); ?>">
+                    <input type="text" class="form-control form-control-user" id="pembuat" name="pembuat" placeholder="Shipbuilder" value="<?= set_value('pembuat'); ?>">
                     <?= form_error('pembuat', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="tipe" name="tipe" placeholder="Tipe Kapal" value="<?= set_value('tipe'); ?>">
+                    <input type="text" class="form-control form-control-user" id="tipe" name="tipe" placeholder="Ship Type" value="<?= set_value('tipe'); ?>">
                     <?= form_error('tipe', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <textarea type="text" class="form-control form-control-user" id="deskripsi" name="deskripsi" placeholder="Deskripsi" value="<?= set_value('deskripsi'); ?>"></textarea>
+                    <textarea type="text" class="form-control form-control-user" id="deskripsi" name="deskripsi" placeholder="Description" value="<?= set_value('deskripsi'); ?>"></textarea>
                     <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">

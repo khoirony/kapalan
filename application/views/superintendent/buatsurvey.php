@@ -8,8 +8,14 @@
         <div class="col-md-5">
             <form class="user" method="POST" action="<?= base_url('superintendent/buatsurvey'); ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Kapal" value="<?= set_value('nama'); ?>">
-                    <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
+                    <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal">
+                        <?php
+                        $query = "SELECT * FROM kapal where perusahaan = " . $user['perusahaan'];
+                        $Tampil = $this->db->query($query)->result_array();
+                        foreach ($Tampil as $t) : ?>
+                            <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="jenis" name="jenis" placeholder="Jenis Survey" value="<?= set_value('jenis'); ?>">

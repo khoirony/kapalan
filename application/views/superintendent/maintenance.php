@@ -34,7 +34,7 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col" width="10%">Date</th>
+                <th scope="col" width="15%">Date</th>
                 <th scope="col">Komponen</th>
                 <th scope="col">Deskripsi</th>
                 <th scope="col" class="text-center" width="18%">Aksi</th>
@@ -60,8 +60,8 @@
                         <td><?= $t['komponen']; ?></td>
                         <td><?= $t['deskripsi']; ?></td>
                         <td>
-                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipyard/editdock/' . $g['id_maintenance']); ?>">Edit</a>
-                            <btn class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
+                            <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/editlaporan/' . $t['id_maintenance']); ?>">Edit</a>
+                            <a class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/hapuslaporan/' . $t['id_maintenance']); ?>">Hapus</a>
                         </td>
                     </tr>
             <?php
