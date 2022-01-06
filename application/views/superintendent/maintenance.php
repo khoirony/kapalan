@@ -3,29 +3,6 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Riwayat Maintenance</h1>
-
-    <div class="row">
-        <div class="col-5">
-            <div class="form-inline">
-                Data kapal :
-                <div class="form-group ml-3">
-                    <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
-                        <?php
-                        $query = "SELECT * FROM kapal where perusahaan = " . $user['perusahaan'];
-                        $Tampil = $this->db->query($query)->result_array();
-                        foreach ($Tampil as $t) : ?>
-                            <form method="POST" action="<?= base_url('superintendent/maintenance'); ?>">
-                                <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Submit
-                                </button>
-                            </form>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
     <br>
     <div style="float: right;" class="mr-3">
         <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/buatlaporan'); ?>">Buat Laporan</a>
@@ -35,6 +12,7 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="15%">Date</th>
+                <th scope="col">Nama Kapal</th>
                 <th scope="col">Komponen</th>
                 <th scope="col">Deskripsi</th>
                 <th scope="col" class="text-center" width="18%">Aksi</th>
@@ -42,7 +20,7 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM maintenance where kapal = " . $kapal['id_kapal'];
+            $query = "SELECT * FROM maintenance JOIN kapal ON maintenance.kapal = kapal.id_kapal where kapal.perusahaan =" . $user['perusahaan'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;
@@ -57,6 +35,7 @@
             ?>
                     <tr>
                         <td><?= $t['tanggal']; ?></td>
+                        <td><?= $t['nama_kapal']; ?></td>
                         <td><?= $t['komponen']; ?></td>
                         <td><?= $t['deskripsi']; ?></td>
                         <td>
