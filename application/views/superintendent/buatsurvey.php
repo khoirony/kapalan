@@ -22,7 +22,7 @@
                     <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="tanggal" name="tanggal" placeholder="Tanggal Survey" value="<?= set_value('tanggal'); ?>">
+                    <input type="date" class="form-control form-control-user" id="tanggal" name="tanggal" placeholder="Tanggal Survey" value="<?= set_value('tanggal'); ?>">
                     <?= form_error('tanggal', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">

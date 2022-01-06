@@ -68,7 +68,7 @@
                         <td><?= $t['tanggal']; ?></td>
                         <td>
                             <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/editsurvey/' . $t['id_survey']); ?>">Edit</a>
-                            <btn class=" btn btn-secondary rounded-pill pl-3 pr-3">Hapus</btn>
+                            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('superintendent/hapussurvey/' . $t['id_survey']); ?>">Hapus</a>
                         </td>
                     </tr>
             <?php

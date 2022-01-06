@@ -266,13 +266,83 @@ class Superintendent extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['title'] = 'Jadwal Survey';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required');
+        $this->form_validation->set_rules('tanggal', 'Tanggal Survey', 'required|trim');
+        $this->form_validation->set_rules('kelas', 'Kelas Kapal', 'required');
+        $this->form_validation->set_rules('sertifikat', 'Sertifikat', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('superintendent/buatsurvey', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'kapal' => htmlspecialchars($this->input->post('kapal', true)),
+                'jenis' => htmlspecialchars($this->input->post('jenis', true)),
+                'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
+                'kelas' => htmlspecialchars($this->input->post('kelas', true)),
+                'sertifikat' => htmlspecialchars($this->input->post('sertifikat', true)),
+            ];
+
+            $this->db->insert('survey', $data);
+
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
+            redirect('superintendent/survey');
+        }
+    }
+
+    public function editsurvey($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'Jadwal Survey';
+        $data['user'] = $user;
+        $survey = $this->db->get_where('survey', ['id_survey' => $where['id']])->row_array();
+        $data['survey'] = $survey;
+        $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $survey['kapal']])->row_array();
+
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required');
+        $this->form_validation->set_rules('tanggal', 'Tanggal Survey', 'required|trim');
+        $this->form_validation->set_rules('kelas', 'Kelas Kapal', 'required');
+        $this->form_validation->set_rules('sertifikat', 'Sertifikat', 'required');
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('superintendent/buatsurvey', $data);
+        $this->load->view('superintendent/editsurvey', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function updatesurvey()
+    {
+        $data = [
+            'id_survey' => $this->input->post('id'),
+            'kapal' => htmlspecialchars($this->input->post('kapal', true)),
+            'jenis' => htmlspecialchars($this->input->post('jenis', true)),
+            'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
+            'kelas' => htmlspecialchars($this->input->post('kelas', true)),
+            'sertifikat' => htmlspecialchars($this->input->post('sertifikat', true)),
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_survey', $this->input->post('id'));
+        $this->db->update('survey');
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
+        redirect('superintendent/survey');
+    }
+
+    public function hapussurvey($id)
+    {
+        $where = array('id_survey' => $id);
+        $this->db->where($where);
+        $this->db->delete('survey');
+        redirect('superintendent/survey');
     }
 
     public function ongoing()
