@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-5">
             <br><br>
-            <form class="user" method="POST" action="<?= base_url('shipman/setujuihasil'); ?>">
+            <form class="user" method="POST" action="">
                 <input type="hidden" class="form-control form-control-user" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
                 <input type="hidden" id="id_repair" name="id_repair" value="<?= $repair['id_repair']; ?>">
                 <div class="form-group">
@@ -53,13 +53,6 @@
                     ?>
                 </div>
                 <div class="form-group">
-                    <?php
-                    if ($pekerja['pl'] == 1 && $pekerja['qcqa'] == 1 && $pekerja['wo'] == 1) {
-                        echo '<button type="submit" class="btn btn-primary btn-user btn-block">Setujui Hasil</button>';
-                    } else {
-                        echo '<div class="btn btn-secondary btn-user btn-block">Setujui Hasil</div>';
-                    }
-                    ?>
 
                 </div>
             </form>

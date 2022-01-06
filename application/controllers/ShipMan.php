@@ -189,12 +189,39 @@ class ShipMan extends CI_Controller
     {
         $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $this->input->post('id')])->row_array();
 
-        $this->db->where('id_pekerjaan', $this->input->post('id'));
-        $this->db->delete('pekerjaan');
+        $data = [
+            'selesai' => 1,
+        ];
 
-        unlink(FCPATH . 'assets/img/project/' . $pekerja['image']);
+        $this->db->set($data);
+        $this->db->where('id_pekerjaan', $this->input->post('id'));
+        $this->db->update('pekerjaan');
+
+        // $this->db->where('id_pekerjaan', $this->input->post('id'));
+        // $this->db->delete('pekerjaan');
+
+        // unlink(FCPATH . 'assets/img/project/' . $pekerja['image']);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
         redirect('shipman/project/' . $this->input->post('id_repair'));
+    }
+
+    public function selesai($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'Ongoing Project';
+        $data['user'] = $user;
+        $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $where['id']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $pekerja['kapal']])->row_array();
+        $data['repair'] = $this->db->get_where('repair', ['id_repair' => $pekerja['repair']])->row_array();
+        $data['pekerja'] = $pekerja;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('shipman/selesai', $data);
+        $this->load->view('templates/footer');
     }
 }
