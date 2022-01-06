@@ -2,65 +2,53 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Perusahaan Saya</h1>
-    <br>
-    <?= $this->session->flashdata('msg');
-    if (isset($_SESSION['msg'])) {
-        unset($_SESSION['msg']);
-    } ?>
-    <div class="row">
-        <div class="col-3">
-            Nama Perusahaan
+    <div class="container">
+        <h1 class="h3 mb-4 text-gray-800"><?= $perusahaan['nama_perusahaan']; ?></h1>
+        <br>
+        <div class="text-justify">
+            <?= $perusahaan['deskripsi_perusahaan']; ?>
         </div>
-        <div class="col-5">
-            : <?= $perusahaan['nama_perusahaan']; ?>
+        <div class="row pt-3">
+            <div class="col-2">
+                Alamat
+            </div>
+            <div class="col-7">
+                : <?= $perusahaan['alamat']; ?>, <?= $perusahaan['kota']; ?>, <?= $perusahaan['kode_pos']; ?>
+            </div>
         </div>
-    </div>
-    <div class="row pt-3">
-        <div class="col-3">
-            Email Perusahaan
+        <div class="row pt-3">
+            <div class="col-2">
+                Email
+            </div>
+            <div class="col-5">
+                : <?= $perusahaan['email_perusahaan']; ?>
+            </div>
         </div>
-        <div class="col-5">
-            : <?= $perusahaan['email_perusahaan']; ?>
+        <div class="row pt-3">
+            <div class="col-2">
+                Phone
+            </div>
+            <div class="col-5">
+                : <?= $perusahaan['no_telp']; ?>
+            </div>
         </div>
-    </div>
-    <div class="row pt-3">
-        <div class="col-3">
-            Nomor Telp Perusahaan
+        <div class="row pt-3">
+            <div class="col-2">
+                Fax
+            </div>
+            <div class="col-5">
+                : <?= $perusahaan['no_fax']; ?>
+            </div>
         </div>
-        <div class="col-5">
-            : <?= $perusahaan['no_telp']; ?>
-        </div>
-    </div>
-    <div class="row pt-3">
-        <div class="col-3">
-            Nomor Fax Perusahaan
-        </div>
-        <div class="col-5">
-            : <?= $perusahaan['no_fax']; ?>
-        </div>
-    </div>
-    <div class="row pt-3">
-        <div class="col-3">
-            Kode Pos Perusahaan
-        </div>
-        <div class="col-5">
-            : <?= $perusahaan['kode_pos']; ?>
-        </div>
-    </div>
-    <div class="row pt-3">
-        <div class="col-3">
-            Alamat Perusahaan
-        </div>
-        <div class="col-5">
-            : <?= $perusahaan['alamat']; ?>, <?= $perusahaan['kota']; ?>
-        </div>
+
+        <br><br>
+        <?php
+        echo anchor('shipyard/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
+        ?>
     </div>
 
-    <br><br>
-    <?php
-    echo anchor('shipyard/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
-    ?>
+
+
 
 </div>
 <!-- /.container-fluid -->

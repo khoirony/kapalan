@@ -4,9 +4,9 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Update Perusahaan</h1>
     <br>
-    <div class="row ml-3">
-        <div class="col-md-5">
-            <form class="user" method="POST" action="">
+    <form class="user" method="POST" action="">
+        <div class="row ml-3">
+            <div class="col-5">
                 <input type="hidden" id="id" name="id" value="<?= $perusahaan['id_perusahaan']; ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Perusahaan" value="<?= $perusahaan['nama_perusahaan']; ?>">
@@ -37,12 +37,20 @@
                     <input type="text" class="form-control form-control-user" id="kota" name="kota" placeholder="Kota" value="<?= $perusahaan['kota']; ?>">
                     <?= form_error('kota', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
+            </div>
+            <div class="col-6 ml-5">
+                <div class="form-group text-center">
+                    Deskripsi
+                    <textarea type="text" class="form-control form-control-user rounded" id="deskripsi" name="deskripsi" placeholder="Deskripsi" rows="16"><?= $perusahaan['deskripsi_perusahaan']; ?></textarea>
+                    <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                     Submit
                 </button>
-            </form>
-            <br>
+            </div>
+
+
         </div>
-    </div>
+    </form>
 </div>
 <!-- /.container-fluid -->

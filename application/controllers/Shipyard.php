@@ -72,6 +72,7 @@ class Shipyard extends CI_Controller
                 'kota' => htmlspecialchars($this->input->post('kota', true)),
                 'no_fax' => htmlspecialchars($this->input->post('nofax', true)),
                 'kode_pos' => htmlspecialchars($this->input->post('kodepos', true)),
+                'deskripsi_perusahaan' => $this->input->post('deskripsi'),
             ];
 
             $this->db->set($data);

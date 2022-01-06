@@ -15,7 +15,7 @@
                 <th scope="col">Jenis Survey</th>
                 <th scope="col">Mulai</th>
                 <th scope="col">Selesai</th>
-                <th scope="col" class="text-center" width="18%">Aksi</th>
+                <th scope="col" class="text-center" width="15%">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -43,8 +43,12 @@
                         <td>
                             <?php
                             if ($t['active'] == 2) {
-                                echo
-                                anchor('dockmon/buatrepair/' . $t['id_booking'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
+                                $quer = "SELECT * FROM repair where id_repair = " . $t['id_booking'];
+                                $cekada = $this->db->query($quer)->row_array();
+                                if (!$cekada) {
+                                    echo
+                                    anchor('dockmon/buatrepair/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
+                                }
                             } else {
                                 echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
                             }
@@ -52,8 +56,10 @@
                             $sql = "SELECT * FROM repair where id_repair = " . $t['id_booking'];
                             $cek = $this->db->query($sql)->result_array();
                             foreach ($cek as $c) {
-                                echo
-                                anchor('dockmon/repair/' . $t['id_booking'], '<div class=" btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
+                                if ($c['id_repair'] == $t['id_booking']) {
+                                    echo
+                                    anchor('dockmon/repair/' . $c['id_repair'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
+                                }
                             }
                             ?>
                         </td>
