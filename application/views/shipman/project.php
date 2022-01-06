@@ -34,6 +34,21 @@
         </div>
     </div>
     <br>
+    <div style="float: right;" class="mr-3">
+        <?php
+        if ($repair['selesai'] == 1) {
+        ?>
+            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('shipman/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
+        <?php
+        } else {
+        ?>
+
+        <?php
+        }
+        ?>
+
+    </div>
+    <br><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -68,12 +83,12 @@
                             <?php
                             if ($t['selesai'] == 0) {
                             ?>
-                                <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a> <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/cekhasil/' . $t['id_pekerjaan']); ?>">Cek Hasil</a>
+                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('shipman/cekhasil/' . $t['id_pekerjaan']); ?>">Cek Hasil</a>
 
                             <?php
                             } else {
                             ?>
-                                <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('shipman/selesai/' . $t['id_pekerjaan']); ?>">Selesai</a>
+                                <a class="btn btn-sm btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('shipman/selesai/' . $t['id_pekerjaan']); ?>">Selesai</a>
                             <?php
                             }
                             ?>

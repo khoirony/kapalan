@@ -224,4 +224,17 @@ class ShipMan extends CI_Controller
         $this->load->view('shipman/selesai', $data);
         $this->load->view('templates/footer');
     }
+
+    public function selesairepair($id)
+    {
+
+        $data = [
+            'selesai' => 2,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+        redirect('shipman/repair/' . $id);
+    }
 }

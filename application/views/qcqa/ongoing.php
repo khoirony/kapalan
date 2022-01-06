@@ -32,7 +32,13 @@
             ?>
                     <tr>
                         <td><?= $no; ?></td>
-                        <td><?= $t['nama_kapal']; ?></td>
+                        <td><?= $t['nama_kapal']; ?>
+                            <?php
+                            if ($t['selesai'] == 2) {
+                                echo '<span class="badge badge-danger">Done</span>';
+                            }
+                            ?>
+                        </td>
                         <td><?= $t['nama_galangan']; ?></td>
                         <td><?= $t['tgl_awal']; ?></td>
                         <td><?= $t['tgl_akhir']; ?></td>

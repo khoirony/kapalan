@@ -34,6 +34,21 @@
         </div>
     </div>
     <br>
+    <div style="float: right;" class="mr-3">
+        <?php
+        if ($repair['selesai'] == 0) {
+        ?>
+            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
+        <?php
+        } else {
+        ?>
+
+        <?php
+        }
+        ?>
+
+    </div>
+    <br><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -64,7 +79,19 @@
                         <td><?= $t['bidang']; ?></td>
                         <td><?= $t['jenis']; ?></td>
                         <td><?= $t['uraian']; ?></td>
-                        <td><a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/upload/' . $t['id_pekerjaan']); ?>">Upload</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a></td>
+                        <td class="text-center">
+                            <?php
+                            if ($t['selesai'] == 0) {
+                            ?>
+                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/upload/' . $t['id_pekerjaan']); ?>">Upload</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a>
+                            <?php
+                            } else {
+                            ?>
+                                <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('qcqa/selesai/' . $t['id_pekerjaan']); ?>">Selesai</a>
+                            <?php
+                            }
+                            ?>
+                        </td>
                     </tr>
             <?php
                     $no++;
