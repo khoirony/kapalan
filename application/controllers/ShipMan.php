@@ -235,6 +235,19 @@ class ShipMan extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('ShipMan/repair/' . $id);
+        redirect('ShipMan/project/' . $id);
+    }
+
+    public function batalkanrepair($id)
+    {
+
+        $data = [
+            'selesai' => 1,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+        redirect('ShipMan/project/' . $id);
     }
 }

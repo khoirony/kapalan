@@ -38,11 +38,11 @@
         <?php
         if ($repair['selesai'] == 0) {
         ?>
-            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
+            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
         <?php
-        } else {
+        } else if ($repair['selesai'] == 1) {
         ?>
-
+            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('Qcqa/batalkanrepair/' . $repair['id_repair']); ?>">Batalkan</a>
         <?php
         }
         ?>

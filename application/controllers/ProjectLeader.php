@@ -309,6 +309,18 @@ class ProjectLeader extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('ProjectLeader/repair/' . $id);
+        redirect('ProjectLeader/project/' . $id);
+    }
+    public function batalkanrepair($id)
+    {
+
+        $data = [
+            'selesai' => 0,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+        redirect('ProjectLeader/project/' . $id);
     }
 }

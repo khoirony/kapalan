@@ -84,7 +84,29 @@ class DockMon extends CI_Controller
 
         $this->db->insert('booking', $data);
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! Galangan has been booked.</div>');
-        redirect('DockMon/galangan');
+        redirect('DockMon/repairlist');
+    }
+
+    public function hapusbooking($id)
+    {
+        $where = array('id_booking' => $id);
+        $booking = $this->db->get_where('booking', ['id_booking' => $id])->row_array();
+
+        $this->db->where($where);
+        $this->db->delete('booking');
+
+        $query = "SELECT* FROM booking WHERE id_booking = " . $id;
+        $cek = $this->db->query($query)->row_array();
+        if ($cek == 0) {
+            $data = [
+                'galangan' => $booking['galangan'],
+                'perusahaan_galangan' => $booking['perusahaan_galangan'],
+            ];
+            $this->db->insert('booking', $data);
+        }
+
+
+        redirect('DockMon/repairlist');
     }
 
 

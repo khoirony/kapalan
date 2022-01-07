@@ -15,7 +15,7 @@
                 <th scope="col">Jenis Survey</th>
                 <th scope="col">Mulai</th>
                 <th scope="col">Selesai</th>
-                <th scope="col" class="text-center" width="15%">Aksi</th>
+                <th scope="col" class="text-center" width="25%">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
                         <td><?= $t['jenis']; ?></td>
                         <td><?= $t['tgl_mulai']; ?></td>
                         <td><?= $t['tgl_akhir']; ?></td>
-                        <td>
+                        <td class="text-center">
                             <?php
                             if ($t['active'] == 2) {
                                 $quer = "SELECT * FROM repair where id_repair = " . $t['id_booking'];
@@ -51,6 +51,7 @@
                                 }
                             } else {
                                 echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
+                                echo  anchor('DockMon/hapusbooking/' . $t['id_booking'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3">Cancel</div> ');
                             }
 
                             $sql = "SELECT * FROM repair where id_repair = " . $t['id_booking'];

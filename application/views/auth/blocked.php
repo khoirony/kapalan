@@ -54,11 +54,13 @@
                         } else if ($role_id == 6) {
                             $url = 'ProjectLeader';
                         } else if ($role_id == 7) {
-                            $url = 'qcqa';
+                            $url = 'Qcqa';
                         } else if ($role_id == 8) {
                             $url = 'WorkshopOfficer';
                         } else if ($role_id == 9) {
                             $url = 'Planning';
+                        } else if ($role_id == 0) {
+                            $url = 'SuperAdmin';
                         } else {
                             $url = 'Auth';
                         }

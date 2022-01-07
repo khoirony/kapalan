@@ -219,4 +219,17 @@ class WorkshopOfficer extends CI_Controller
         $this->db->update('repair');
         redirect('WorkshopOfficer/repair/' . $id);
     }
+
+    public function batalkanrepair($id)
+    {
+
+        $data = [
+            'selesai' => 0,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+        redirect('ProjectLeader/project/' . $id);
+    }
 }
