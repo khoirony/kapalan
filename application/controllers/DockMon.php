@@ -249,4 +249,28 @@ class DockMon extends CI_Controller
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
         redirect('DockMon/repair/' . $this->input->post('id_repair'));
     }
+
+    public function accept($id)
+    {
+        $data = [
+            'active' => 2,
+        ];
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+
+        redirect('DockMon/repair/' . $id);
+    }
+
+    public function decline($id)
+    {
+        $data = [
+            'active' => 1,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+        redirect('DockMon/repair/' . $id);
+    }
 }

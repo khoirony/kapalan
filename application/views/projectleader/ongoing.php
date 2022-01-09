@@ -44,7 +44,7 @@
                         <td><?= $t['tgl_akhir']; ?></td>
                         <td>
                             <?php
-                            if ($t['active'] == 1) {
+                            if ($t['active'] == 2) {
                                 echo
                                 anchor('ProjectLeader/project/' . $t['id_repair'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">See Project</div>');
                             } else {

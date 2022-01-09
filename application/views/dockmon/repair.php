@@ -40,6 +40,15 @@
     </div>
     <br>
     <div style="float: right;" class="mr-3">
+        <?php
+        if ($repair['active'] == 2) {
+            echo
+            anchor('DockMon/decline/' . $repair['id_repair'], '<div class=" btn btn-danger rounded-pill pl-3 pr-3">Decline</div>');
+        } else if ($repair['active'] == 1) {
+            echo
+            anchor('DockMon/accept/' . $repair['id_repair'], '<div class="btn btn-warning rounded-pill pl-3 pr-3">Accept</div>');
+        }
+        ?>
         <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/tambahkerja/' . $repair['id_repair']); ?>">Tambah Pekerja</a>
     </div>
     <br><br>

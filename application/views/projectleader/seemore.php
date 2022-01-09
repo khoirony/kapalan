@@ -38,7 +38,7 @@
         if ($repair['active'] == 1) {
             echo
             anchor('ProjectLeader/decline/' . $repair['id_repair'], '<div class=" btn btn-danger rounded-pill pl-3 pr-3">Decline</div>');
-        } else {
+        } else if ($repair['active'] == 0) {
             echo
             anchor('ProjectLeader/accept/' . $repair['id_repair'], '<div class="btn btn-warning rounded-pill pl-3 pr-3">Accept</div>');
         }
