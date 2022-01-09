@@ -217,7 +217,7 @@ class WorkshopOfficer extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('WorkshopOfficer/repair/' . $id);
+        redirect('WorkshopOfficer/project/' . $id);
     }
 
     public function batalkanrepair($id)
@@ -230,6 +230,6 @@ class WorkshopOfficer extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('ProjectLeader/project/' . $id);
+        redirect('WorkshopOfficer/project/' . $id);
     }
 }

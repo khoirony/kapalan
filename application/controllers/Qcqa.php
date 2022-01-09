@@ -203,7 +203,7 @@ class Qcqa extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('projectleader/selesai', $data);
+        $this->load->view('Qcqa/selesai', $data);
         $this->load->view('templates/footer');
     }
 
@@ -217,7 +217,7 @@ class Qcqa extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('projectleader/repair/' . $id);
+        redirect('Qcqa/project/' . $id);
     }
     public function batalkanrepair($id)
     {
@@ -229,6 +229,6 @@ class Qcqa extends CI_Controller
         $this->db->set($data);
         $this->db->where('id_repair', $id);
         $this->db->update('repair');
-        redirect('ProjectLeader/project/' . $id);
+        redirect('Qcqa/project/' . $id);
     }
 }
