@@ -65,7 +65,7 @@ class ShipMan extends CI_Controller
             $data = [
                 'id_perusahaan' => htmlspecialchars($this->input->post('id', true)),
                 'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
+                'email_perusahaan' => htmlspecialchars($this->input->post('email', true)),
                 'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
                 'no_fax' => htmlspecialchars($this->input->post('nofax', true)),

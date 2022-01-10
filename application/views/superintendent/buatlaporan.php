@@ -26,11 +26,11 @@
                     <?= form_error('komponen', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="pembuat" name="pembuat" placeholder="Shipbuilder" value="<?= set_value('pembuat'); ?>">
+                    <input type="text" class="form-control form-control-user" id="pembuat" name="pembuat" placeholder="Component Maker" value="<?= set_value('pembuat'); ?>">
                     <?= form_error('pembuat', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="tipe" name="tipe" placeholder="Ship Type" value="<?= set_value('tipe'); ?>">
+                    <input type="text" class="form-control form-control-user" id="tipe" name="tipe" placeholder="Component Type" value="<?= set_value('tipe'); ?>">
                     <?= form_error('tipe', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">

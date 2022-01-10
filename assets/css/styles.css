@@ -1,0 +1,8 @@
+.card-body-icon {
+	position: absolute;
+	z-index: 0;
+	top: 25px;
+	right: 15px;
+	opacity: 0.4;
+	font-size: 90px;
+}

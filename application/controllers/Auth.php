@@ -152,4 +152,9 @@ class Auth extends CI_Controller
 	{
 		$this->load->view('Auth/blocked');
 	}
+
+	public function home()
+	{
+		$this->load->view('Auth/index');
+	}
 }
