@@ -264,12 +264,23 @@ class Superintendent extends CI_Controller
         $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
         $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
         $data['id'] = $this->input->post('kapal');
+        $data['pilihkapal'] = $this->db->get('pilihkapal')->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
         $this->load->view('Superintendent/survey', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function pilihkapalsurvey()
+    {
+        $this->db->empty_table('pilihkapal');
+        $data = [
+            'kapal' => htmlspecialchars($this->input->post('kapal', true)),
+        ];
+        $this->db->insert('pilihkapal', $data);
+        redirect('Superintendent/survey');
     }
 
     public function buatsurvey()

@@ -62,10 +62,76 @@ class AdminOwner extends CI_Controller
             $this->load->view('AdminOwner/updateperusahaan', $data);
             $this->load->view('templates/footer');
         } else {
+            $upload_logo = $_FILES['logo']['name'];
+            $upload_image1 = $_FILES['image1']['name'];
+            $upload_image2 = $_FILES['image2']['name'];
+
+            if ($upload_logo) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']     = '2048';
+                $config['upload_path'] = './assets/img/perusahaan/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('logo')) {
+                    $old_logo = $data['perusahaan']['logo'];
+                    if ($old_logo != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/perusahaan/' . $old_logo);
+                    }
+                    $new_logo = $this->upload->data('file_name');
+                    $this->db->set('logo', $new_logo);
+                    $this->db->where('id_perusahaan', $this->input->post('id'));
+                    $this->db->update('perusahaan');
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            if ($upload_image1) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']     = '2048';
+                $config['upload_path'] = './assets/img/perusahaan/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image1')) {
+                    $old_image1 = $data['perusahaan']['image1'];
+                    if ($old_image1 != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/perusahaan/' . $old_image1);
+                    }
+                    $new_image1 = $this->upload->data('file_name');
+                    $this->db->set('image1', $new_image1);
+                    $this->db->where('id_perusahaan', $this->input->post('id'));
+                    $this->db->update('perusahaan');
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
+
+            if ($upload_image2) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']     = '2048';
+                $config['upload_path'] = './assets/img/perusahaan/';
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('image2')) {
+                    $old_image2 = $data['perusahaan']['image2'];
+                    if ($old_image2 != 'default.jpg') {
+                        unlink(FCPATH . 'assets/img/perusahaan/' . $old_image2);
+                    }
+                    $new_image2 = $this->upload->data('file_name');
+                    $this->db->set('image2', $new_image2);
+                    $this->db->where('id_perusahaan', $this->input->post('id'));
+                    $this->db->update('perusahaan');
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
             $data = [
                 'id_perusahaan' => htmlspecialchars($this->input->post('id', true)),
                 'nama_perusahaan' => htmlspecialchars($this->input->post('nama', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
+                'email_perusahaan' => htmlspecialchars($this->input->post('email', true)),
                 'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
                 'no_fax' => htmlspecialchars($this->input->post('nofax', true)),
