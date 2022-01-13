@@ -4,6 +4,20 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Riwayat Maintenance</h1>
     <br>
+    <div class="form-group col-4">
+        <form action="<?= base_url('Superintendent/pilihkapal') ?>" method="POST">
+            <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal" onchange="this.form.submit();">
+                <option value=" ">Pilih Kapal</option>
+                <?php
+                $query = "SELECT * FROM kapal where perusahaan = " . $user['perusahaan'];
+                $Tampil = $this->db->query($query)->result_array();
+                foreach ($Tampil as $t) : ?>
+                    <option value="<?= $t['id_kapal']; ?>"><?= $t['nama_kapal']; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </form>
+    </div>
+
     <div style="float: right;" class="mr-3">
         <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/buatlaporan'); ?>">Buat Laporan</a>
     </div>
@@ -20,7 +34,8 @@
         </thead>
         <tbody>
             <?php
-            $query = "SELECT * FROM maintenance JOIN kapal ON maintenance.kapal = kapal.id_kapal where kapal.perusahaan =" . $user['perusahaan'];
+
+            $query = "SELECT * FROM maintenance JOIN kapal ON maintenance.kapal = kapal.id_kapal where kapal.id_kapal =" . $pilihkapal['kapal'];
             $Tampil = $this->db->query($query)->result_array();
             $cek = $this->db->query($query)->row_array();
             $no = 1;

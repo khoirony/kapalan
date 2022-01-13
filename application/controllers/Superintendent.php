@@ -146,6 +146,7 @@ class Superintendent extends CI_Controller
         $data['user'] = $user;
         $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
         $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
+        $data['pilihkapal'] = $this->db->get('pilihkapal')->row_array();
 
 
         $this->load->view('templates/header', $data);
@@ -153,6 +154,16 @@ class Superintendent extends CI_Controller
         $this->load->view('templates/topbar', $data);
         $this->load->view('Superintendent/maintenance', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function pilihkapal()
+    {
+        $this->db->empty_table('pilihkapal');
+        $data = [
+            'kapal' => htmlspecialchars($this->input->post('kapal', true)),
+        ];
+        $this->db->insert('pilihkapal', $data);
+        redirect('Superintendent/maintenance');
     }
 
     public function buatlaporan()

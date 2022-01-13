@@ -33,12 +33,20 @@
                     <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="alamat" value="<?= $perusahaan['alamat']; ?>">
                     <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
-
-                <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Submit
-                </button>
-            </form>
-            <br>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" id="kota" name="kota" placeholder="Kota" value="<?= $perusahaan['kota']; ?>">
+                    <?= form_error('kota', '<small class="text-danger pl-3">', '</small>'); ?>
+                </div>
+        </div>
+        <div class="col-6 ml-5">
+            <div class="form-group text-center">
+                Deskripsi
+                <textarea type="text" class="form-control form-control-user rounded" id="deskripsi" name="deskripsi" placeholder="Deskripsi" rows="16"><?= $perusahaan['deskripsi_perusahaan']; ?></textarea>
+                <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>'); ?>
+            </div>
+            <button type="submit" class="btn btn-primary btn-user btn-block">
+                Submit
+            </button>
         </div>
     </div>
 </div>

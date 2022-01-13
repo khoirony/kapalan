@@ -2,59 +2,41 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Perusahaan Saya</h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= $perusahaan['nama_perusahaan']; ?></h1>
     <br>
-    <?= $this->session->flashdata('msg');
-    if (isset($_SESSION['msg'])) {
-        unset($_SESSION['msg']);
-    } ?>
-    <br>
-    <div class="row">
-        <div class="col-3">
-            Nama Perusahaan
+    <div class="text-justify">
+        <?= $perusahaan['deskripsi_perusahaan']; ?>
+    </div>
+    <div class="row pt-3">
+        <div class="col-2">
+            Alamat
         </div>
-        <div class="col-5">
-            : <?= $perusahaan['nama_perusahaan']; ?>
+        <div class="col-7">
+            : <?= $perusahaan['alamat']; ?>, <?= $perusahaan['kota']; ?>, <?= $perusahaan['kode_pos']; ?>
         </div>
     </div>
     <div class="row pt-3">
-        <div class="col-3">
-            Email Perusahaan
+        <div class="col-2">
+            Email
         </div>
         <div class="col-5">
             : <?= $perusahaan['email_perusahaan']; ?>
         </div>
     </div>
     <div class="row pt-3">
-        <div class="col-3">
-            Nomor Telp Perusahaan
+        <div class="col-2">
+            Phone
         </div>
         <div class="col-5">
             : <?= $perusahaan['no_telp']; ?>
         </div>
     </div>
     <div class="row pt-3">
-        <div class="col-3">
-            Nomor Fax Perusahaan
+        <div class="col-2">
+            Fax
         </div>
         <div class="col-5">
             : <?= $perusahaan['no_fax']; ?>
-        </div>
-    </div>
-    <div class="row pt-3">
-        <div class="col-3">
-            Kode Pos Perusahaan
-        </div>
-        <div class="col-5">
-            : <?= $perusahaan['kode_pos']; ?>
-        </div>
-    </div>
-    <div class="row pt-3">
-        <div class="col-3">
-            Alamat Perusahaan
-        </div>
-        <div class="col-5">
-            : <?= $perusahaan['alamat']; ?>, <?= $perusahaan['kota']; ?>
         </div>
     </div>
 

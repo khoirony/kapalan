@@ -10,6 +10,7 @@
             <tr>
                 <th scope="col" width="5%">No</th>
                 <th scope="col">Nama Galangan</th>
+                <th scope="col">Perusahaan Galangan</th>
                 <th scope="col" width="15%">Aksi</th>
             </tr>
         </thead>
@@ -56,6 +57,7 @@
 
                         <td><?= $no; ?></td>
                         <td><?= $t['nama_galangan']; ?></td>
+                        <td><?= $t['nama_perusahaan']; ?></td>
                         <td>
                             <a class="btn btn-warning rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/requestbooking/' . $t['id_galangan']); ?>">Booking</a>
                         </td>
