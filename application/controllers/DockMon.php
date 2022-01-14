@@ -250,6 +250,55 @@ class DockMon extends CI_Controller
         redirect('DockMon/repair/' . $this->input->post('id_repair'));
     }
 
+    public function editkerja($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+
+        $data['title'] = 'Repair List';
+        $data['user'] = $user;
+        $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $where['id']])->row_array();
+        $data['pekerja'] = $pekerja;
+        $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $pekerja['kapal']])->row_array();
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('DockMon/editkerja', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function updatekerja()
+    {
+        $data = [
+            'id_pekerjaan' => $this->input->post('id_pekerjaan'),
+            'kapal' => $this->input->post('kapal'),
+            'tgl_awal' => htmlspecialchars($this->input->post('tgl_awal', true)),
+            'tgl_akhir' => htmlspecialchars($this->input->post('tgl_akhir', true)),
+            'bidang' => htmlspecialchars($this->input->post('bidang', true)),
+            'jenis' => htmlspecialchars($this->input->post('jenis', true)),
+            'uraian' => htmlspecialchars($this->input->post('uraian', true)),
+            'repair' => htmlspecialchars($this->input->post('id_repair', true)),
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_pekerjaan', $this->input->post('id_pekerjaan'));
+        $this->db->update('pekerjaan');
+
+        $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your Dock Space has been added</div>');
+        redirect('DockMon/repair/' . $this->input->post('id_repair'));
+    }
+
+    public function hapuspekerja($id)
+    {
+        $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $id])->row_array();
+        $where = array('id_pekerjaan' => $id);
+        $this->db->where($where);
+        $this->db->delete('pekerjaan');
+        redirect('DockMon/repair/' . $pekerja['repair']);
+    }
+
     public function accept($id)
     {
         $data = [

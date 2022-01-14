@@ -81,8 +81,8 @@
                         <td><?= $t['bidang']; ?></td>
                         <td><?= $t['jenis']; ?></td>
                         <td>
-                            <a class="btn btn-primary btn-sm rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/editpekerja/' . $t['id_pekerjaan']); ?>">Edit</a>
-                            <btn class=" btn btn-secondary btn-sm rounded-pill pl-3 pr-3">Hapus</btn>
+                            <a class="btn btn-primary btn-sm rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/editkerja/' . $t['id_pekerjaan']); ?>">Edit</a>
+                            <a class="btn btn-primary btn-sm rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/hapuspekerja/' . $t['id_pekerjaan']); ?>">Hapus</a>
                         </td>
                     </tr>
             <?php
