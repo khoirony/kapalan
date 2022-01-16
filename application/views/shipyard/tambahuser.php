@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Tambah User Baru</h1>
+    <h1 class="h3 mb-4 text-gray-800">Add New User</h1>
     <br>
 
     <div class="row">
@@ -14,19 +14,19 @@
 
             <form class="user" method="POST" action="<?= base_url('Shipyard/tambahuser'); ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Lengkap" value="<?= set_value('nama'); ?>">
+                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Name" value="<?= set_value('nama'); ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email Pengguna" value="<?= set_value('email'); ?>">
+                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="User Email" value="<?= set_value('email'); ?>">
                     <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="notelp" name="notelp" placeholder="No Telp Pengguna" value="<?= set_value('notelp'); ?>">
+                    <input type="text" class="form-control form-control-user" id="notelp" name="notelp" placeholder="User Phone Number" value="<?= set_value('notelp'); ?>">
                     <?= form_error('notelp', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat Pengguna" value="<?= set_value('alamat'); ?>">
+                    <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="User Address" value="<?= set_value('alamat'); ?>">
                     <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">

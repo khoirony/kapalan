@@ -11,19 +11,19 @@
             <form class="user" method="POST" action="">
                 <input type="hidden" id="id" name="id" placeholder="Id Kapal" value="<?= $user['id']; ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Pengguna" value="<?= $user['nama']; ?>">
+                    <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Name" value="<?= $user['nama']; ?>">
                     <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email Pengguna" value="<?= $user['email']; ?>">
+                    <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="User Email" value="<?= $user['email']; ?>">
                     <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="notelp" name="notelp" placeholder="No Telp pengguna" value="<?= $user['no_telp']; ?>">
+                    <input type="text" class="form-control form-control-user" id="notelp" name="notelp" placeholder="User Phone Number" value="<?= $user['no_telp']; ?>">
                     <?= form_error('notelp', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat Pengguna" value="<?= $user['alamat']; ?>">
+                    <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="User Address" value="<?= $user['alamat']; ?>">
                     <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group">

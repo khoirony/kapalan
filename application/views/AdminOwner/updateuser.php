@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Tambah User Baru</h1>
+    <h1 class="h3 mb-4 text-gray-800">Update User</h1>
     <br>
 
     <div class="row">

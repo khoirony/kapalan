@@ -1,5 +1,31 @@
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
+    <?php
+    $role_id = $this->session->userdata('role_id');
+    if ($role_id == 1) {
+        $url = 'Shipyard';
+    } else if ($role_id == 2) {
+        $url = 'AdminOwner';
+    } else if ($role_id == 3) {
+        $url = 'Superintendent';
+    } else if ($role_id == 4) {
+        $url = 'DockMon';
+    } else if ($role_id == 5) {
+        $url = 'ShipMan';
+    } else if ($role_id == 6) {
+        $url = 'ProjectLeader';
+    } else if ($role_id == 7) {
+        $url = 'Qcqa';
+    } else if ($role_id == 8) {
+        $url = 'WorkshopOfficer';
+    } else if ($role_id == 9) {
+        $url = 'Planning';
+    } else if ($role_id == 0) {
+        $url = 'SuperAdmin';
+    } else {
+        $url = 'Auth';
+    }
+    ?>
 
     <!-- Main Content -->
     <div id="content">
@@ -40,7 +66,12 @@
 
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="<?php
+                                                        if ($role_id == 0) {
+                                                            echo '#';
+                                                        } else {
+                                                            echo base_url($url . '/profil');
+                                                        } ?>">
                             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                             My Profile
                         </a>

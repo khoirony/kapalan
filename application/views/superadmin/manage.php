@@ -9,10 +9,10 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Nama</th>
+                <th scope="col">Company Name</th>
                 <th scope="col">Email</th>
-                <th scope="col">Nomor Telp</th>
-                <th scope="col">Jabatan</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Position</th>
                 <th scope="col" class="text-center" width="14%">Aksi</th>
             </tr>
         </thead>

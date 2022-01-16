@@ -28,7 +28,7 @@ class AdminOwner extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Profil Perusahaan';
+        $data['title'] = 'Company Profile';
         $data['user'] = $user;
         $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['id']])->row_array();
 
@@ -43,7 +43,7 @@ class AdminOwner extends CI_Controller
     {
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['id' => $where['id']])->row_array();
-        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
         $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
         $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
@@ -53,7 +53,7 @@ class AdminOwner extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Profil Perusahaan';
+            $data['title'] = 'Company Profile';
             $data['user'] = $user;
 
             $this->load->view('templates/header', $data);
@@ -150,8 +150,10 @@ class AdminOwner extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Data Pengguna';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = "User's Data";
+        $data['user'] = $user;
+        $data['listuser'] = $this->db->get_where('user', ['perusahaan' => $user['perusahaan']])->result_array();
+        $data['hitung'] = $this->db->get_where('user', ['perusahaan' => $user['perusahaan']])->num_rows();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -187,7 +189,7 @@ class AdminOwner extends CI_Controller
         }
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Pengguna';
+            $data['title'] = "User's Data";
             $data['user'] = $user;
 
             $this->load->view('templates/header', $data);
@@ -264,7 +266,7 @@ class AdminOwner extends CI_Controller
         }
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Pengguna';
+            $data['title'] = "User's Data";
             $data['user'] = $user;
 
             $this->load->view('templates/header', $data);
@@ -289,6 +291,58 @@ class AdminOwner extends CI_Controller
             $this->db->update('user');
             $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
             redirect('AdminOwner/user');
+        }
+    }
+
+    public function profil()
+    {
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'My Profil';
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('templates/profil', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function updateprofil($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['id' => $where['id']])->row_array();
+        $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+
+        $this->form_validation->set_rules('nama', 'Nama Pengguna', 'required');
+        $this->form_validation->set_rules('notelp', 'No Telp Perusahaan', 'required|trim');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'required');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Profil Perusahaan';
+            $data['user'] = $user;
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar', $data);
+            $this->load->view('templates/topbar', $data);
+            $this->load->view('templates/updateprofil', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'nama' => htmlspecialchars($this->input->post('nama', true)),
+                'email' => htmlspecialchars($this->input->post('email', true)),
+                'no_telp' => htmlspecialchars($this->input->post('notelp', true)),
+                'alamat' => htmlspecialchars($this->input->post('alamat', true)),
+            ];
+
+            $this->db->set($data);
+            $this->db->where('id', $this->input->post('id'));
+            $this->db->update('user');
+            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
+            redirect('AdminOwner/profil');
         }
     }
 }

@@ -12,27 +12,27 @@
                         <br>
                         <form class="user" method="POST" action="<?= base_url('Auth/registration'); ?>">
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Nama Perusahaan" value="<?= set_value('nama'); ?>">
+                                <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Company Name" value="<?= set_value('nama'); ?>">
                                 <?= form_error('nama', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email Perusahaan" value="<?= set_value('email'); ?>">
+                                <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Company Email" value="<?= set_value('email'); ?>">
                                 <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="notelp" name="notelp" placeholder="No Telp Perusahaan" value="<?= set_value('notelp'); ?>">
+                                <input type="text" class="form-control form-control-user" id="notelp" name="notelp" placeholder="Company Phone Number" value="<?= set_value('notelp'); ?>">
                                 <?= form_error('notelp', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="nofax" name="nofax" placeholder="No Fax Perusahaan" value="<?= set_value('nofax'); ?>">
+                                <input type="text" class="form-control form-control-user" id="nofax" name="nofax" placeholder="Company Fax Number" value="<?= set_value('nofax'); ?>">
                                 <?= form_error('nofax', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Alamat Perusahaan" value="<?= set_value('alamat'); ?>">
+                                <input type="text" class="form-control form-control-user" id="alamat" name="alamat" placeholder="Company Address" value="<?= set_value('alamat'); ?>">
                                 <?= form_error('alamat', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-user" id="kodepos" name="kodepos" placeholder="Kode Pos Perusahaan" value="<?= set_value('kodepos'); ?>">
+                                <input type="text" class="form-control form-control-user" id="kodepos" name="kodepos" placeholder="Post Code" value="<?= set_value('kodepos'); ?>">
                                 <?= form_error('kodepos', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
                             <div class="form-group">
