@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
-    <link href="<?= base_url('assets/'); ?>css/home.css" rel="stylesheet">
+    <link href="<?= base_url('assets/'); ?>css/homepage.css" rel="stylesheet">
     <title>Kapalan</title>
 </head>
 
@@ -28,7 +28,17 @@
             </div>
         </div>
     </nav>
-    <div class="jumbotron border-0 rounded-0"></div>
+    <div class="jumbotron border-0 rounded-0">
+        <div class="container">
+            <div class="row" style="margin-top: 200px;">
+                <div class="col-7">
+                    <h1 class="display-3 font-weight-bold mt-5 text-white"><span class="fw-bold">Shiprepair Dmom</span></h1>
+                    <p class="text-white mt-4" style="font-size: 25px;">we provide services to bridge the shipowners and shipyards in the ship repair process in an integrated platform</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <footer>
         <div class="container bg-white text-center pb-4">
             This website is used for the prototype of undergraduate thesis in Digital Marine Operations and Maintenance Laboratory.

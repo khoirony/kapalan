@@ -1,0 +1,10 @@
+.jumbotron {
+	background: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0.719) 10%,
+			rgba(0, 0, 0, 0.13769257703081228) 100%
+		),
+		url(http://localhost/kapalan/assets/img/home.jpeg);
+	background-size: cover;
+	height: 100vh;
+}

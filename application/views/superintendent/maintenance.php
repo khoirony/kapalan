@@ -10,11 +10,9 @@
             <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal" onchange="this.form.submit();">
                 <?php
                 foreach ($kapal as $t) : ?>
-                    <option value="<?= $t['id_kapal']; ?>" <?php
-                                                            if ($t['id_kapal'] == $pilih['kapal']) {
+                    <option value="<?= $t['id_kapal']; ?>" <?php if ($t['id_kapal'] == $pilih['kapal']) {
                                                                 echo 'selected';
-                                                            }
-                                                            ?>><?= $t['nama_kapal']; ?></option>
+                                                            } ?>><?= $t['nama_kapal']; ?></option>
                 <?php endforeach; ?>
             </select>
         </form>
