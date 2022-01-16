@@ -2,24 +2,29 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Cari Docking Space</h1>
+    <h1 class="h3 mb-4 text-gray-800">Find Docking Space</h1>
 
     <div class="row">
+
         <div class="col-md-5">
+
             <form class="user" method="POST" action="<?= base_url('DockMon/caridock'); ?>">
+
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="kota" name="kota" placeholder="Kota">
+                    <input type="text" class="form-control form-control-user" id="kota" name="kota" placeholder="City">
                 </div>
+
                 <div class="form-group row">
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        Tgl mulai
+                        Start
                         <input type="date" class="form-control form-control-user" id="tgl_awal" name="tgl_awal" placeholder="Tanggal Awal">
                     </div>
                     <div class="col-sm-6">
-                        Tgl Selesai
+                        Finish
                         <input type="date" class="form-control form-control-user" id="tgl_akhir" name="tgl_akhir" placeholder="Tanggal Selesai">
                     </div>
                 </div>
+
                 <div class=" form-group">
                     <div class="form-group">
                         <div class="form-group">
@@ -32,23 +37,27 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="lebar" name="lebar" placeholder="Lebar">
+                    <input type="text" class="form-control form-control-user" id="lebar" name="lebar" placeholder="Width">
                 </div>
+
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="panjang" name="panjang" placeholder="Panjang">
+                    <input type="text" class="form-control form-control-user" id="panjang" name="panjang" placeholder="Length">
                 </div>
+
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="dwt" name="dwt" placeholder="DWT">
                 </div>
 
-
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                     Cari
                 </button>
+
             </form>
             <br>
         </div>
+
     </div>
 
 </div>

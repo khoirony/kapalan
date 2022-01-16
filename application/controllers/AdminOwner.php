@@ -15,7 +15,11 @@ class AdminOwner extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $data['title'] = 'Dashboard';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['user'] = $user;
+        $data['hitunguser'] = $this->db->get_where('user', ['perusahaan' => $user['perusahaan']])->num_rows();
+        $data['hitungkapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->num_rows();
+        $query = "SELECT datediff(tanggal, current_date()) as selisih FROM survey JOIN kapal ON survey.kapal = kapal.id_kapal where kapal.perusahaan =" . $user['perusahaan'] . " ORDER BY selisih ASC LIMIT 1";
+        $data['hitungsurvey'] = $this->db->query($query)->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

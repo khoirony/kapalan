@@ -13,11 +13,7 @@
                 </div>
                 <h5 class="card-title">Jumlah User</h5>
                 <div class="display-4">
-                    <?php
-                    $query = 'SELECT* FROM user WHERE perusahaan =' . $user['perusahaan'];
-                    $cek = $this->db->query($query)->num_rows();
-                    echo --$cek;
-                    ?>
+                    <?= --$hitunguser; ?>
                 </div>
                 <a href="<?= base_url('AdminOwner/user'); ?>">
                     <p class="card-text text-white">Lihat Detail <i class="fas fa-angle-double-right ml-2"></i></p>
@@ -32,11 +28,7 @@
                 </div>
                 <h5 class="card-title">Jumlah Kapal</h5>
                 <div class="display-4">
-                    <?php
-                    $query = 'SELECT* FROM kapal WHERE perusahaan =' . $user['perusahaan'];
-                    $cek = $this->db->query($query)->num_rows();
-                    echo $cek;
-                    ?>
+                    <?= $hitungkapal; ?>
                 </div>
             </div>
         </div>
@@ -48,13 +40,7 @@
                 </div>
                 <h5 class="card-title">Survey Terdekat</h5>
                 <div class="display-4">
-                    <?php
-                    $query = "SELECT datediff(tanggal, current_date()) as selisih FROM survey JOIN kapal ON survey.kapal = kapal.id_kapal where kapal.perusahaan =" . $user['perusahaan'] . " ORDER BY selisih ASC LIMIT 1";
-                    $Tampil = $this->db->query($query)->result_array();
-                    foreach ($Tampil as $t) {
-                        echo $t['selisih'] . " <span class='fs-4'>Hari</span>";
-                    }
-                    ?>
+                    <?= $hitungsurvey['selisih']; ?> Days
                 </div>
             </div>
         </div>

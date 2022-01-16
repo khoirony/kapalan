@@ -14,8 +14,10 @@ class DockMon extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'List Galangan';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'List Docking Space';
+        $data['user'] = $user;
+        $data['perusahaangalangan'] = $this->db->get_where('perusahaan', ['role_id' => 1])->result_array();
+        $data['hitung'] = $this->db->get_where('perusahaan', ['role_id' => 1])->num_rows();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -29,9 +31,11 @@ class DockMon extends CI_Controller
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'List Galangan';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'List Docking Space';
+        $data['user'] = $user;
         $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $where['id']])->row_array();
+        $data['galangan'] = $this->db->get_where('galangan', ['perusahaan' => $where['id']])->result_array();
+        $data['hitung'] = $this->db->get_where('galangan', ['perusahaan' => $where['id']])->num_rows();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -46,8 +50,9 @@ class DockMon extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
         $data['galangan'] = $this->db->get_where('galangan', ['id_galangan' => $where['id']])->row_array();
         $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->row_array();
+        $data['listkapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->result_array();
 
-        $data['title'] = 'List Galangan';
+        $data['title'] = 'List Docking Space';
         $data['user'] = $user;
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -114,7 +119,7 @@ class DockMon extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Docking Space';
+        $data['title'] = 'Find Docking Space';
         $data['user'] = $user;
         $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->row_array();
 
@@ -130,8 +135,33 @@ class DockMon extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Docking Space';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['title'] = 'Find Docking Space';
+        $data['user'] = $user;
+
+        $query = "SELECT * FROM galangan JOIN perusahaan ON galangan.perusahaan = perusahaan.id_perusahaan ";
+        if ($this->input->post('tgl_awal') != NULL) {
+            $query .= "JOIN booking ON galangan.id_galangan = booking.galangan WHERE booking.active = 0 AND booking.tgl_akhir < '" . $this->input->post('tgl_awal') . "' AND ";
+        } else {
+            $query .= "WHERE ";
+        }
+        if ($this->input->post('kota') != NULL) {
+            $query .= "perusahaan.kota LIKE '" . $this->input->post('kota') . "%' AND ";
+        }
+        if ($this->input->post('tipe') != NULL) {
+            $query .= "galangan.tipe LIKE '%" . $this->input->post('tipe') . "%'";
+        }
+        if ($this->input->post('panjang') != NULL) {
+            $query .= " AND galangan.panjang >= " . $this->input->post('panjang');
+        }
+        if ($this->input->post('lebar') != NULL) {
+            $query .= " AND galangan.lebar >= " . $this->input->post('lebar');
+        }
+        if ($this->input->post('dwt') != NULL) {
+            $query .= " AND galangan.dwt >= " . $this->input->post('dwt');
+        }
+
+        $data['cari'] = $this->db->query($query)->result_array();
+        $data['hitung'] = $this->db->query($query)->num_rows();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -146,6 +176,9 @@ class DockMon extends CI_Controller
 
         $data['title'] = 'Repair List';
         $data['user'] = $user;
+        $query = "SELECT * FROM booking JOIN kapal ON booking.kapal = kapal.id_kapal JOIN galangan ON booking.galangan = galangan.id_galangan where booking.perusahaan_kapal = " . $user['perusahaan'];
+        $data['listbooking'] = $this->db->query($query)->result_array();
+        $data['hitung'] = $this->db->query($query)->result_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -161,9 +194,13 @@ class DockMon extends CI_Controller
 
         $data['title'] = 'Repair List';
         $data['user'] = $user;
-        $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
-        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
         $data['repair'] = $this->db->get_where('repair', ['id_repair' => $where['id']])->row_array();
+
+        $data['listpekerja'] = $this->db->get_where('pekerjaan', ['repair' => $where['id']])->result_array();
+        $data['hitungpekerja'] = $this->db->get_where('pekerjaan', ['repair' => $where['id']])->num_rows();
+
+        $query = "SELECT * FROM kapal INNER JOIN repair ON kapal.id_kapal = repair.kapal WHERE id_repair = " . $id;
+        $data['kapal'] = $this->db->query($query)->row_array();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

@@ -7,7 +7,6 @@
 
     <div class="row">
         <div class="col-md-5">
-
             <form class="user" method="POST" action="">
                 <input type="hidden" id="id" name="id" placeholder="Id Kapal" value="<?= $user['id']; ?>">
                 <div class="form-group">

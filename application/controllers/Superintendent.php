@@ -14,9 +14,10 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Data Kapal';
+        $data['title'] = 'Ship Data';
         $data['user'] = $user;
-        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->result_array();
+        $data['hitungkapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->num_rows();
         $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
         $this->load->view('templates/header', $data);
@@ -44,8 +45,8 @@ class Superintendent extends CI_Controller
 
         if ($this->form_validation->run() == false) {
 
-            $data['title'] = 'Data Kapal';
-            $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+            $data['title'] = 'Ship Data';
+            $data['user'] = $user;
             $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
             $this->load->view('templates/header', $data);
@@ -101,7 +102,7 @@ class Superintendent extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Data Kapal';
+            $data['title'] = 'Ship Data';
             $data['id'] = $where;
             $data['user'] = $user;
             $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $where['id']])->row_array();
@@ -142,12 +143,17 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Riwayat Maintenance';
+        $data['title'] = 'Maintenance History';
         $data['user'] = $user;
         $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
-        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
-        $data['pilihkapal'] = $this->db->get('pilihkapal')->row_array();
 
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->result_array();
+        $pilihkapal = $this->db->get('pilihkapal')->row_array();
+        $data['pilih'] = $pilihkapal;
+
+        $query = "SELECT * FROM maintenance JOIN kapal ON maintenance.kapal = kapal.id_kapal where kapal.id_kapal =" . $pilihkapal['kapal'];
+        $data['maintenance'] = $this->db->query($query)->result_array();
+        $data['hitungmaintenance'] = $this->db->query($query)->num_rows();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -170,7 +176,7 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Riwayat Maintenance';
+        $data['title'] = 'Maintenance History';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('tanggal', 'Date', 'required|trim');
@@ -213,7 +219,7 @@ class Superintendent extends CI_Controller
 
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Riwayat Maintenance';
+        $data['title'] = 'Maintenance History';
         $data['user'] = $user;
         $maintenance = $this->db->get_where('maintenance', ['id_maintenance' => $where['id']])->row_array();
         $data['maintenance'] = $maintenance;
@@ -259,12 +265,17 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Jadwal Survey';
+        $data['title'] = 'Survey Schedule';
         $data['user'] = $user;
         $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
-        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->row_array();
-        $data['id'] = $this->input->post('kapal');
-        $data['pilihkapal'] = $this->db->get('pilihkapal')->row_array();
+
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->result_array();
+        $pilihkapal = $this->db->get('pilihkapal')->row_array();
+        $data['pilih'] = $pilihkapal;
+
+        $query = "SELECT id_survey, jenis,tanggal, nama_kapal, datediff(tanggal, current_date()) as selisih FROM survey JOIN kapal ON survey.kapal = kapal.id_kapal where kapal.id_kapal =" . $pilihkapal['kapal'];
+        $data['survey'] = $this->db->query($query)->result_array();
+        $data['hitungsurvey'] = $this->db->query($query)->num_rows();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -286,8 +297,9 @@ class Superintendent extends CI_Controller
     public function buatsurvey()
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $data['title'] = 'Jadwal Survey';
+        $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $perusahaan['id_perusahaan']])->result_array();
+        $data['title'] = 'Survey Schedule';
         $data['user'] = $user;
 
         $this->form_validation->set_rules('jenis', 'Jenis', 'required');
@@ -322,7 +334,7 @@ class Superintendent extends CI_Controller
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Jadwal Survey';
+        $data['title'] = 'Survey Schedule';
         $data['user'] = $user;
         $survey = $this->db->get_where('survey', ['id_survey' => $where['id']])->row_array();
         $data['survey'] = $survey;

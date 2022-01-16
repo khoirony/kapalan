@@ -7,7 +7,6 @@
 
     <div class="row">
         <div class="col-md-5">
-
             <form class="user" method="POST" action="<?= base_url('AdminOwner/tambahuser'); ?>">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user" id="nama" name="nama" placeholder="Name" value="<?= set_value('nama'); ?>">
@@ -45,7 +44,6 @@
                     Submit
                 </button>
             </form>
-            <br>
         </div>
     </div>
 </div>

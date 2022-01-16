@@ -4,10 +4,14 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $perusahaan['nama_perusahaan']; ?></h1>
     <br>
+
+    <!-- Deskripsi Perusahaan -->
     <div class="text-justify">
         <?= $perusahaan['deskripsi_perusahaan']; ?>
     </div>
+
     <div class="row">
+        <!-- Data Perusahaan -->
         <div class="col-5">
             <div class="row pt-2">
                 <div class="col-2">
@@ -46,6 +50,8 @@
             echo anchor('AdminOwner/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Company</div>');
             ?>
         </div>
+
+        <!-- Foto Perusahaan -->
         <div class="col-6 text-center">
             <div id="carouselExampleControls" class="carousel carousel-dark slide" data-ride="carousel">
                 <div class="carousel-inner">

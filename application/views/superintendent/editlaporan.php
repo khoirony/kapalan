@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Update Laporan Maintenance</h1>
+    <h1 class="h3 mb-4 text-gray-800">Update Maintenance Report</h1>
 
     <div class="row ml-3">
         <div class="col-md-5">

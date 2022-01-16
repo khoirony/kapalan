@@ -4,74 +4,69 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Repair List</h1>
 
-    <br>
-    <br><br>
+    <br><br><br>
     <table class="table">
+
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Nama Kapal</th>
-                <th scope="col">Nama Galangan</th>
-                <th scope="col">Jenis Survey</th>
-                <th scope="col">Mulai</th>
-                <th scope="col">Selesai</th>
-                <th scope="col" class="text-center" width="25%">Aksi</th>
+                <th scope="col">Ship Name</th>
+                <th scope="col">Dock Name</th>
+                <th scope="col">Survey Type</th>
+                <th scope="col">Start</th>
+                <th scope="col">Finish</th>
+                <th scope="col" class="text-center" width="15%">Action</th>
             </tr>
         </thead>
+
         <tbody>
             <?php
-            $query = "SELECT * FROM booking JOIN kapal ON booking.kapal = kapal.id_kapal JOIN galangan ON booking.galangan = galangan.id_galangan where booking.perusahaan_kapal = " . $user['perusahaan'];
-            $Tampil = $this->db->query($query)->result_array();
-            $cek = $this->db->query($query)->row_array();
             $no = 1;
-            if ($cek == 0) {
-                echo '
-                    <tr>
-                        <td colspan="6"><center>Data Kosong</center></td>
-                    </tr>
-                ';
-            } else {
-                foreach ($Tampil as $t) {
+            foreach ($listbooking as $list) {
             ?>
-                    <tr>
-                        <td><?= $no; ?> </td>
-                        <td><?= $t['nama_kapal']; ?></td>
-                        <td><?= $t['nama_galangan']; ?></td>
-                        <td><?= $t['jenis']; ?></td>
-                        <td><?= $t['tgl_mulai']; ?></td>
-                        <td><?= $t['tgl_akhir']; ?></td>
-                        <td class="text-center">
-                            <?php
-                            if ($t['active'] == 2) {
-                                $quer = "SELECT * FROM repair where id_repair = " . $t['id_booking'];
-                                $cekada = $this->db->query($quer)->row_array();
-                                if (!$cekada) {
-                                    echo
-                                    anchor('DockMon/buatrepair/' . $t['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
-                                }
-                            } else {
-                                echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
-                                echo  anchor('DockMon/hapusbooking/' . $t['id_booking'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3">Cancel</div> ');
+                <tr>
+                    <td><?= $no++; ?> </td>
+                    <td><?= $list['nama_kapal']; ?></td>
+                    <td><?= $list['nama_galangan']; ?></td>
+                    <td><?= $list['jenis']; ?></td>
+                    <td><?= $list['tgl_mulai']; ?></td>
+                    <td><?= $list['tgl_akhir']; ?></td>
+                    <td class="text-center">
+                        <?php
+                        if ($list['active'] == 2) {
+                            $quer = "SELECT * FROM repair where id_repair = " . $list['id_booking'];
+                            $cekada = $this->db->query($quer)->row_array();
+                            if (!$cekada) {
+                                echo
+                                anchor('DockMon/buatrepair/' . $list['id_booking'], '<div class="btn btn-sm btn-warning rounded-pill pl-3 pr-3">Create</div> ');
                             }
+                        } else {
+                            echo '<div class="btn btn-sm btn-secondary rounded-pill pl-3 pr-3">Waiting</div>';
+                            echo  anchor('DockMon/hapusbooking/' . $list['id_booking'], '<div class="btn btn-sm btn-danger rounded-pill pl-3 pr-3">Cancel</div> ');
+                        }
 
-                            $sql = "SELECT * FROM repair where id_repair = " . $t['id_booking'];
-                            $cek = $this->db->query($sql)->result_array();
-                            foreach ($cek as $c) {
-                                if ($c['id_repair'] == $t['id_booking']) {
-                                    echo
-                                    anchor('DockMon/repair/' . $c['id_repair'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
-                                }
+                        $sql = "SELECT * FROM repair where id_repair = " . $list['id_booking'];
+                        $cek = $this->db->query($sql)->result_array();
+                        foreach ($cek as $c) {
+                            if ($c['id_repair'] == $list['id_booking']) {
+                                echo
+                                anchor('DockMon/repair/' . $c['id_repair'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">See</div>');
                             }
-                            ?>
-                        </td>
-                    </tr>
+                        }
+                        ?>
+                    </td>
+                </tr>
             <?php
-                    $no++;
-                }
+            }
+            if ($hitung == NULL) {
+                echo '<tr>
+                    <td colspan="8" class="text-center border-bottom">Data Kosong</td>
+                </tr>';
             }
             ?>
 
         </tbody>
+
     </table>
 
 </div>
