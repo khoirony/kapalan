@@ -5,9 +5,11 @@
     <h1 class="h3 mb-4 text-gray-800">Ongoing Project</h1>
 
     <div class="row">
+
         <div class="col-2">
-            Data kapal
+            Ship Name
         </div>
+
         <div class="col-3">
             <div class="form-group">
                 <select class="form-select form-select-lg rounded-pill fs-6" id="role" name="role" aria-label="Default select example">
@@ -15,12 +17,13 @@
                 </select>
             </div>
         </div>
+
     </div>
 
     <div class="row">
         <div class="col-2">
-            Rencana Durasi <br>
-            Pengerjaan
+            Work Duration <br>
+            Planned
         </div>
         <div class="col-4">
             <div class="form-group row">
@@ -38,11 +41,11 @@
         <?php
         if ($repair['selesai'] == 1) {
         ?>
-            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/selesairepair/' . $repair['id_repair']); ?>">Selesaikan</a>
+            <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/selesairepair/' . $repair['id_repair']); ?>">Finish</a>
         <?php
         } else if ($repair['selesai'] == 2) {
         ?>
-            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/batalkanrepair/' . $repair['id_repair']); ?>">Batalkan</a>
+            <a class="btn btn-danger rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/batalkanrepair/' . $repair['id_repair']); ?>">Cancel</a>
         <?php
         }
         ?>
@@ -53,10 +56,10 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Bidang</th>
-                <th scope="col">Jenis</th>
-                <th scope="col">Uraian</th>
-                <th scope="col" class="text-center" width="29%">Aksi</th>
+                <th scope="col">Field of Work</th>
+                <th scope="col">Type of Work</th>
+                <th scope="col">Description</th>
+                <th scope="col" class="text-center" width="29%">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -83,7 +86,7 @@
                             <?php
                             if ($t['selesai'] == 0) {
                             ?>
-                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/revisi/' . $t['id_pekerjaan']); ?>">Revisi</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/cekhasil/' . $t['id_pekerjaan']); ?>">Cek Hasil</a>
+                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/revisi/' . $t['id_pekerjaan']); ?>">Revision</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ShipMan/cekhasil/' . $t['id_pekerjaan']); ?>">Result</a>
 
                             <?php
                             } else {

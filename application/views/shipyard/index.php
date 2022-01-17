@@ -11,7 +11,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h5 class="card-title">Jumlah User</h5>
+                <h5 class="card-title">User</h5>
                 <div class="display-4">
                     <?php
                     $query = 'SELECT* FROM user WHERE perusahaan =' . $user['perusahaan'];
@@ -20,7 +20,7 @@
                     ?>
                 </div>
                 <a href="<?= base_url('Shipyard/user'); ?>">
-                    <p class="card-text text-white">Lihat Detail <i class="fas fa-angle-double-right ml-2"></i></p>
+                    <p class="card-text text-white">See Detail <i class="fas fa-angle-double-right ml-2"></i></p>
                 </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-ship"></i>
                 </div>
-                <h5 class="card-title">Jumlah Galangan</h5>
+                <h5 class="card-title">Docking Space</h5>
                 <div class="display-4">
                     <?php
                     $query = 'SELECT* FROM galangan WHERE perusahaan =' . $user['perusahaan'];
@@ -46,7 +46,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-spinner"></i>
                 </div>
-                <h5 class="card-title">Jumlah Ongoing Project</h5>
+                <h5 class="card-title">Ongoing Project</h5>
                 <div class="display-4">
                     <?php
                     $query = 'SELECT* FROM repair WHERE perusahaan_galangan =' . $user['perusahaan'] . " AND active = 2";

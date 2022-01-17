@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Progress Pengerjaan</h1>
+    <h1 class="h3 mb-4 text-gray-800">Progress of Work</h1>
     <br><br>
     <div class="row">
         <div class="col-md-5">
@@ -14,7 +14,7 @@
                     <input type="text" class="form-control form-control-user" id="" name="" value="<?= $pekerja['bidang']; ?>" disabled>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="jenis" name="jenis" placeholder="Jenis Pekerjaan" value="<?= $pekerja['jenis']; ?>">
+                    <input type="text" class="form-control form-control-user" id="jenis" name="jenis" placeholder="Type of Work" value="<?= $pekerja['jenis']; ?>">
                     <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
                 <div class="form-group row">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Uraian"><?= $pekerja['uraian']; ?></textarea>
+                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Descriptin"><?= $pekerja['uraian']; ?></textarea>
                 </div>
                 <hr>
                 <div class="form-group row">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Uraian Hasil Pengerjaan"></textarea>
+                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Result Description"></textarea>
                 </div>
                 <div class="form-group">
                     Ket : <?php if ($pekerja['progress'] == 0) {

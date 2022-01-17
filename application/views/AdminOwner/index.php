@@ -11,7 +11,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h5 class="card-title">Jumlah User</h5>
+                <h5 class="card-title">User</h5>
                 <div class="display-4">
                     <?= --$hitunguser; ?>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-ship"></i>
                 </div>
-                <h5 class="card-title">Jumlah Kapal</h5>
+                <h5 class="card-title">Fleet</h5>
                 <div class="display-4">
                     <?= $hitungkapal; ?>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
-                <h5 class="card-title">Survey Terdekat</h5>
+                <h5 class="card-title">Closest Survey</h5>
                 <div class="display-4">
                     <?= $hitungsurvey['selisih']; ?> Days
                 </div>

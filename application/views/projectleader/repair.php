@@ -10,12 +10,12 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Nama Kapal</th>
-                <th scope="col">Nama Galangan</th>
-                <th scope="col">Jenis Survey</th>
-                <th scope="col">Mulai</th>
-                <th scope="col">Selesai</th>
-                <th scope="col" class="text-center" width="17%">Aksi</th>
+                <th scope="col">Ship Name</th>
+                <th scope="col">Dock Name</th>
+                <th scope="col">Survey Type</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Finish Date</th>
+                <th scope="col" class="text-center" width="17%">Action</th>
             </tr>
         </thead>
         <tbody>

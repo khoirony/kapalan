@@ -14,7 +14,7 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Ship Data';
+        $data['title'] = "Ship's Data";
         $data['user'] = $user;
         $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->result_array();
         $data['hitungkapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->num_rows();
@@ -45,7 +45,7 @@ class Superintendent extends CI_Controller
 
         if ($this->form_validation->run() == false) {
 
-            $data['title'] = 'Ship Data';
+            $data['title'] = "Ship's Data";
             $data['user'] = $user;
             $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
@@ -102,7 +102,7 @@ class Superintendent extends CI_Controller
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Ship Data';
+            $data['title'] = "Ship's Data";
             $data['id'] = $where;
             $data['user'] = $user;
             $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $where['id']])->row_array();
@@ -143,7 +143,7 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Maintenance History';
+        $data['title'] = 'Maintenance Record';
         $data['user'] = $user;
         $perusahaan = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
@@ -176,7 +176,7 @@ class Superintendent extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Maintenance History';
+        $data['title'] = 'Maintenance Record';
         $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
         $this->form_validation->set_rules('tanggal', 'Date', 'required|trim');
@@ -219,7 +219,7 @@ class Superintendent extends CI_Controller
 
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Maintenance History';
+        $data['title'] = 'Maintenance Record';
         $data['user'] = $user;
         $maintenance = $this->db->get_where('maintenance', ['id_maintenance' => $where['id']])->row_array();
         $data['maintenance'] = $maintenance;
@@ -488,13 +488,66 @@ class Superintendent extends CI_Controller
     {
         $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $this->input->post('id')])->row_array();
 
-        $this->db->where('id_pekerjaan', $this->input->post('id'));
-        $this->db->delete('pekerjaan');
+        $data = [
+            'selesai' => 1,
+        ];
 
-        unlink(FCPATH . 'assets/img/project/' . $pekerja['image']);
+        $this->db->set($data);
+        $this->db->where('id_pekerjaan', $this->input->post('id'));
+        $this->db->update('pekerjaan');
+
+        // $this->db->where('id_pekerjaan', $this->input->post('id'));
+        // $this->db->delete('pekerjaan');
+
+        // unlink(FCPATH . 'assets/img/project/' . $pekerja['image']);
 
         $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Updated Succesfully.</div>');
         redirect('Superintendent/project/' . $this->input->post('id_repair'));
+    }
+
+    public function selesai($id)
+    {
+        $where = array('id' => $id);
+        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+        $data['title'] = 'Ongoing Project';
+        $data['user'] = $user;
+        $pekerja = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $where['id']])->row_array();
+        $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $pekerja['kapal']])->row_array();
+        $data['repair'] = $this->db->get_where('repair', ['id_repair' => $pekerja['repair']])->row_array();
+        $data['pekerja'] = $pekerja;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/sidebar', $data);
+        $this->load->view('templates/topbar', $data);
+        $this->load->view('Superintendent/selesai', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function selesairepair($id)
+    {
+
+        $data = [
+            'selesai' => 2,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+        redirect('Superintendent/project/' . $id);
+    }
+
+    public function batalkanrepair($id)
+    {
+
+        $data = [
+            'selesai' => 1,
+        ];
+
+        $this->db->set($data);
+        $this->db->where('id_repair', $id);
+        $this->db->update('repair');
+        redirect('Superintendent/project/' . $id);
     }
 
     public function profil()

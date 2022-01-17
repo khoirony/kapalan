@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Progress Pengerjaan</h1>
+    <h1 class="h3 mb-4 text-gray-800">Working Progress</h1>
     <br><br>
     <div class="row">
         <div class="col-md-5">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Uraian Hasil Pengerjaan"><?= $pekerja['hasil_pengerjaan']; ?></textarea>
+                    <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Result Description"><?= $pekerja['hasil_pengerjaan']; ?></textarea>
                 </div>
                 <div class="form-group">
                     Progress :
@@ -53,7 +53,7 @@
                                                                                                                         }
                                                                                                                         ?>>
                                 <label class="form-check-label" for="progress1">
-                                    Belum
+                                    Starting
                                 </label>
                             </div>
                             <div class="col">
@@ -63,7 +63,7 @@
                                                                                                                         }
                                                                                                                         ?>>
                                 <label class="form-check-label" for="progress1">
-                                    Proses
+                                    On Progress
                                 </label>
                             </div>
                             <div class="col">
@@ -73,7 +73,7 @@
                                                                                                                         }
                                                                                                                         ?>>
                                 <label class="form-check-label" for="progress1">
-                                    Selesai
+                                    Finish
                                 </label>
                             </div>
                         </div>

@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Ship Data <?= $perusahaan['nama_perusahaan']; ?></h1>
+    <h1 class="h3 mb-4 text-gray-800"><?= $perusahaan['nama_perusahaan']; ?> Ship's</h1>
     <br>
 
     <div style="float: right;" class="mr-3">
@@ -16,9 +16,9 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Name</th>
+                <th scope="col">Ship Name</th>
                 <th scope="col">Created</th>
-                <th scope="col">Type</th>
+                <th scope="col">Ship Type</th>
                 <th scope="col">Material</th>
                 <th scope="col">LOA</th>
                 <th scope="col">Width</th>

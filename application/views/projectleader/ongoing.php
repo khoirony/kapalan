@@ -8,11 +8,11 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Nama Kapal</th>
-                <th scope="col">Nama Galangan</th>
-                <th scope="col">Tanggal Mulai</th>
-                <th scope="col">Tanggal Berakhir</th>
-                <th scope="col" width="15%">Aksi</th>
+                <th scope="col">Ship Name</th>
+                <th scope="col">Dock Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Finish Date</th>
+                <th scope="col" width="15%">Action</th>
             </tr>
         </thead>
         <tbody>

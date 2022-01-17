@@ -2,7 +2,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Cek Hasil Pengerjaan</h1>
+    <h1 class="h3 mb-4 text-gray-800">Check Result</h1>
 
     <div class="row">
         <div class="col-md-5">
@@ -33,7 +33,7 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    Disetujui oleh :<br>
+                    Approved By :<br>
                     <?php
                     if ($pekerja['pl'] == 0) {
                         echo 'Project Leader <span class="badge bg-secondary">Belum</span><br>';
@@ -60,7 +60,7 @@
         </div>
         <div class="col-md-7">
             <div class="container text-center">
-                Hasil Pengerjaan <br> <br>
+                Work Result <br> <br>
                 <img src="<?= base_url('assets/img/project/' . $pekerja['image']); ?>" alt="" class="img-thumbnail">
             </div>
         </div>

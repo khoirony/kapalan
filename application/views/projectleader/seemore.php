@@ -6,9 +6,9 @@
 
     <div class="row">
         <div class="col-2">
-            Data kapal <br><br><br>
-            Rencana Durasi <br>
-            Pengerjaan
+            Ship Name <br><br><br>
+            Work Duration <br>
+            Planned
         </div>
         <div class="col-3">
             <div class="form-group">
@@ -43,16 +43,16 @@
             anchor('ProjectLeader/accept/' . $repair['id_repair'], '<div class="btn btn-warning rounded-pill pl-3 pr-3">Accept</div>');
         }
         ?>
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/tambahkerja/' . $repair['id_repair']); ?>">Tambah Pekerja</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/tambahkerja/' . $repair['id_repair']); ?>">Add Worker</a>
     </div>
     <br><br>
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col" width="35%">Bidang</th>
-                <th scope="col">Jenis</th>
-                <th scope="col" width="17%">Aksi</th>
+                <th scope="col" width="35%">Field of Work</th>
+                <th scope="col">Type of Work</th>
+                <th scope="col" width="17%">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -75,8 +75,8 @@
                         <td><?= $t['bidang']; ?></td>
                         <td><?= $t['jenis']; ?></td>
                         <td>
-                            <a class="btn btn-primary btn-sm rounded-pill pl-3 pr-3" href="<?= base_url('dockmon/editpekerja/' . $t['id_pekerjaan']); ?>">Edit</a>
-                            <btn class=" btn btn-secondary btn-sm rounded-pill pl-3 pr-3">Hapus</btn>
+                            <a class="btn btn-primary btn-sm rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/editkerja/' . $t['id_pekerjaan']); ?>">Edit</a>
+                            <a class="btn btn-primary btn-sm rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/hapuspekerja/' . $t['id_pekerjaan']); ?>">Delete</a>
                         </td>
                     </tr>
             <?php

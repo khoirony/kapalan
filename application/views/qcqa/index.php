@@ -11,7 +11,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-ship"></i>
                 </div>
-                <h5 class="card-title">Jumlah Galangan</h5>
+                <h5 class="card-title">Dock Space</h5>
                 <div class="display-4">
                     <?php
                     $query = 'SELECT* FROM galangan WHERE perusahaan =' . $user['perusahaan'];
@@ -27,7 +27,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
-                <h5 class="card-title">Jumlah Booking</h5>
+                <h5 class="card-title">Booking</h5>
                 <div class="display-4">
                     <?php
                     $query = 'SELECT* FROM booking WHERE perusahaan_galangan =' . $user['perusahaan'] . " AND kapal != 0";
@@ -43,7 +43,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-spinner"></i>
                 </div>
-                <h5 class="card-title">Jumlah Ongoing Project</h5>
+                <h5 class="card-title">Ongoing Project</h5>
                 <div class="display-4">
                     <?php
                     $query = 'SELECT* FROM repair WHERE perusahaan_galangan =' . $user['perusahaan'];
@@ -52,7 +52,7 @@
                     ?>
                 </div>
                 <a href="<?= base_url('Qcqa/ongoing'); ?>">
-                    <p class="card-text text-white">Lihat Detail <i class="fas fa-angle-double-right ml-2"></i></p>
+                    <p class="card-text text-white">See Detail <i class="fas fa-angle-double-right ml-2"></i></p>
                 </a>
             </div>
         </div>

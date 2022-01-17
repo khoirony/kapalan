@@ -29,20 +29,20 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="jenis" name="jenis" placeholder="Jenis Survey" value="<?= set_value('jenis'); ?>">
+                    <input type="text" class="form-control form-control-user" id="jenis" name="jenis" placeholder="Survey Type" value="<?= set_value('jenis'); ?>">
                     <?= form_error('jenis', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 
                 <div class="form-group row">
 
                     <div class="col-sm-6 mb-3 mb-sm-0">
-                        <span class="ml-2">Tanggal Mulai</span>
+                        <span class="ml-2">Start Date</span>
                         <input type="date" class="form-control form-control-user" id="tglawal" name="tglawal" placeholder="Tanggal Mulai">
                         <?= form_error('tglawal', '<small class="text-danger pl-3">', '</small>'); ?>
                     </div>
 
                     <div class="col-sm-6">
-                        <span class="ml-2">Tanggal Selesai</span>
+                        <span class="ml-2">Finish Date</span>
                         <input type="date" class="form-control form-control-user" id="tglakhir" name="tglakhir" placeholder="Tanggal Selesai">
                     </div>
 

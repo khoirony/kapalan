@@ -14,7 +14,7 @@ class DockMon extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'List Docking Space';
+        $data['title'] = 'List of Shipyard';
         $data['user'] = $user;
         $data['perusahaangalangan'] = $this->db->get_where('perusahaan', ['role_id' => 1])->result_array();
         $data['hitung'] = $this->db->get_where('perusahaan', ['role_id' => 1])->num_rows();
@@ -31,7 +31,7 @@ class DockMon extends CI_Controller
         $where = array('id' => $id);
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'List Docking Space';
+        $data['title'] = 'List of Shipyard';
         $data['user'] = $user;
         $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $where['id']])->row_array();
         $data['galangan'] = $this->db->get_where('galangan', ['perusahaan' => $where['id']])->result_array();
@@ -52,7 +52,7 @@ class DockMon extends CI_Controller
         $data['kapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->row_array();
         $data['listkapal'] = $this->db->get_where('kapal', ['perusahaan' => $user['perusahaan']])->result_array();
 
-        $data['title'] = 'List Docking Space';
+        $data['title'] = 'List of Shipyard';
         $data['user'] = $user;
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);

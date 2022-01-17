@@ -4,11 +4,14 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $perusahaan['nama_perusahaan']; ?></h1>
     <br>
+
     <div class="text-justify">
         <?= $perusahaan['deskripsi_perusahaan']; ?>
     </div>
+
     <div class="row">
         <div class="col-6">
+
             <div class="row pt-2">
                 <div class="col-2">
                     Alamat
@@ -17,6 +20,7 @@
                     : <?= $perusahaan['alamat']; ?>, <?= $perusahaan['kota']; ?>, <?= $perusahaan['kode_pos']; ?>
                 </div>
             </div>
+
             <div class="row pt-2">
                 <div class="col-2">
                     Email
@@ -25,6 +29,7 @@
                     : <?= $perusahaan['email_perusahaan']; ?>
                 </div>
             </div>
+
             <div class="row pt-2">
                 <div class="col-2">
                     Phone
@@ -33,6 +38,7 @@
                     : <?= $perusahaan['no_telp']; ?>
                 </div>
             </div>
+
             <div class="row pt-2">
                 <div class="col-2">
                     Fax
@@ -41,13 +47,16 @@
                     : <?= $perusahaan['no_fax']; ?>
                 </div>
             </div>
+
             <br><br>
             <?php
-            echo anchor('ShipMan/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Perusahaan</div>');
+            echo anchor('ShipMan/updateperusahaan/' . $perusahaan['id_perusahaan'], '<div class="btn btn-sm btn-primary rounded-pill pl-3 pr-3">Update Company</div>');
             ?>
         </div>
+
         <div class="col-6 text-center">
             <div id="carouselExampleControls" class="carousel carousel-dark slide" data-ride="carousel">
+
                 <div class="carousel-inner">
                     <?php
                     if ($perusahaan['logo'] != NULL) {
@@ -67,16 +76,20 @@
                     }
                     ?>
                 </div>
+
                 <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </button>
+
                 <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </button>
+
             </div>
         </div>
+
     </div>
 
 

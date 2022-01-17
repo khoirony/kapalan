@@ -21,7 +21,7 @@
     </div>
 
     <div style="float: right;" class="mr-3">
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/buatsurvey'); ?>">Add report</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/buatsurvey'); ?>">Add New Survey</a>
     </div>
     <br><br>
     <table class="table">
@@ -31,8 +31,8 @@
                 <th scope="col">Ship Name</th>
                 <th scope="col">Survey type</th>
                 <th scope="col">Due Period</th>
-                <th scope="col">Days</th>
-                <th scope="col" width='18%'>Aksi</th>
+                <th scope="col">Days Remaining</th>
+                <th scope="col" width='18%'>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -45,10 +45,10 @@
                     <td><?= $list['nama_kapal']; ?></td>
                     <td><?= $list['jenis']; ?></td>
                     <td><?= $list['tanggal']; ?></td>
-                    <td><?= $list['selisih']; ?></td>
+                    <td><?= $list['selisih']; ?> Days</td>
                     <td>
-                        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/editsurvey/' . $list['id_survey']); ?>">Edit</a>
-                        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/hapussurvey/' . $list['id_survey']); ?>">Delete</a>
+                        <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/editsurvey/' . $list['id_survey']); ?>">Edit</a>
+                        <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('Superintendent/hapussurvey/' . $list['id_survey']); ?>">Delete</a>
                     </td>
                 </tr>
             <?php

@@ -11,7 +11,7 @@
             <tr>
                 <th scope="col" width="5%">No</th>
                 <th scope="col">Dock Name</th>
-                <th scope="col">Dock Company</th>
+                <th scope="col">Shipyard</th>
                 <th scope="col" width="15%">Action</th>
             </tr>
         </thead>

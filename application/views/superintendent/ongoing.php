@@ -8,11 +8,11 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col">Nama Kapal</th>
-                <th scope="col">Nama Galangan</th>
-                <th scope="col">Tanggal Mulai</th>
-                <th scope="col">Tanggal Berakhir</th>
-                <th scope="col" width="15%">Aksi</th>
+                <th scope="col">Ship Name</th>
+                <th scope="col">Dock Name</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">Finish Date</th>
+                <th scope="col" width="15%">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -32,13 +32,19 @@
             ?>
                     <tr>
                         <td><?= $no; ?></td>
-                        <td><?= $t['nama_kapal']; ?></td>
+                        <td><?= $t['nama_kapal']; ?>
+                            <?php
+                            if ($t['selesai'] == 2) {
+                                echo '<span class="badge badge-danger">Done</span>';
+                            }
+                            ?>
+                        </td>
                         <td><?= $t['nama_galangan']; ?></td>
                         <td><?= $t['tgl_awal']; ?></td>
                         <td><?= $t['tgl_akhir']; ?></td>
                         <td>
                             <?php
-                            if ($t['active'] == 1) {
+                            if ($t['active'] == 2) {
                                 echo
                                 anchor('Superintendent/project/' . $t['id_repair'], '<div class=" btn btn-sm btn-warning rounded-pill pl-3 pr-3">See Project</div>');
                             } else {

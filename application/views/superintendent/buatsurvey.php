@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="kelas" name="kelas" placeholder="Ship Class" value="<?= set_value('kelas'); ?>">
+                    <input type="text" class="form-control form-control-user" id="kelas" name="kelas" placeholder="Classification Society" value="<?= set_value('kelas'); ?>">
                     <?= form_error('kelas', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 

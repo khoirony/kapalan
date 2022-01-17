@@ -130,7 +130,7 @@ class Planning extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Atur Jadwal';
+        $data['title'] = 'Manage Schedule';
         $data['user'] = $user;
 
         $this->load->view('templates/header', $data);
@@ -155,7 +155,7 @@ class Planning extends CI_Controller
             $data['galangan'] = $this->db->get_where('galangan', ['id_galangan' => $booking['galangan']])->row_array();
             $data['kapal'] = $this->db->get_where('kapal', ['id_kapal' => $booking['kapal']])->row_array();
 
-            $data['title'] = 'List Galangan';
+            $data['title'] = 'Manage Schedule';
             $data['user'] = $user;
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -201,20 +201,6 @@ class Planning extends CI_Controller
         $this->db->where('id_booking', $id);
         $this->db->update('booking');
         redirect('Planning/jadwal');
-    }
-
-    public function repair()
-    {
-        $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $data['title'] = 'Repair List';
-        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('templates/sidebar', $data);
-        $this->load->view('templates/topbar', $data);
-        $this->load->view('Planning/repair', $data);
-        $this->load->view('templates/footer');
     }
 
     public function profil()

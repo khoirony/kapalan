@@ -21,8 +21,8 @@
     <div class="row">
 
         <div class="col-2">
-            Rencana Durasi <br>
-            Pengerjaan
+            Work Duration <br>
+            Planned
         </div>
 
         <div class="col-4">
@@ -59,9 +59,9 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col" width="5%">No</th>
-                <th scope="col" width="35%">Bidang</th>
-                <th scope="col">Jenis</th>
-                <th scope="col" width="17%">Aksi</th>
+                <th scope="col" width="35%">Field of Work</th>
+                <th scope="col">Type of Work</th>
+                <th scope="col" width="17%">Action</th>
             </tr>
         </thead>
 

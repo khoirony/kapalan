@@ -28,7 +28,7 @@ class ShipMan extends CI_Controller
     {
         $user = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['title'] = 'Profil Perusahaan';
+        $data['title'] = 'Company Profile';
         $data['user'] = $user;
         $data['perusahaan'] = $this->db->get_where('perusahaan', ['id_perusahaan' => $user['perusahaan']])->row_array();
 
@@ -54,7 +54,7 @@ class ShipMan extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Profil Perusahaan';
+            $data['title'] = 'Company Profile';
 
             $this->load->view('templates/header', $data);
             $this->load->view('templates/sidebar', $data);
@@ -348,7 +348,7 @@ class ShipMan extends CI_Controller
 
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Profil Perusahaan';
+            $data['title'] = 'Company Profile';
             $data['user'] = $user;
 
             $this->load->view('templates/header', $data);
