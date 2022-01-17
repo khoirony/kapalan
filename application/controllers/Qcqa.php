@@ -96,7 +96,7 @@ class Qcqa extends CI_Controller
                     unlink(FCPATH . 'assets/img/project/' . $old_image);
                 }
                 $new_image = $this->upload->data('file_name');
-                $this->db->set('image', $new_image);
+                $this->db->set('imgresult', $new_image);
                 $this->db->where('id_pekerjaan', $this->input->post('id'));
                 $this->db->update('pekerjaan');
             } else {

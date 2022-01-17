@@ -224,6 +224,31 @@ class ShipMan extends CI_Controller
 
     public function ajukanrevisi()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['pekerjaan'] = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $this->input->post('id')])->row_array();
+        $upload_image = $_FILES['image']['name'];
+
+        if ($upload_image) {
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size']     = '2048';
+            $config['upload_path'] = './assets/img/project/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image')) {
+                $old_image = $data['pekerjaan']['image'];
+                if ($old_image != 'default.jpg') {
+                    unlink(FCPATH . 'assets/img/project/' . $old_image);
+                }
+                $new_image = $this->upload->data('file_name');
+                $this->db->set('imgrevisi', $new_image);
+                $this->db->where('id_pekerjaan', $this->input->post('id'));
+                $this->db->update('pekerjaan');
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+
         $data = [
             'revisi' => $this->input->post('uraian')
         ];

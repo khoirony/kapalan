@@ -43,9 +43,17 @@
                     <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian"><?= $pekerja['revisi']; ?></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-user btn-block">Approve Revisi</button>
+                <button type="submit" class="btn btn-primary btn-user btn-block">Accept Revision</button>
             </form>
             <br>
+        </div>
+
+        <div class="col-md-7">
+            <div class="container text-center">
+                Revision Picture <br>
+                <br>
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgrevisi']); ?>" alt="" class="img-thumbnail">
+            </div>
         </div>
     </div>
 

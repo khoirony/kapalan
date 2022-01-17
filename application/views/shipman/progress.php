@@ -63,6 +63,13 @@
             </form>
             <br>
         </div>
+        <div class="col-md-7">
+            <div class="container text-center">
+                Work Progress Picture <br>
+                <br>
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgprogress']); ?>" alt="" class="img-thumbnail">
+            </div>
+        </div>
     </div>
 </div>
 <!-- /.container-fluid -->

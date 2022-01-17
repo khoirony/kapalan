@@ -7,6 +7,7 @@
 
     <div class="row">
         <div class="col-md-5">
+            <br><br>
             <form class="user" method="POST" action="<?= base_url('ProjectLeader/setujuirevisi'); ?>">
 
                 <input type="hidden" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
@@ -47,6 +48,16 @@
                 <button type="submit" class="btn btn-primary btn-user btn-block">Accept Revision</button>
             </form>
             <br>
+        </div>
+
+        <div class="col-md-7">
+
+            <div class="container text-center">
+                Revision Picture <br>
+                <br>
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgrevisi']); ?>" alt="" class="img-thumbnail">
+            </div>
+
         </div>
     </div>
 

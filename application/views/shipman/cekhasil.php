@@ -43,20 +43,10 @@
                 <div class="form-group">
                     Approved By :<br>
                     <?php
-                    if ($pekerja['pl'] == 0) {
-                        echo 'Project Leader <span class="badge bg-secondary">Belum</span><br>';
-                    } else {
-                        echo 'Project Leader <span class="badge bg-primary">Setuju</span><br>';
-                    }
                     if ($pekerja['qcqa'] == 0) {
                         echo 'QC / QA <span class="badge bg-secondary">Belum</span><br>';
                     } else {
                         echo 'QC / QA <span class="badge bg-primary">Setuju</span><br>';
-                    }
-                    if ($pekerja['wo'] == 0) {
-                        echo 'Workshop Officer <span class="badge bg-secondary">Belum</span><br>';
-                    } else {
-                        echo 'Workshop Officer <span class="badge bg-primary">Setuju</span><br>';
                     }
                     ?>
                 </div>
@@ -65,7 +55,7 @@
                     if ($pekerja['pl'] == 1 && $pekerja['qcqa'] == 1 && $pekerja['wo'] == 1) {
                         echo '<button type="submit" class="btn btn-primary btn-user btn-block">Approved Work</button>';
                     } else {
-                        echo '<div class="btn btn-secondary btn-user btn-block">Approved Work</div>';
+                        echo '<div class="btn btn-secondary btn-user btn-block">Approve Work</div>';
                     }
                     ?>
 
@@ -76,7 +66,7 @@
         <div class="col-md-7">
             <div class="container text-center">
                 Work Result <br> <br>
-                <img src="<?= base_url('assets/img/project/' . $pekerja['image']); ?>" alt="" class="img-thumbnail">
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgresult']); ?>" alt="" class="img-thumbnail">
             </div>
         </div>
     </div>

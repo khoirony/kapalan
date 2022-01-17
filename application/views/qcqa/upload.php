@@ -41,7 +41,7 @@
 
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Upload Working Result</label>
-                    <input type="file" id="image" name="image" class="form-control">
+                    <input type="file" id="image" name="image" class="form-control rounded-pill">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-user btn-block">
@@ -56,9 +56,9 @@
 
         <div class="col-md-7">
             <div class="container text-center">
-                Working Result Picture <br>
+                Work Result Picture <br>
                 <br>
-                <img src="<?= base_url('assets/img/project/' . $pekerja['image']); ?>" alt="" class="img-thumbnail">
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgresult']); ?>" alt="" class="img-thumbnail">
             </div>
         </div>
     </div>

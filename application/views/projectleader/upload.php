@@ -6,8 +6,8 @@
 
     <div class="row">
         <div class="col-md-5">
-
-            <form class="user" method="POST" action="<?= base_url('ProjectLeader/submitupload'); ?>" enctype="multipart/form-data">
+            <br><br>
+            <form class="user" method="POST" action="<?= base_url('ProjectLeader/submitupload'); ?>">
 
                 <input type="hidden" id="id_repair" name="id_repair" value="<?= $pekerja['repair']; ?>">
                 <input type="hidden" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
@@ -39,19 +39,7 @@
                     <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Uraian"><?= $pekerja['uraian']; ?></textarea>
                 </div>
                 <hr>
-
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Upload Work Result</label>
-                    <input type="file" id="image" name="image" class="form-control">
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-user btn-block">
-                    Submit
-                </button>
             </form>
-
-            <a href="<?= base_url('ProjectLeader/setujuihasil/' . $pekerja['id_pekerjaan']); ?>" class="btn btn-success btn-user btn-block rounded-pill mt-3">Accept</a>
-            <br>
         </div>
 
         <div class="col-md-7">
@@ -59,7 +47,7 @@
             <div class="container text-center">
                 Work Result Picture <br>
                 <br>
-                <img src="<?= base_url('assets/img/project/' . $pekerja['image']); ?>" alt="" class="img-thumbnail">
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgresult']); ?>" alt="" class="img-thumbnail">
             </div>
 
         </div>

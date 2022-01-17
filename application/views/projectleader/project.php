@@ -83,7 +83,7 @@
                             <?php
                             if ($t['selesai'] == 0) {
                             ?>
-                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/upload/' . $t['id_pekerjaan']); ?>">Upload</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/revisi/' . $t['id_pekerjaan']); ?>">Revision</a>
+                                <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/progress/' . $t['id_pekerjaan']); ?>">Progress</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/upload/' . $t['id_pekerjaan']); ?>">Result</a> <a class="btn btn-sm btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('ProjectLeader/revisi/' . $t['id_pekerjaan']); ?>">Revision</a>
                             <?php
                             } else {
                             ?>

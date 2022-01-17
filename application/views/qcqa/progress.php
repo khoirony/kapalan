@@ -90,9 +90,15 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-user btn-block">Update Progress</button>
             </form>
             <br>
+        </div>
+        <div class="col-md-7">
+            <div class="container text-center">
+                Work Progress Picture <br>
+                <br>
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgprogress']); ?>" alt="" class="img-thumbnail">
+            </div>
         </div>
     </div>
 </div>

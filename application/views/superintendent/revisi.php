@@ -42,6 +42,11 @@
                     <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Alasan Pengajuan"><?= $pekerja['revisi']; ?></textarea>
                 </div>
 
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Revision Photo</label>
+                    <input type="file" id="image" name="image" class="form-control rounded-pill">
+                </div>
+
                 <button type="submit" class="btn btn-primary btn-user btn-block">Submit Revision</button>
 
             </form>
@@ -58,6 +63,8 @@
                     echo '<span class="badge bg-warning">Sudah Disetujui</span><br>';
                 }
                 ?>
+                <br>
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgrevisi']); ?>" alt="" class="img-thumbnail">
             </div>
         </div>
     </div>

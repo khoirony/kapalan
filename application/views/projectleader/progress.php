@@ -6,7 +6,7 @@
     <br><br>
     <div class="row">
         <div class="col-md-5">
-            <form class="user" method="POST" action="<?= base_url('ProjectLeader/updateprogress'); ?>">
+            <form class="user" method="POST" action="<?= base_url('ProjectLeader/updateprogress'); ?>" enctype="multipart/form-data">
                 <input type="hidden" id="id" name="id" value="<?= $pekerja['id_pekerjaan']; ?>">
                 <input type="hidden" id="id_repair" name="id_repair" value="<?= $pekerja['repair']; ?>">
                 <div class="form-group">
@@ -41,6 +41,10 @@
                 </div>
                 <div class="form-group">
                     <textarea type="text" class="form-control form-control-user" id="uraian" name="uraian" placeholder="Result Description"><?= $pekerja['hasil_pengerjaan']; ?></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Work Result</label>
+                    <input type="file" id="image" name="image" class="form-control rounded-pill">
                 </div>
                 <div class="form-group">
                     Progress :
@@ -81,7 +85,14 @@
                 </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block">Update Progress</button>
             </form>
-            <br>
+        </div>
+        <div class="col-md-7">
+            <div class="container text-center">
+                Work Progress Picture <br>
+                <br>
+                <img src="<?= base_url('assets/img/project/' . $pekerja['imgprogress']); ?>" alt="" class="img-thumbnail">
+            </div>
+
         </div>
     </div>
 </div>
