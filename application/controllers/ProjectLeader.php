@@ -417,6 +417,11 @@ class ProjectLeader extends CI_Controller
                 'alamat' => htmlspecialchars($this->input->post('alamat', true)),
             ];
 
+            $ubah = [
+                'email' => $this->input->post('email'),
+            ];
+            $this->session->set_userdata($ubah);
+
             $this->db->set($data);
             $this->db->where('id', $this->input->post('id'));
             $this->db->update('user');
