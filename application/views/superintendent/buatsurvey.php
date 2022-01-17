@@ -8,7 +8,7 @@
 
         <div class="col-md-5">
 
-            <form class="user" method="POST" action="<?= base_url('Superintendent/buatsurvey'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Superintendent/buatsurvey'); ?>" enctype="multipart/form-data">
 
                 <div class="form-group">
                     <select class="form-select form-select-lg rounded-pill fs-6" id="kapal" name="kapal">
@@ -34,9 +34,9 @@
                     <?= form_error('kelas', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="sertifikat" name="sertifikat" placeholder="Upload Sertifikat" value="<?= set_value('sertifikat'); ?>">
-                    <?= form_error('sertifikat', '<small class="text-danger pl-3">', '</small>'); ?>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Sertifikat</label>
+                    <input type="file" id="sertifikat" name="sertifikat" class="form-control rounded-pill">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-user btn-block">

@@ -305,7 +305,6 @@ class Superintendent extends CI_Controller
         $this->form_validation->set_rules('jenis', 'Jenis', 'required');
         $this->form_validation->set_rules('tanggal', 'Tanggal Survey', 'required|trim');
         $this->form_validation->set_rules('kelas', 'Kelas Kapal', 'required');
-        $this->form_validation->set_rules('sertifikat', 'Sertifikat', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/header', $data);
@@ -314,18 +313,33 @@ class Superintendent extends CI_Controller
             $this->load->view('Superintendent/buatsurvey', $data);
             $this->load->view('templates/footer');
         } else {
-            $data = [
-                'kapal' => htmlspecialchars($this->input->post('kapal', true)),
-                'jenis' => htmlspecialchars($this->input->post('jenis', true)),
-                'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
-                'kelas' => htmlspecialchars($this->input->post('kelas', true)),
-                'sertifikat' => htmlspecialchars($this->input->post('sertifikat', true)),
-            ];
+            $upload_sertifikat = $_FILES['sertifikat']['name'];
 
-            $this->db->insert('survey', $data);
+            if ($upload_sertifikat) {
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config['max_size']     = '2048';
+                $config['upload_path'] = './assets/img/survey/';
 
-            $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-            redirect('Superintendent/survey');
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('sertifikat')) {
+
+                    $data = [
+                        'kapal' => htmlspecialchars($this->input->post('kapal', true)),
+                        'jenis' => htmlspecialchars($this->input->post('jenis', true)),
+                        'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
+                        'kelas' => htmlspecialchars($this->input->post('kelas', true)),
+                        'sertifikat' => $this->upload->data('file_name'),
+                    ];
+
+                    $this->db->insert('survey', $data);
+
+                    $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
+                    redirect('Superintendent/survey');
+                } else {
+                    echo $this->upload->display_errors();
+                }
+            }
         }
     }
 
@@ -354,13 +368,38 @@ class Superintendent extends CI_Controller
 
     public function updatesurvey()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['survey'] = $this->db->get_where('survey', ['id_survey' => $this->input->post('id')])->row_array();
+
+        $upload_sertifikat = $_FILES['sertifikat']['name'];
+
+        if ($upload_sertifikat) {
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size']     = '2048';
+            $config['upload_path'] = './assets/img/survey/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('sertifikat')) {
+                $old_sertifikat = $data['survey']['sertifikat'];
+                if ($old_sertifikat != 'default.jpg') {
+                    unlink(FCPATH . 'assets/img/survey/' . $old_sertifikat);
+                }
+                $new_sertifikat = $this->upload->data('file_name');
+                $this->db->set('sertifikat', $new_sertifikat);
+                $this->db->where('id_survey', $this->input->post('id'));
+                $this->db->update('survey');
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+
         $data = [
             'id_survey' => $this->input->post('id'),
             'kapal' => htmlspecialchars($this->input->post('kapal', true)),
             'jenis' => htmlspecialchars($this->input->post('jenis', true)),
             'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
             'kelas' => htmlspecialchars($this->input->post('kelas', true)),
-            'sertifikat' => htmlspecialchars($this->input->post('sertifikat', true)),
         ];
 
         $this->db->set($data);

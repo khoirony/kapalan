@@ -7,7 +7,7 @@
     <div class="row ml-3">
         <div class="col-md-5">
 
-            <form class="user" method="POST" action="<?= base_url('Superintendent/updatesurvey'); ?>">
+            <form class="user" method="POST" action="<?= base_url('Superintendent/updatesurvey'); ?>" enctype="multipart/form-data">
 
                 <input type="hidden" id="id" name="id" value="<?= $survey['id_survey']; ?>">
                 <input type="hidden" id="kapal" name="kapal" value="<?= $survey['kapal']; ?>">
@@ -31,17 +31,20 @@
                     <?= form_error('kelas', '<small class="text-danger pl-3">', '</small>'); ?>
                 </div>
 
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="sertifikat" name="sertifikat" placeholder="Upload Sertifikat" value="<?= $survey['sertifikat']; ?>">
-                    <?= form_error('sertifikat', '<small class="text-danger pl-3">', '</small>'); ?>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Sertifikat</label>
+                    <input type="file" id="sertifikat" name="sertifikat" class="form-control rounded-pill">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-user btn-block">
                     Submit
                 </button>
-
             </form>
             <br>
+        </div>
+        <div class="col-7 text-center">
+            Sertifikat <br>
+            <img src="<?= base_url('assets/img/survey/' . $survey['sertifikat']); ?>" alt="sertifikat" class="img-thumbnail">
         </div>
     </div>
 
