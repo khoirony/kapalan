@@ -284,10 +284,10 @@ class ProjectLeader extends CI_Controller
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('image')) {
-                $old_image = $data['pekerjaan']['image'];
-                if ($old_image != 'default.jpg') {
-                    unlink(FCPATH . 'assets/img/project/' . $old_image);
-                }
+                // $old_image = $data['pekerjaan']['imgprogress'];
+                // if ($old_image != 'default.jpg') {
+                //     unlink($_SERVER['DOCUMENT_ROOT'] . '/assets/img/project/' . $old_image);
+                // }
                 $new_image = $this->upload->data('file_name');
                 $this->db->set('imgprogress', $new_image);
                 $this->db->where('id_pekerjaan', $this->input->post('id'));

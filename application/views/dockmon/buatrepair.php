@@ -10,7 +10,7 @@
 
             <form class="user" method="POST" action="<?= base_url('DockMon/addrepair'); ?>">
 
-                <input type="hidden" id="id" name="id" value="<?= $booking['id_booking']; ?>">
+                <input type="hidden" id="perusahaan_galangan" name="perusahaan_galangan" value="<?= $galangan['perusahaan']; ?>">
                 <input type="hidden" id="kapal" name="kapal" value="<?= $kapal['id_kapal']; ?>">
                 <input type="hidden" id="perusahaan" name="perusahaan" value="<?= $perusahaan['id_perusahaan']; ?>">
                 <input type="hidden" id="galangan" name="galangan" value="<?= $galangan['id_galangan']; ?>">

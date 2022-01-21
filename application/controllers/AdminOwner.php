@@ -80,7 +80,7 @@ class AdminOwner extends CI_Controller
                 if ($this->upload->do_upload('logo')) {
                     $old_logo = $data['perusahaan']['logo'];
                     if ($old_logo != 'default.jpg') {
-                        unlink(FCPATH . 'assets/img/perusahaan/' . $old_logo);
+                        unlink(FCPATH . './assets/img/perusahaan/' . $old_logo);
                     }
                     $new_logo = $this->upload->data('file_name');
                     $this->db->set('logo', $new_logo);

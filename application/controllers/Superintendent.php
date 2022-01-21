@@ -32,10 +32,11 @@ class Superintendent extends CI_Controller
         $this->form_validation->set_rules('nama', 'Nama Kapal', 'required');
         $this->form_validation->set_rules('imo', 'IMO', 'required|trim');
         $this->form_validation->set_rules('tahun_pembuatan', 'Tahun Pembuatan', 'required|trim');
-        $this->form_validation->set_rules('tipe', 'Tipe Kapal', 'required|trim');
+        $this->form_validation->set_rules('tipe', 'Tipe Kapal', 'required');
         $this->form_validation->set_rules('material', 'Material Kapal', 'required');
+        $this->form_validation->set_rules('loa', 'LOA', 'required|trim');
         $this->form_validation->set_rules('lpp', 'LPP', 'required|trim');
-        $this->form_validation->set_rules('luas', 'Luas', 'required|trim');
+        $this->form_validation->set_rules('breadth', 'Breadth', 'required|trim');
         $this->form_validation->set_rules('draft', 'Draft', 'required|trim');
         $this->form_validation->set_rules('tinggi', 'Tinggi', 'required|trim');
         $this->form_validation->set_rules('dwt', 'DWT', 'required|trim');
@@ -313,8 +314,14 @@ class Superintendent extends CI_Controller
             $this->load->view('Superintendent/buatsurvey', $data);
             $this->load->view('templates/footer');
         } else {
+            $data = [
+                'kapal' => htmlspecialchars($this->input->post('kapal', true)),
+                'jenis' => htmlspecialchars($this->input->post('jenis', true)),
+                'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
+                'kelas' => htmlspecialchars($this->input->post('kelas', true)),
+                ];
+                
             $upload_sertifikat = $_FILES['sertifikat']['name'];
-
             if ($upload_sertifikat) {
                 $config['allowed_types'] = 'gif|jpg|png|jpeg';
                 $config['max_size']     = '2048';
@@ -323,23 +330,20 @@ class Superintendent extends CI_Controller
                 $this->load->library('upload', $config);
 
                 if ($this->upload->do_upload('sertifikat')) {
-
-                    $data = [
-                        'kapal' => htmlspecialchars($this->input->post('kapal', true)),
-                        'jenis' => htmlspecialchars($this->input->post('jenis', true)),
-                        'tanggal' => htmlspecialchars($this->input->post('tanggal', true)),
-                        'kelas' => htmlspecialchars($this->input->post('kelas', true)),
-                        'sertifikat' => $this->upload->data('file_name'),
+                
+                $data .= [
+                    'sertifikat' => $this->upload->data('file_name'),
                     ];
-
-                    $this->db->insert('survey', $data);
-
-                    $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
-                    redirect('Superintendent/survey');
+                    
                 } else {
                     echo $this->upload->display_errors();
                 }
             }
+            
+                $this->db->insert('survey', $data);
+
+                $this->session->set_flashdata('msg', '<div class="alert alert-success" role="alert">Congratulation! your ship has been added</div>');
+                redirect('Superintendent/survey');
         }
     }
 
@@ -381,10 +385,10 @@ class Superintendent extends CI_Controller
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('sertifikat')) {
-                $old_sertifikat = $data['survey']['sertifikat'];
-                if ($old_sertifikat != 'default.jpg') {
-                    unlink(FCPATH . 'assets/img/survey/' . $old_sertifikat);
-                }
+                // $old_sertifikat = $data['survey']['sertifikat'];
+                // if ($old_sertifikat != 'default.jpg') {
+                //     unlink(FCPATH . 'assets/img/survey/' . $old_sertifikat);
+                // }
                 $new_sertifikat = $this->upload->data('file_name');
                 $this->db->set('sertifikat', $new_sertifikat);
                 $this->db->where('id_survey', $this->input->post('id'));
@@ -493,6 +497,31 @@ class Superintendent extends CI_Controller
 
     public function ajukanrevisi()
     {
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['pekerjaan'] = $this->db->get_where('pekerjaan', ['id_pekerjaan' => $this->input->post('id')])->row_array();
+        $upload_image = $_FILES['image']['name'];
+
+        if ($upload_image) {
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size']     = '2048';
+            $config['upload_path'] = './assets/img/project/';
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('image')) {
+                // $old_image = $data['pekerjaan']['imgrevisi'];
+                // if ($old_image != 'default.jpg') {
+                //     unlink(FCPATH . 'assets/img/project/' . $old_image);
+                // }
+                $new_image = $this->upload->data('file_name');
+                $this->db->set('imgrevisi', $new_image);
+                $this->db->where('id_pekerjaan', $this->input->post('id'));
+                $this->db->update('pekerjaan');
+            } else {
+                echo $this->upload->display_errors();
+            }
+        }
+        
         $data = [
             'revisi' => $this->input->post('uraian')
         ];

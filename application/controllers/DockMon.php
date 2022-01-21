@@ -138,9 +138,9 @@ class DockMon extends CI_Controller
         $data['title'] = 'Find Docking Space';
         $data['user'] = $user;
 
-        $query = "SELECT * FROM galangan JOIN perusahaan ON galangan.perusahaan = perusahaan.id_perusahaan ";
+        $query = "SELECT DISTINCT galangan.nama_galangan, galangan.id_galangan, perusahaan.nama_perusahaan FROM galangan JOIN perusahaan ON galangan.perusahaan = perusahaan.id_perusahaan ";
         if ($this->input->post('tgl_awal') != NULL) {
-            $query .= "JOIN booking ON galangan.id_galangan = booking.galangan WHERE booking.active = 0 AND booking.tgl_akhir < '" . $this->input->post('tgl_awal') . "' AND ";
+            $query .= "JOIN booking ON galangan.id_galangan = booking.galangan WHERE booking.tgl_akhir < '" . $this->input->post('tgl_awal') . "' AND ";
         } else {
             $query .= "WHERE ";
         }
@@ -237,6 +237,7 @@ class DockMon extends CI_Controller
             'kapal' => $this->input->post('kapal'),
             'perusahaan' => htmlspecialchars($this->input->post('perusahaan', true)),
             'galangan' => htmlspecialchars($this->input->post('galangan', true)),
+            'perusahaan_galangan' => htmlspecialchars($this->input->post('perusahaan_galangan', true)),
             'kelas' => htmlspecialchars($this->input->post('kelas', true)),
             'jenis' => htmlspecialchars($this->input->post('jenis', true)),
             'tgl_awal' => htmlspecialchars($this->input->post('date1', true)),

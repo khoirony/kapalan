@@ -32,7 +32,7 @@
         <div class="container">
             <div class="row" style="margin-top: 200px;">
                 <div class="col-7">
-                    <h1 class="display-3 font-weight-bold mt-5 text-white"><span class="fw-bold">Shiprepair Dmom</span></h1>
+                    <h1 class="display-3 font-weight-bold mt-5 text-white"><span class="fw-bold">Shiprepair DMOM</span></h1>
                     <p class="text-white mt-4" style="font-size: 25px;">we provide services to bridge the shipowners and shipyards in the ship repair process in an integrated platform</p>
                 </div>
             </div>

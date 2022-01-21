@@ -52,8 +52,8 @@
                 </div>
                 <div class="form-group">
                     <?php
-                    if ($pekerja['pl'] == 1 && $pekerja['qcqa'] == 1 && $pekerja['wo'] == 1) {
-                        echo '<button type="submit" class="btn btn-primary btn-user btn-block">Approved Work</button>';
+                    if ($pekerja['qcqa'] == 1) {
+                        echo '<button type="submit" class="btn btn-primary btn-user btn-block">Approve Work</button>';
                     } else {
                         echo '<div class="btn btn-secondary btn-user btn-block">Approve Work</div>';
                     }

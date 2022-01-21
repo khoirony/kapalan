@@ -49,7 +49,7 @@
             anchor('DockMon/accept/' . $repair['id_repair'], '<div class="btn btn-warning rounded-pill pl-3 pr-3">Accept</div>');
         }
         ?>
-        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/tambahkerja/' . $repair['id_repair']); ?>">Add Worker</a>
+        <a class="btn btn-primary rounded-pill pl-3 pr-3" href="<?= base_url('DockMon/tambahkerja/' . $repair['id_repair']); ?>">Add List for Work</a>
     </div>
 
     <br><br>

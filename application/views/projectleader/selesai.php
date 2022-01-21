@@ -35,20 +35,10 @@
                 <div class="form-group">
                     Approved By :<br>
                     <?php
-                    if ($pekerja['pl'] == 0) {
-                        echo 'Project Leader <span class="badge bg-secondary">Belum</span><br>';
-                    } else {
-                        echo 'Project Leader <span class="badge bg-primary">Setuju</span><br>';
-                    }
                     if ($pekerja['qcqa'] == 0) {
                         echo 'QC / QA <span class="badge bg-secondary">Belum</span><br>';
                     } else {
                         echo 'QC / QA <span class="badge bg-primary">Setuju</span><br>';
-                    }
-                    if ($pekerja['wo'] == 0) {
-                        echo 'Workshop Officer <span class="badge bg-secondary">Belum</span><br>';
-                    } else {
-                        echo 'Workshop Officer <span class="badge bg-primary">Setuju</span><br>';
                     }
                     ?>
                 </div>

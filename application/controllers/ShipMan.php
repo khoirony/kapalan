@@ -236,10 +236,10 @@ class ShipMan extends CI_Controller
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('image')) {
-                $old_image = $data['pekerjaan']['image'];
-                if ($old_image != 'default.jpg') {
-                    unlink(FCPATH . 'assets/img/project/' . $old_image);
-                }
+                // $old_image = $data['pekerjaan']['imgrevisi'];
+                // if ($old_image != 'default.jpg') {
+                //     unlink(FCPATH . 'assets/img/project/' . $old_image);
+                // }
                 $new_image = $this->upload->data('file_name');
                 $this->db->set('imgrevisi', $new_image);
                 $this->db->where('id_pekerjaan', $this->input->post('id'));

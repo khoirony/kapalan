@@ -142,7 +142,7 @@ class WorkshopOfficer extends CI_Controller
             $this->load->library('upload', $config);
 
             if ($this->upload->do_upload('image')) {
-                $old_image = $data['pekerjaan']['image'];
+                $old_image = $data['pekerjaan']['imgprogress'];
                 if ($old_image != 'default.jpg') {
                     unlink(FCPATH . 'assets/img/project/' . $old_image);
                 }
