@@ -5,7 +5,7 @@ Dalam Web Ini Ada beberapa Role
 
 ### Pemilik Kapal (Ship Owner) ###
 
-ROLE yang tersedia : Admin Perusahaan, Superintendent, Docking Monitoring, Ship Manager.
+ROLE yang tersedia : Admin Perusahaan, Superintendent, Docking Monitoring, Ship Manager. <br>
 -Admin Perusahaan : Mendaftarkan perusahaan ke website, menambah user sesuai role yang yang tersedia, mengatur detail perusahaan.
 -Superintendent / Owner Surveyor : ngisi data kapal, riwayat maintenance, sama jadwal survey, mbuat/nambahin/ngedit repair list, mengajukan revisi  di bagian ongoing project.
 -Docking Monitoring : Nyari galangan tersedia sampai request booking, membuat/nambahin/ngedit repair list.
