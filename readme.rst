@@ -5,6 +5,7 @@ Dalam Web Ini Ada beberapa Role
 -Super admin : menyetujui pendaftaran admin perusahaan, dan mengatur admin perusahaan (Pemilik Website)
 
 ### Pemilik Kapal (Ship Owner) ###
+
 ROLE yang tersedia : Admin Perusahaan, Superintendent, Docking Monitoring, Ship Manager.
 
 -Admin Perusahaan : Mendaftarkan perusahaan ke website, menambah user sesuai role yang yang tersedia, mengatur detail perusahaan.
@@ -17,6 +18,7 @@ ROLE yang tersedia : Admin Perusahaan, Superintendent, Docking Monitoring, Ship 
 
 
 ### Penyedia Galangan (Shipyard) ###
+
 ROLE yang tersedia : Admin Perusahaan, Project Leader, QC/QA, Workshop Officer, Planning Department.
 
 -Admin Perusahaan : Mendaftarkan perusahaan ke website, menambah user sesuai role yang yang tersedia, mengatur detail Perusahaan.
